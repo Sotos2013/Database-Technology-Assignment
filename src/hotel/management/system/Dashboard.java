@@ -20,7 +20,7 @@ public class Dashboard extends JFrame{
     public Dashboard() {
         super("Πληροφοριακό σύστημα μηχανογράφησης ξενοδοχείου");
 	
-        setForeground(Color.CYAN);
+        setForeground(Color.BLUE);
         setLayout(null); 
 
         
