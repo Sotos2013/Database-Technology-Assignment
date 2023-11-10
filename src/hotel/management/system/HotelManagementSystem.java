@@ -41,7 +41,7 @@ public class HotelManagementSystem extends javax.swing.JFrame implements ActionL
                 ImageIcon i2 = new ImageIcon(i3);
                 l1 = new JLabel(i2);
                 
-                JLabel lid=new JLabel("HOTEL MANAGEMENT SYSTEM");
+                JLabel lid=new JLabel("Πληροφοριακό σύστημα μηχανογράφησης ξενοδοχείου");
                 lid.setBounds(30,300,1500,100);
                 lid.setFont(new Font("serif",Font.PLAIN,70));
                 lid.setForeground(Color.red);
