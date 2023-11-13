@@ -67,7 +67,7 @@ public class Department extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-                                    Conn c = new Conn();
+                                    Connect c = new Connect();
                                     
 					String displayCustomersql = "select * from Department";
 					ResultSet rs = c.s.executeQuery(displayCustomersql);

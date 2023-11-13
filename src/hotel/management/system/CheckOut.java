@@ -75,7 +75,7 @@ public class CheckOut extends JFrame{
                 
                 c1 = new Choice();
                 try{
-                    Conn c = new Conn();
+                    Connect c = new Connect();
                     ResultSet rs = c.s.executeQuery("select * from customer");
                     while(rs.next()){
                         c1.add(rs.getString("number"));    
@@ -97,7 +97,7 @@ public class CheckOut extends JFrame{
                         System.out.println("Hi");
                         try{
                             
-                            Conn c = new Conn();
+                            Connect c = new Connect();
                             String number = c1.getSelectedItem();
                             ResultSet rs = c.s.executeQuery("select * from customer where number = "+number);
                             
@@ -133,7 +133,7 @@ public class CheckOut extends JFrame{
                                 String q2 = "update room set availability = 'Available' where room_number = "+s1;
                                 
                                 
-				Conn c = new Conn();
+				Connect c = new Connect();
 
 	    		try{
 	    			

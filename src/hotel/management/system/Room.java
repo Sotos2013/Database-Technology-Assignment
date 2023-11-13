@@ -72,7 +72,7 @@ public class Room extends JFrame {
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-                                    Conn c = new Conn();
+                                    Connect c = new Connect();
 					String displayCustomersql = "select * from Room";
 					//PreparedStatement pst = conn.prepareStatement(displayCustomersql);
 					ResultSet rs = c.s.executeQuery(displayCustomersql);

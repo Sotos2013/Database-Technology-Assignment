@@ -67,7 +67,7 @@ public class Employee extends JFrame {
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-                                    Conn c = new Conn();
+                                    Connect c = new Connect();
 				String displayCustomersql = "select * from Employee";
 				ResultSet rs = c.s.executeQuery(displayCustomersql);
 				table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -118,10 +118,6 @@ public class Employee extends JFrame {
                 JLabel l2 = new JLabel("Phone");
 		l2.setBounds(656, 11, 86, 14);
 		contentPane.add(l2);
-                
-                JLabel l3 = new JLabel("Aadhar");
-		l3.setBounds(786, 11, 86, 14);
-		contentPane.add(l3);
                 
                 JLabel l4 = new JLabel("Gmail");
 		l4.setBounds(896, 11, 86, 14);

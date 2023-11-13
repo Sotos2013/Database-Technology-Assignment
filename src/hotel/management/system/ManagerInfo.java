@@ -68,7 +68,7 @@ public class ManagerInfo extends JFrame {
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-                                    Conn c = new Conn();
+                                    Connect c = new Connect();
 				String displayCustomersql = "select * from Employee where job = 'Manager'";
 				ResultSet rs = c.s.executeQuery(displayCustomersql);
 				table.setModel(DbUtils.resultSetToTableModel(rs));

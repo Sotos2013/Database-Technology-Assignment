@@ -76,7 +76,7 @@ public class UpdateCheck extends JFrame {
                 
                 c1 = new Choice();
                 try{
-                    Conn c = new Conn();
+                    Connect c = new Connect();
                     ResultSet rs = c.s.executeQuery("select * from customer");
                     while(rs.next()){
                         c1.add(rs.getString("number"));    
@@ -135,7 +135,7 @@ public class UpdateCheck extends JFrame {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) { 
                             try{
-                                Conn c = new Conn();
+                                Connect c = new Connect();
                                 
                                 String s1 = c1.getSelectedItem();
 				String s2 = txt_ID.getText(); //room_number;    
@@ -178,7 +178,7 @@ public class UpdateCheck extends JFrame {
 			public void actionPerformed(ActionEvent e) {
                             try{
 				String s1 = c1.getSelectedItem();
-				Conn c = new Conn();
+				Connect c = new Connect();
                                 ResultSet rs1 = c.s.executeQuery("select * from customer where number = "+s1);
                                 
                                 while(rs1.next()){
@@ -191,7 +191,7 @@ public class UpdateCheck extends JFrame {
                             
                             try{
                                 String total = "";
-                                Conn c  = new Conn();
+                                Connect c  = new Connect();
                                 ResultSet rs2 = c.s.executeQuery("select * from room where room_number = "+txt_ID.getText());
                                 while(rs2.next()){
                                     total = rs2.getString("price"); 

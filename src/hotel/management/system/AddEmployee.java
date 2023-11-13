@@ -93,15 +93,6 @@ public class AddEmployee extends JFrame{ //Third Frame
             textField_4.setBounds(200, 270, 150, 27);
             add(textField_4);
 	
-            JLabel Phno = new JLabel("AADHAR");
-            Phno.setFont(new Font("Tahoma", Font.PLAIN, 17));
-            Phno.setBounds(60, 320, 150, 27);
-            add(Phno);
-			
-            textField_5 = new JTextField();
-            textField_5.setBounds(200, 320, 150, 27);
-            add(textField_5);
-	
             
             JLabel email = new JLabel("EMAIL");
             email.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -135,7 +126,6 @@ public class AddEmployee extends JFrame{ //Third Frame
                     String age = textField_1.getText();
                     String salary = textField_3.getText();
                     String phone = textField_4.getText();
-                    String aadhar = textField_5.getText();
                     String email = textField_6.getText();
                    
                     String gender = null;
@@ -151,8 +141,8 @@ public class AddEmployee extends JFrame{ //Third Frame
                     String s6 = (String)c1.getSelectedItem();
                     
                     try {
-                        Conn c = new Conn();
-                        String str = "INSERT INTO employee values( '"+name+"', '"+age+"', '"+gender+"','"+s6+"', '"+salary+"', '"+phone+"','"+aadhar+"', '"+email+"')";
+                        Connect c = new Connect();
+                        String str = "INSERT INTO employee VALUES( '"+name+"', '"+age+"', '"+gender+"','"+s6+"', '"+salary+"', '"+phone+"', '"+email+"')";
                         
                         c.s.executeUpdate(str);
                         JOptionPane.showMessageDialog(null,"Employee Added");

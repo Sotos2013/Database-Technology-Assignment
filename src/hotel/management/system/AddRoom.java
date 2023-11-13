@@ -128,7 +128,7 @@ public class AddRoom extends JFrame implements ActionListener{
             
             if(ae.getSource() == b1){
                 try{
-                Conn c = new Conn();
+                Connect c = new Connect();
                 String room = t4.getText();
                 String available = (String)comboBox.getSelectedItem();
                 String status = (String)comboBox_2.getSelectedItem();

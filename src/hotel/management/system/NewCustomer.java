@@ -113,7 +113,7 @@ public class NewCustomer extends JFrame {
                 
                 c1 = new Choice();
                 try{
-                    Conn c = new Conn();
+                    Connect c = new Connect();
                     ResultSet rs = c.s.executeQuery("select * from room");
                     while(rs.next()){
                         c1.add(rs.getString("room_number"));    
@@ -153,7 +153,7 @@ public class NewCustomer extends JFrame {
 		JButton btnNewButton = new JButton("Add");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-                            Conn c = new Conn();
+                            Connect c = new Connect();
                             String radio = null;
                             
                             if(r1.isSelected()){ 

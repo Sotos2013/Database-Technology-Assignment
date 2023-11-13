@@ -150,7 +150,7 @@ public class AddDrivers extends JFrame implements ActionListener{
             
             if(ae.getSource() == b1){
                 try{
-                Conn c = new Conn();
+                Connect c = new Connect();
                 String name = t1.getText();
                 String age = t2.getText();
                 String gender = (String)comboBox.getSelectedItem();
