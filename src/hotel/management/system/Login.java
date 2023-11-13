@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.security.MessageDigest;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
 
 public class Login extends JFrame implements ActionListener{
   
@@ -44,7 +45,7 @@ public class Login extends JFrame implements ActionListener{
         Image i2 = i1.getImage().getScaledInstance(200,200,Image.SCALE_DEFAULT);
         ImageIcon i3 =  new ImageIcon(i2);
         JLabel l3 = new JLabel(i3);
-        l3.setBounds(400,30,150,150);
+        l3.setBounds(400,30,150,180);
         add(l3);
 
 
@@ -93,15 +94,21 @@ public class Login extends JFrame implements ActionListener{
                     new Dashboard().setVisible(true);
                     setVisible(false);
                 }else{
-                    JOptionPane.showMessageDialog(null, "Λανθασμένα στοιχεία σύνδεσης!");
-                    setVisible(false);
-                }
+                    Object[] options= {"Ναι", "Όχι"};
+                    int result =JOptionPane.showOptionDialog(null, "Λάθος στοιχεία σύνδεσης! Θέλετε να ξανά προσπαθήσετε;","Λανθασμένα στοιχεία σύνδεσης!",JOptionPane.DEFAULT_OPTION,JOptionPane.PLAIN_MESSAGE,null,options,options[0]);
+                    if(result==0){
+                        JOptionPane.getRootFrame().dispose();}
+                    else if(result==1){
+                                setVisible(false);
+                                }
+                    }
+                
             }catch(Exception e){
                 e.printStackTrace();
             }
         }
-        else if(ae.getSource()==b2.getAction()){
-            System.exit(0);
+         if(ae.getSource()==b2){
+            this.dispose();
         }
     }
     public static void main(String[] arg){
