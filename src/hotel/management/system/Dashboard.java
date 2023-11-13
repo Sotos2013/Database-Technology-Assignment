@@ -18,9 +18,9 @@ public class Dashboard extends JFrame{
     }
     
     public Dashboard() {
-        super("HOTEL MANAGEMENT SYSTEM");
+        super("Πληροφοριακό σύστημα μηχανογράφησης ξενοδοχείου");
 	
-        setForeground(Color.CYAN);
+        setForeground(Color.BLUE);
         setLayout(null); 
 
         
@@ -31,7 +31,7 @@ public class Dashboard extends JFrame{
 	NewLabel.setBounds(0, 0, 1950, 1000); 
         add(NewLabel);
         
-        JLabel AirlineManagementSystem = new JLabel("THE TAJ GROUP WELCOMES YOU");
+        JLabel AirlineManagementSystem = new JLabel("Πληροφοριακό σύστημα μηχανογράφησης ξενοδοχείου");
 	AirlineManagementSystem.setForeground(Color.WHITE);
         AirlineManagementSystem.setFont(new Font("Tahoma", Font.PLAIN, 46));
 	AirlineManagementSystem.setBounds(600, 60, 1000, 85);
