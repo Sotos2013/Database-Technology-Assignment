@@ -73,7 +73,7 @@ public class PickUp extends JFrame {
 		
                 c1 = new Choice();
                 try{
-                    conn c = new conn();
+                    Conn c = new Conn();
                     ResultSet rs = c.s.executeQuery("select * from driver");
                     while(rs.next()){
                         c1.add(rs.getString("brand"));    
@@ -94,7 +94,7 @@ public class PickUp extends JFrame {
 				String SQL = "select * from driver where brand = '"+c1.getSelectedItem()+"'";
 				try{
 				
-					conn c = new conn();
+					Conn c = new Conn();
 					rs = c.s.executeQuery(SQL);
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					

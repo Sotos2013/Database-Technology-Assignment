@@ -78,7 +78,7 @@ PreparedStatement pst = null;
                 
                 c1 = new Choice();
                 try{
-                    conn c = new conn();
+                    Conn c = new Conn();
                     ResultSet rs = c.s.executeQuery("select * from customer");
                     while(rs.next()){
                         c1.add(rs.getString("number"));    
@@ -116,7 +116,7 @@ PreparedStatement pst = null;
 			public void actionPerformed(ActionEvent e) {
                             try{
                                 String s1 = c1.getSelectedItem();
-				conn c = new conn();
+				Conn c = new Conn();
                                 ResultSet rs1 = c.s.executeQuery("select * from customer where number = "+s1);
                                 
                                 while(rs1.next()){
@@ -124,7 +124,7 @@ PreparedStatement pst = null;
                                 }
                             }catch(Exception ee){}
                             try{
-                                conn c  = new conn();
+                                Conn c  = new Conn();
                                 ResultSet rs2 = c.s.executeQuery("select * from room where room_number = "+txt_Room.getText());
                                 while(rs2.next()){
                                     txt_Ava.setText(rs2.getString("availability")); 
@@ -143,7 +143,7 @@ PreparedStatement pst = null;
 			public void actionPerformed(ActionEvent e) throws NumberFormatException {
 				
 				try{
-                                    conn c = new conn();
+                                    Conn c = new Conn();
                                     String str = "update room set clean_status = '"+txt_Status.getText()+"' where room_number = "+txt_Room.getText();
                                     c.s.executeUpdate(str);
                                     JOptionPane.showMessageDialog(null, "Update Sucessful");

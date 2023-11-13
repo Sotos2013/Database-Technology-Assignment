@@ -105,7 +105,7 @@ public class SearchRoom extends JFrame {
 				String SQL = "select * from Room where bed_type = '"+c1.getSelectedItem()+"'";
 				String SQL2 = "select * from Room where availability = 'Available' AND bed_type = '"+c1.getSelectedItem()+"'";
 			try{			
-                                conn c = new conn();
+                                Conn c = new Conn();
 				rs = c.s.executeQuery(SQL);
 				table.setModel(DbUtils.resultSetToTableModel(rs));
 				

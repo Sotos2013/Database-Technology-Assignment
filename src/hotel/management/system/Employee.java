@@ -52,7 +52,6 @@ public class Employee extends JFrame {
 	 * @throws SQLException 
 	 */
 	public Employee() throws SQLException {
-		//conn = Javaconnect.getDBConnection();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(430, 200, 1000, 600);
 		contentPane = new JPanel();
@@ -68,7 +67,7 @@ public class Employee extends JFrame {
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-                                    conn c = new conn();
+                                    Conn c = new Conn();
 				String displayCustomersql = "select * from Employee";
 				ResultSet rs = c.s.executeQuery(displayCustomersql);
 				table.setModel(DbUtils.resultSetToTableModel(rs));

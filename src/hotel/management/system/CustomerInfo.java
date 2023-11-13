@@ -81,7 +81,7 @@ public class CustomerInfo extends JFrame {
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
-                                    conn c  = new conn();
+                                    Conn c  = new Conn();
                                     
 				String displayCustomersql = "select * from Customer";
 				ResultSet rs = c.s.executeQuery(displayCustomersql);
