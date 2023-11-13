@@ -74,7 +74,7 @@ public class Login extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent ae){
-        if(ae.getSource()==b1.getAction()){
+        if(ae.getSource()==b1){
             try{
                 Conn c1 = new Conn();
                 String u = t1.getText();

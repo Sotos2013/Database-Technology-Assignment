@@ -13,7 +13,7 @@ import java.sql.*;
 public class Conn {
     Connection c;
     Statement s;
-    public Conn(){  
+    Conn(){  
         try{  
             Class.forName("com.mysql.cj.jdbc.Driver");  
             c =DriverManager.getConnection(
