@@ -22,6 +22,7 @@ public class Dashboard extends JFrame{
 	
         setForeground(Color.BLUE);
         setLayout(null); 
+        setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 
         
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/third.jpg"));
@@ -33,7 +34,7 @@ public class Dashboard extends JFrame{
         
         JLabel AirlineManagementSystem = new JLabel("Πληροφοριακό σύστημα μηχανογράφησης ξενοδοχείου");
 	AirlineManagementSystem.setForeground(Color.WHITE);
-        AirlineManagementSystem.setFont(new Font("Tahoma", Font.PLAIN, 46));
+        AirlineManagementSystem.setFont(new Font("Tahoma", Font.PLAIN, 30));
 	AirlineManagementSystem.setBounds(600, 60, 1000, 85);
 	NewLabel.add(AirlineManagementSystem);
 		
@@ -41,18 +42,18 @@ public class Dashboard extends JFrame{
         JMenuBar menuBar = new JMenuBar();
 	setJMenuBar(menuBar);
 		
-        JMenu AirlineSystem = new JMenu("HOTEL MANAGEMENT");
+        JMenu AirlineSystem = new JMenu("Διαχείριση ξενοδοχείου ");
         AirlineSystem.setForeground(Color.BLUE);
 	menuBar.add(AirlineSystem);
 		
         JMenuItem FlightDetails = new JMenuItem("RECEPTION");
 	AirlineSystem.add(FlightDetails);
 		
-	JMenu AirlineSystemHello = new JMenu("ADMIN");
+	JMenu AirlineSystemHello = new JMenu("Διαχειριστής");
         AirlineSystemHello.setForeground(Color.RED);
 	menuBar.add(AirlineSystemHello);
         
-        JMenuItem FlightDetailshello1 = new JMenuItem("ADD EMPLOYEE");
+        JMenuItem FlightDetailshello1 = new JMenuItem("ΕΙΣΑΓΩΓΗ ΥΠΑΛΛΉΛΟΥ");
 	AirlineSystemHello.add(FlightDetailshello1);
         
         FlightDetailshello1.addActionListener(new ActionListener(){
@@ -64,7 +65,7 @@ public class Dashboard extends JFrame{
 	});
         
 
-        JMenuItem FlightDetailshello2 = new JMenuItem("ADD ROOMS");
+        JMenuItem FlightDetailshello2 = new JMenuItem("ΕΙΣΑΓΩΓΗ ΔΩΜΑΤΙΩΝ");
 	AirlineSystemHello.add(FlightDetailshello2);
         
         FlightDetailshello2.addActionListener(new ActionListener(){
@@ -83,7 +84,7 @@ public class Dashboard extends JFrame{
 	});
         
         
-        JMenuItem FlightDetailshello3 = new JMenuItem("ADD DRIVERS");
+        JMenuItem FlightDetailshello3 = new JMenuItem("ΕΙΣΑΓΩΓΗ ΟΔΗΓΩΝ");
 	AirlineSystemHello.add(FlightDetailshello3);
         
 	FlightDetailshello3.addActionListener(new ActionListener(){

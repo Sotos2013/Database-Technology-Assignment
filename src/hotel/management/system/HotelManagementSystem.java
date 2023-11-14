@@ -27,6 +27,7 @@ public class HotelManagementSystem extends javax.swing.JFrame implements ActionL
                 setSize(1366,430);          // setContentPane(300,300,1366,390);   frame size
                 setLayout(null);
                 setLocation(300,300);
+                setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 
 		l1 = new JLabel("");
                 b1 = new JButton("Next");
