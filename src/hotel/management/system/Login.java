@@ -73,10 +73,13 @@ public class Login extends JFrame implements ActionListener{
         setSize(600,300);
         setLocation(600,350);
         setResizable(false);
+    
     }
 
     public void actionPerformed(ActionEvent ae){
-        if(ae.getSource()==b1){
+   
+      
+        if(ae.getSource()==b1 ){
             try{
                 Connect c1 = new Connect();
                 String u = t1.getText();
@@ -110,6 +113,10 @@ public class Login extends JFrame implements ActionListener{
          if(ae.getSource()==b2){
             this.dispose();
         }
+      
+            
+                 
+        
     }
     public static void main(String[] arg){
         new Login();
