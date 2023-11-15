@@ -21,9 +21,10 @@ public class NewCustomer extends JFrame {
 	Connection conn = null;
 	PreparedStatement pst = null;
 	private JPanel contentPane;
-	private JTextField t1,t2,t3,t4,t5,t6;
+	private JTextField t1,t2,t3,t4,t5,t6,t8;
         JComboBox comboBox;
         JRadioButton r1,r2;
+        ButtonGroup G1;
         Choice c1;
 	/**
 	 * Launch the application.
@@ -55,32 +56,35 @@ public class NewCustomer extends JFrame {
                 l1.setBounds(480,10,300,500);
                 add(l1);
 		
-		JLabel lblName = new JLabel("NEW CUSTOMER FORM");
-		lblName.setFont(new Font("Yu Mincho", Font.PLAIN, 20));
+		JLabel lblName = new JLabel("Καταχώρηση νέου πελάτη");
+		lblName.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblName.setBounds(118, 11, 260, 53);
 		contentPane.add(lblName);
+                
                 //1
                 
-                JLabel lblId = new JLabel("ID :");
+                JLabel lblId = new JLabel("Έγγραφο Ταυτοποίησης :");
 		lblId.setBounds(35, 76, 200, 14);
 		contentPane.add(lblId);
                 
-                comboBox = new JComboBox(new String[] {"Passport", "Aadhar Card", "Voter Id", "Driving license"});
+                comboBox = new JComboBox(new String[] {"Ταυτότητα", "Δίπλωμα οδήγησης", "Διαβατήριο"});
 		comboBox.setBounds(271, 73, 150, 20);
 		contentPane.add(comboBox);
                 
                 //2
                 
-                /*JLabel l2 = new JLabel("Number :");
+                JLabel l2 = new JLabel("Αριθμός Εγγράφου :");
 		l2.setBounds(35, 111, 200, 14);
 		contentPane.add(l2);
                 
                 t1 = new JTextField();
 		t1.setBounds(271, 111, 150, 20);
 		contentPane.add(t1);
-		t1.setColumns(10); */
+		t1.setColumns(10);
+                
+                //3
 		
-		JLabel lblName_1 = new JLabel("Name :");
+		JLabel lblName_1 = new JLabel("Όνομα :");
 		lblName_1.setBounds(35, 151, 200, 14);
 		contentPane.add(lblName_1);
 		
@@ -88,30 +92,59 @@ public class NewCustomer extends JFrame {
 		t2.setBounds(271, 151, 150, 20);
 		contentPane.add(t2);
 		t2.setColumns(10);
-
                 
-		JLabel lblGender = new JLabel("Gender :");
-		lblGender.setBounds(35, 191, 200, 14);
+                //4
+                
+                JLabel lblName_2 = new JLabel("Επώνυμο :");
+		lblName_2.setBounds(35, 191, 200, 14);
+		contentPane.add(lblName_2);
+		
+		t8 = new JTextField();
+		t8.setBounds(271, 191, 150, 20);
+		contentPane.add(t8);
+		t8.setColumns(10);
+
+                //5
+                
+		JLabel lblGender = new JLabel("Φύλο :");
+		lblGender.setBounds(35, 231, 200, 14);
 		contentPane.add(lblGender);
                 
-                r1 = new JRadioButton("Male");
+                G1 = new ButtonGroup();
+                
+                r1 = new JRadioButton("Άνδρας");
                 r1.setFont(new Font("Raleway", Font.BOLD, 14));
                 r1.setBackground(Color.WHITE);
-                r1.setBounds(271, 191, 80, 12);
+                r1.setBounds(271, 231, 80, 12);
                 add(r1);
                 
-                r2 = new JRadioButton("Female");
+                r2 = new JRadioButton("Γυναίκα");
                 r2.setFont(new Font("Raleway", Font.BOLD, 14));
                 r2.setBackground(Color.WHITE);
-                r2.setBounds(350, 191, 100, 12);
+                r2.setBounds(350, 231, 100, 12);
 		add(r2);
                 
-		JLabel lblCountry = new JLabel("Country :");
-		lblCountry.setBounds(35, 231, 200, 14);
+                this.add(r1); 
+		this.add(r2); 
+                
+                G1.add(r1); 
+		G1.add(r2);
+                
+                //6
+                
+		JLabel lblCountry = new JLabel("Χώρα διαμονής :");
+		lblCountry.setBounds(35, 271, 200, 14);
 		contentPane.add(lblCountry);
-		
-		JLabel lblReserveRoomNumber = new JLabel("Allocated Room Number :");
-		lblReserveRoomNumber.setBounds(35, 274, 200, 14);
+                t3 = new JTextField();
+		t3.setBounds(271, 271, 150, 20);
+		contentPane.add(t3);
+		t3.setColumns(10);
+                
+                
+                //7
+                
+		JLabel lblReserveRoomNumber = new JLabel("Αριθμός Δωματίου :");
+		lblReserveRoomNumber.setBounds(35, 314, 200, 14);
 		contentPane.add(lblReserveRoomNumber);
                 
                 c1 = new Choice();
@@ -119,39 +152,30 @@ public class NewCustomer extends JFrame {
                     Connect c = new Connect();
                     ResultSet rs = c.s.executeQuery("select * from room");
                     while(rs.next()){
-                        c1.add(rs.getString("room_number"));    
+                        c1.add(rs.getString("Αριθμός δωματίου"));    
                     }
                 }catch(Exception e){ }
-                c1.setBounds(271, 274, 150, 20);
+                c1.setBounds(271, 314, 150, 20);
 		contentPane.add(c1);
 		
-		JLabel lblCheckInStatus = new JLabel("Checked-In :");
-		lblCheckInStatus.setBounds(35, 316, 200, 14);
+                //8
+		JLabel lblCheckInStatus = new JLabel("Προσέλευση :");
+		lblCheckInStatus.setBounds(35, 356, 200, 14);
 		contentPane.add(lblCheckInStatus);
-		
-		JLabel lblDeposite = new JLabel("Deposit :");
-		lblDeposite.setBounds(35, 359, 200, 14);
-		contentPane.add(lblDeposite);
-		
-		
-		
-		
-		
-		t3 = new JTextField();
-		t3.setBounds(271, 231, 150, 20);
-		contentPane.add(t3);
-		t3.setColumns(10);
-		
-		
 		t5 = new JTextField();
-		t5.setBounds(271, 316, 150, 20);
+		t5.setBounds(271, 356, 150, 20);
 		contentPane.add(t5);
 		t5.setColumns(10);
-		
+                
+                //9
+		JLabel lblDeposite = new JLabel("Πληρωμή :");
+		lblDeposite.setBounds(35, 399, 200, 14);
+		contentPane.add(lblDeposite);
 		t6 = new JTextField();
-		t6.setBounds(271, 359, 150, 20);
+		t6.setBounds(271, 399, 150, 20);
 		contentPane.add(t6);
 		t6.setColumns(10);
+		
 
 		JButton btnNewButton = new JButton("Add");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -170,16 +194,18 @@ public class NewCustomer extends JFrame {
                           
                             try{
 	    			
-                                String s1 = (String)comboBox.getSelectedItem(); 
-	    			//String s2 =  t1.getText();
-	    			String s3 =  t2.getText();
-                                String s4 =  radio;
-	    			String s5 =  t3.getText();
-	    			String s7 =  t5.getText();
-                                String s8 =  t6.getText();
+                                String id = (String)comboBox.getSelectedItem(); 
+	    			String id_num =  t1.getText();
+	    			String name =  t2.getText();
+                                String surname = t8.getText();
+                                String sex =  radio;
+	    			String country =  t3.getText();
+                                String room_num = (String) c1.getSelectedItem();
+	    			String checkin =  t5.getText();
+                                String pay =  t6.getText();
                                 
-                                String q1 = "INSERT INTO customer values('"+s1+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"')";
-                                String q2 = "update room set availability = 'Occupied' where room_number = "+s6;
+                                String q1 = "INSERT INTO customer values('"+id+"', '"+id_num+"', '"+name+"','"+surname+"','"+sex+"','"+country+"','"+room_num+"','"+checkin+"','"+pay+"')";
+                                String q2 = "update room set Διαθεσιμότητα = 'Μή διαθέσιμο' where 'Αριθμός δωματίου' = "+room_num;
                                 c.s.executeUpdate(q1);
                                 c.s.executeUpdate(q2);
 	    			

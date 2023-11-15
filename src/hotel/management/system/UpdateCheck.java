@@ -143,7 +143,7 @@ public class UpdateCheck extends JFrame {
                                 String s4 = txt_Date.getText(); //status;    
                                 String s5 = txt_Time.getText(); //deposit    
 				
-                                c.s.executeUpdate("update customer set room_number = '"+s2+"', name = '"+s3+"', status = '"+s4+"', deposit = '"+s5+"' where number = '"+s1+"'");
+                                c.s.executeUpdate("update customer set Αριθμός δωματίου = '"+s2+"', name = '"+s3+"', status = '"+s4+"', deposit = '"+s5+"' where number = '"+s1+"'");
                                 
                                 JOptionPane.showMessageDialog(null, "Data Updated Successfully");
                                 new Reception().setVisible(true);
