@@ -59,6 +59,7 @@ public class NewCustomer extends JFrame {
 		lblName.setFont(new Font("Yu Mincho", Font.PLAIN, 20));
 		lblName.setBounds(118, 11, 260, 53);
 		contentPane.add(lblName);
+                //1
                 
                 JLabel lblId = new JLabel("ID :");
 		lblId.setBounds(35, 76, 200, 14);
@@ -68,14 +69,16 @@ public class NewCustomer extends JFrame {
 		comboBox.setBounds(271, 73, 150, 20);
 		contentPane.add(comboBox);
                 
-                JLabel l2 = new JLabel("Number :");
+                //2
+                
+                /*JLabel l2 = new JLabel("Number :");
 		l2.setBounds(35, 111, 200, 14);
 		contentPane.add(l2);
                 
                 t1 = new JTextField();
 		t1.setBounds(271, 111, 150, 20);
 		contentPane.add(t1);
-		t1.setColumns(10);
+		t1.setColumns(10); */
 		
 		JLabel lblName_1 = new JLabel("Name :");
 		lblName_1.setBounds(35, 151, 200, 14);
@@ -168,14 +171,14 @@ public class NewCustomer extends JFrame {
                             try{
 	    			
                                 String s1 = (String)comboBox.getSelectedItem(); 
-	    			String s2 =  t1.getText();
+	    			//String s2 =  t1.getText();
 	    			String s3 =  t2.getText();
                                 String s4 =  radio;
 	    			String s5 =  t3.getText();
 	    			String s7 =  t5.getText();
                                 String s8 =  t6.getText();
                                 
-                                String q1 = "insert into customer values('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"')";
+                                String q1 = "INSERT INTO customer values('"+s1+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"')";
                                 String q2 = "update room set availability = 'Occupied' where room_number = "+s6;
                                 c.s.executeUpdate(q1);
                                 c.s.executeUpdate(q2);
