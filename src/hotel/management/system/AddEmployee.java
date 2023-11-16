@@ -12,25 +12,43 @@ import javax.swing.*;
 public class AddEmployee extends JFrame{ //Third Frame
 
     
-	JTextField textField,textField_1,textField_2,textField_3,textField_4,textField_5,textField_6;
+	JTextField textField,textField_1,textField_2,textField_3,textField_4,textField_5,textField_6, textField_7;
         JComboBox c1;
 
         public AddEmployee(){
             getContentPane().setForeground(Color.BLUE);
             getContentPane().setBackground(Color.WHITE);
-            setTitle("ADD EMPLOYEE DETAILS");
+            setTitle("Προσθήκη νέου υπαλλήλου");
 		 
             setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             setSize(778,486);
             getContentPane().setLayout(null);
+            
+            JLabel id = new JLabel("ID:");
+            id.setFont(new Font("Arial", Font.PLAIN, 17));
+            id.setBounds(60, 30, 150, 27);
+            add(id);
+            
+            textField_7 = new JTextField();
+            textField_7.setBounds(200, 50, 150, 27);
+            add(textField_7);
 			
-            JLabel Passportno = new JLabel("NAME");
-            Passportno.setFont(new Font("Tahoma", Font.PLAIN, 17));
-            Passportno.setBounds(60, 30, 150, 27);
-            add(Passportno);
+            JLabel Name = new JLabel("Όνομα:");
+            Name.setFont(new Font("Arial", Font.PLAIN, 17));
+            Name.setBounds(60, 50, 150, 27);
+            add(Name);
             
             textField = new JTextField();
-            textField.setBounds(200, 30, 150, 27);
+            textField.setBounds(200, 80, 150, 27);
+            add(textField);
+            
+            JLabel surName = new JLabel("Επώνυμο:");
+            surName.setFont(new Font("Arial", Font.PLAIN, 17));
+            surName.setBounds(60, 50, 150, 27);
+            add(surName);
+            
+            textField = new JTextField();
+            textField.setBounds(200, 80, 150, 27);
             add(textField);
 			
             JButton Next = new JButton("SAVE");
@@ -84,10 +102,10 @@ public class AddEmployee extends JFrame{ //Third Frame
             textField_3.setBounds(200, 220, 150, 27);
             add(textField_3);
 	
-            JLabel Name = new JLabel("PHONE");
-            Name.setFont(new Font("Tahoma", Font.PLAIN, 17));
-            Name.setBounds(60, 270, 150, 27);
-            add(Name);
+            JLabel Phone = new JLabel("PHONE");
+            Phone.setFont(new Font("Tahoma", Font.PLAIN, 17));
+            Phone.setBounds(60, 270, 150, 27);
+            add(Phone);
 	
             textField_4 = new JTextField();
             textField_4.setBounds(200, 270, 150, 27);

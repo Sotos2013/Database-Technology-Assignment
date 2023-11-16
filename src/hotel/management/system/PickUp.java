@@ -91,7 +91,7 @@ public class PickUp extends JFrame {
 		JButton btnRegister = new JButton("Display");
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String SQL = "select * from driver where brand = '"+c1.getSelectedItem()+"'";
+				String SQL = "select * from driver";
 				try{
 				
 					Connect c = new Connect();
