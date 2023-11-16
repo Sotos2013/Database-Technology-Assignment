@@ -65,7 +65,7 @@ public class CustomerInfo extends JFrame {
 		contentPane.setLayout(null);
 
 		
-		JButton btnExit = new JButton("Back");
+		JButton btnExit = new JButton("Πίσω");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new Reception().setVisible(true);
@@ -77,7 +77,7 @@ public class CustomerInfo extends JFrame {
                 btnExit.setForeground(Color.WHITE);
 		contentPane.add(btnExit);
 		
-		JButton btnLoadData = new JButton("Load Data");
+		JButton btnLoadData = new JButton("Φόρτωση");
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
@@ -104,15 +104,15 @@ public class CustomerInfo extends JFrame {
 		lblId.setBounds(31, 11, 46, 14);
 		contentPane.add(lblId);
                 
-                JLabel l1 = new JLabel("Number");
+                JLabel l1 = new JLabel("Αριθμός");
 		l1.setBounds(150, 11, 46, 14);
 		contentPane.add(l1);
 		
-		lblNewLabel = new JLabel("Name");
+		lblNewLabel = new JLabel("Όνομα");
 		lblNewLabel.setBounds(270, 11, 65, 14);
 		contentPane.add(lblNewLabel);
 		
-		lblGender = new JLabel("Gender");
+		lblGender = new JLabel("Φύλο");
 		lblGender.setBounds(360, 11, 46, 14);
 		contentPane.add(lblGender);
 		
@@ -120,19 +120,19 @@ public class CustomerInfo extends JFrame {
 		table.setBounds(0, 40, 900, 450);
 		contentPane.add(table);
 		
-		lblCountry = new JLabel("Country");
+		lblCountry = new JLabel("Χώρα");
 		lblCountry.setBounds(480, 11, 46, 14);
 		contentPane.add(lblCountry);
 		
-		lblRoom = new JLabel("Room");
-		lblRoom.setBounds(600, 11, 46, 14);
+		lblRoom = new JLabel("Δωμάτιο");
+		lblRoom.setBounds(580, 11, 50, 14);
 		contentPane.add(lblRoom);
 		
-		lblStatus = new JLabel("Check-in Status");
+		lblStatus = new JLabel("Check-in");
 		lblStatus.setBounds(680, 11, 100, 14);
 		contentPane.add(lblStatus);
 		
-		lblNewLabel_1 = new JLabel("Deposit");
+		lblNewLabel_1 = new JLabel("Κατάθεση");
 		lblNewLabel_1.setBounds(800, 11, 100, 14);
 		contentPane.add(lblNewLabel_1);
                 
