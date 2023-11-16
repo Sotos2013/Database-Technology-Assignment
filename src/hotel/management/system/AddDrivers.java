@@ -168,12 +168,31 @@ public class AddDrivers extends JFrame implements ActionListener{
                 String gender = (String)comboBox.getSelectedItem();
                 String car  = t3.getText();
                 String availability = (String)comboBox_1.getSelectedItem();
-                String str = "INSERT INTO driver values( '"+id+"', '"+name+"', '"+surname+"','"+age+"', '"+gender+"', '"+car+"','"+availability+"')";
-              
                 
-		c.s.executeUpdate(str);
-		JOptionPane.showMessageDialog(null, "Driver "+name+" Successfully Added");
-                this.setVisible(false);
+                if(name.equals("")){
+                    JOptionPane.showMessageDialog(this, "Το πεδίο 'Όνομα' δεν μπορεί να μείνει κενό!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(car.equals("")){
+                    JOptionPane.showMessageDialog(this, "Το πεδίο 'Αυτοκίνητο' δεν μπορεί να μείνει κενό!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(surname.equals("")){
+                    JOptionPane.showMessageDialog(this, "Το πεδίο 'Επώνυμο' δεν μπορεί να μείνει κενό!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    String str = "INSERT INTO driver values( '"+id+"', '"+name+"', '"+surname+"','"+age+"', '"+gender+"', '"+car+"','"+availability+"')";
+                    c.s.executeUpdate(str);
+                    if(comboBox.getSelectedItem().equals("Άνδρας")){
+                        JOptionPane.showMessageDialog(null, "Ο "+name+" προστέθηκε στους οδηγούς!");
+                        this.setVisible(false);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Η "+name+" προστέθηκε στους οδηγούς!");
+                        this.setVisible(false);
+                    }
+                }
                
                 }catch(Exception ee){
                     System.out.println(ee);
