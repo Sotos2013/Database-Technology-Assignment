@@ -9,6 +9,7 @@ package hotel.management.system;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 public class AddDrivers extends JFrame implements ActionListener{
 
@@ -182,15 +183,22 @@ public class AddDrivers extends JFrame implements ActionListener{
                             "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
                 }
                 else{
-                    String str = "INSERT INTO driver values( '"+id+"', '"+name+"', '"+surname+"','"+age+"', '"+gender+"', '"+car+"','"+availability+"')";
-                    c.s.executeUpdate(str);
-                    if(comboBox.getSelectedItem().equals("Άνδρας")){
-                        JOptionPane.showMessageDialog(null, "Ο "+name+" προστέθηκε στους οδηγούς!");
-                        this.setVisible(false);
+                    try{
+                        String str = "INSERT INTO driver values( '"+id+"', '"+name+"', '"+surname+"','"+age+"', '"+gender+"', '"+car+"','"+availability+"')";
+                        c.s.executeUpdate(str);
+                        if(comboBox.getSelectedItem().equals("Άνδρας")){
+                            JOptionPane.showMessageDialog(null, "Ο "+name+" προστέθηκε στους οδηγούς!");
+                            this.setVisible(false);
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Η "+name+" προστέθηκε στους οδηγούς!");
+                            this.setVisible(false);
+                        }
                     }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Η "+name+" προστέθηκε στους οδηγούς!");
-                        this.setVisible(false);
+                    catch(SQLIntegrityConstraintViolationException ex){
+                        JOptionPane.showMessageDialog(this, "Υπάρχει ήδη καταχωρημένος οδηγός με το ID που εισάγατε!","Πρόβλημα με τα στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                        t1.setText("");
+                        
                     }
                 }
                
@@ -202,7 +210,6 @@ public class AddDrivers extends JFrame implements ActionListener{
                 this.setVisible(false);
             }
         }catch(Exception eee){
-            
         }
     }
 }
