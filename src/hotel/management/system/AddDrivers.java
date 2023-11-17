@@ -9,6 +9,9 @@ package hotel.management.system;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 public class AddDrivers extends JFrame implements ActionListener{
@@ -143,7 +146,7 @@ public class AddDrivers extends JFrame implements ActionListener{
             
             if(ae.getSource() == b1){
                 try{
-                Connect c = new Connect();
+                //Connect c = new Connect();
                 int id;
                 try {
                      id = Integer.parseInt(t1.getText());
@@ -183,9 +186,19 @@ public class AddDrivers extends JFrame implements ActionListener{
                             "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
                 }
                 else{
+                    Connection con;
+                    CallableStatement cs;
                     try{
-                        String str = "INSERT INTO driver values( '"+id+"', '"+name+"', '"+surname+"','"+age+"', '"+gender+"', '"+car+"','"+availability+"')";
-                        c.s.executeUpdate(str);
+                        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root","");
+                        cs = con.prepareCall("{ call Add_Driver(?,?,?,?,?,?,?)}");
+                        cs.setInt("Id", id);
+                        cs.setString("Name", name);
+                        cs.setString("Surname", surname);
+                        cs.setInt("Age", age);
+                        cs.setString("Sex", gender);
+                        cs.setString("Car", car);
+                        cs.setString("Availability", availability);
+                        cs.executeUpdate();
                         if(comboBox.getSelectedItem().equals("Άνδρας")){
                             JOptionPane.showMessageDialog(null, "Ο "+name+" προστέθηκε στους οδηγούς!");
                             this.setVisible(false);
