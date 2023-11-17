@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Εξυπηρετητής: 127.0.0.1
--- Χρόνος δημιουργίας: 16 Νοε 2023 στις 12:51:02
+-- Χρόνος δημιουργίας: 17 Νοε 2023 στις 15:20:33
 -- Έκδοση διακομιστή: 10.4.28-MariaDB
 -- Έκδοση PHP: 8.2.4
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Βάση δεδομένων: `hotel`
 --
+
+DELIMITER $$
+--
+-- Διαδικασίες
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Add_Driver` (IN `Id` INT(30), IN `Name` VARCHAR(30), IN `Surname` VARCHAR(30), IN `Age` INT(2), IN `Sex` VARCHAR(20), IN `Car` VARCHAR(30), IN `Availability` VARCHAR(30))   BEGIN
+	INSERT INTO driver(ID, Όνομα, Επώνυμο, Ηλικία, Φύλο, Αυτοκίνητο, Διαθεσιμότητα) values(Id,Name,Surname,Age,Sex,Car,Availability);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Add_Employee` (IN `id` INT(11), IN `name` VARCHAR(30), IN `surname` VARCHAR(30), IN `age` INT(2), IN `sex` VARCHAR(30), IN `job` VARCHAR(30), IN `salary` INT(6), IN `phone` INT(30), IN `email` VARCHAR(40))   BEGIN
+	INSERT INTO employee 		values(id,name,surname,age,sex,job,salary,phone,email);
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -49,9 +63,10 @@ CREATE TABLE `driver` (
   `ID` int(30) NOT NULL,
   `Όνομα` varchar(30) NOT NULL,
   `Επώνυμο` varchar(30) NOT NULL,
-  `Ηλικία` int(10) NOT NULL,
+  `Ηλικία` int(2) NOT NULL,
   `Φύλο` varchar(20) NOT NULL,
-  `Αυτοκίνητο` varchar(30) NOT NULL
+  `Αυτοκίνητο` varchar(30) NOT NULL,
+  `Διαθεσιμότητα` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
