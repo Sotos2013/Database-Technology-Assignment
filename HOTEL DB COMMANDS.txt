@@ -1,0 +1,49 @@
+create table Customer (
+	Cid integer not null,
+	IdNum varchar(30) not null,
+	Cname varchar(15) not null,
+	CSurname varchar(30) not null,
+	Csex varchar(30) not null,
+	Country varchar(30) not null,
+	RoomNum integer not null,
+	CheckIn varchar(30) not null,
+	AmountPay float not null,
+	primary key(Cid));
+	
+CREATE TABLE driver (
+    Did integer NOT NULL,
+    Dname varchar(30) NOT NULL,
+    DSurname varchar(30) NOT NULL,
+    Dage integer NOT NULL,
+    Dsex varchar(20) NOT NULL,
+    DCar varchar(30) NOT NULL,
+    Availability varchar(30) NOT NULL,
+    primary key(Did));
+	
+CREATE TABLE employee (
+    Eid integer NOT NULL,
+    Ename varchar(30) NOT NULL,
+    Esurname varchar(30) NOT NULL,
+    Eage integer NOT NULL,
+    Esex varchar(30) NOT NULL,
+    Ejob varchar(30) NOT NULL,
+    Esalary integer NOT NULL,
+    Ephone integer NOT NULL,
+    Email varchar(40) NOT NULL,
+    primary key(Eid));
+	
+CREATE TABLE login (
+    username varchar(64) NOT NULL,
+    pass varchar(100) NOT NULL,
+    primary key(pass));
+
+INSERT INTO login (username, pass) VALUES
+('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
+
+CREATE TABLE room (
+    RoomNum integer NOT NULL,
+    RAvailability varchar(20) NOT NULL,
+    RClean varchar(20) NOT NULL,
+    RPrice varchar(20) NOT NULL,
+    BedNum varchar(30) NOT NULL,
+    primary key(RoomNum));
