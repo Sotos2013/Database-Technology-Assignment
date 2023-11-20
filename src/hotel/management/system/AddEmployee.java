@@ -201,7 +201,7 @@ public class AddEmployee extends JFrame implements ActionListener{
                      } catch (Exception z) { 
                          JOptionPane.showMessageDialog(this, "Το πεδίο 'Μισθός' δέχεται μόνο ακέραιες τιμές!",
                             "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
-                         t7.setText("");
+                         t3.setText("");
                          return;
                 }
                 int phone;
@@ -211,7 +211,7 @@ public class AddEmployee extends JFrame implements ActionListener{
                      } catch (Exception z) { 
                          JOptionPane.showMessageDialog(this, "Το πεδίο 'Τηλέφωνο' δέχεται μόνο ακέραιες τιμές!",
                             "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
-                         t7.setText("");
+                         t8.setText("");
                          return;
                 }
                 String email = t9.getText();
