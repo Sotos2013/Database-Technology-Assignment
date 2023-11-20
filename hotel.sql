@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Εξυπηρετητής: 127.0.0.1
--- Χρόνος δημιουργίας: 17 Νοε 2023 στις 15:20:33
+-- Χρόνος δημιουργίας: 20 Νοε 2023 στις 14:47:07
 -- Έκδοση διακομιστή: 10.4.28-MariaDB
--- Έκδοση PHP: 8.2.4
+-- Έκδοση PHP: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,6 +33,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Add_Employee` (IN `id` INT(11), IN 
 	INSERT INTO employee 		values(id,name,surname,age,sex,job,salary,phone,email);
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Add_Room` (IN `RoomNum` INT(4), IN `Availability` VARCHAR(20), IN `Clean` VARCHAR(20), IN `Price` INT(4), IN `BedNum` VARCHAR(20))   BEGIN
+	INSERT INTO room values(RoomNum,Availability,Clean,Price,BedNum);
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -43,15 +47,15 @@ DELIMITER ;
 
 CREATE TABLE `customer` (
   `ID` varchar(30) NOT NULL,
-  `Αριθμός Εγγράφου` varchar(30) NOT NULL,
+  `Αριθμός_Εγγράφου` varchar(30) NOT NULL,
   `Όνομα` varchar(30) NOT NULL,
   `Επώνυμο` varchar(30) NOT NULL,
   `Φύλο` varchar(30) NOT NULL,
-  `Χώρα Διαμονής` varchar(30) NOT NULL,
-  `Αριθμός δωματίου` int(4) NOT NULL,
+  `Χώρα_Διαμονής` varchar(30) NOT NULL,
+  `Αριθμός_δωματίου` int(4) NOT NULL,
   `Προσέλευση` varchar(30) NOT NULL,
-  `Ποσό Πληρωμής` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `Ποσό_Πληρωμής` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -87,6 +91,14 @@ CREATE TABLE `employee` (
   `Email` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Άδειασμα δεδομένων του πίνακα `employee`
+--
+
+INSERT INTO `employee` (`ID`, `Όνομα`, `Επώνυμο`, `Ηλικία`, `Φύλο`, `Είδος Εργασίας`, `Μισθός`, `Τηλέφωνο`, `Email`) VALUES
+(1, 'GRSH', 'HRWHR', 43, 'Άνδρας', 'Σέφ', 464236, 753, 'FHDDAH'),
+(6, 'HRH', 'HTAJHT', 32, 'Άνδρας', 'Σέφ', 434, 653, 'GSGH');
+
 -- --------------------------------------------------------
 
 --
@@ -113,12 +125,20 @@ INSERT INTO `login` (`username`, `password`, `last_login`) VALUES
 --
 
 CREATE TABLE `room` (
-  `Αριθμός δωματίου` int(4) NOT NULL,
+  `Αριθμός_δωματίου` int(4) NOT NULL,
   `Διαθεσιμότητα` varchar(20) NOT NULL,
   `Καθαρισμός` varchar(20) NOT NULL,
-  `Τιμή` varchar(20) NOT NULL,
-  `Αριθμός κρεβατιών` varchar(30) NOT NULL
+  `Τιμή` int(4) NOT NULL,
+  `Αριθμός_κρεβατιών` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Άδειασμα δεδομένων του πίνακα `room`
+--
+
+INSERT INTO `room` (`Αριθμός_δωματίου`, `Διαθεσιμότητα`, `Καθαρισμός`, `Τιμή`, `Αριθμός_κρεβατιών`) VALUES
+(1, 'Διαθέσιμο', 'Καθαρό', 55, 'Μονόκλινο'),
+(2, 'Διαθέσιμο', 'Καθαρό', 66, 'Δίκλινο');
 
 --
 -- Ευρετήρια για άχρηστους πίνακες
@@ -128,8 +148,8 @@ CREATE TABLE `room` (
 -- Ευρετήρια για πίνακα `customer`
 --
 ALTER TABLE `customer`
-  ADD PRIMARY KEY (`Αριθμός Εγγράφου`),
-  ADD KEY `Αριθμός δωματίου` (`Αριθμός δωματίου`);
+  ADD PRIMARY KEY (`Αριθμός_Εγγράφου`),
+  ADD KEY `Αριθμός δωματίου` (`Αριθμός_δωματίου`);
 
 --
 -- Ευρετήρια για πίνακα `driver`
@@ -153,7 +173,8 @@ ALTER TABLE `login`
 -- Ευρετήρια για πίνακα `room`
 --
 ALTER TABLE `room`
-  ADD PRIMARY KEY (`Αριθμός δωματίου`);
+  ADD PRIMARY KEY (`Αριθμός_δωματίου`),
+  ADD KEY `Τιμή` (`Τιμή`);
 
 --
 -- Περιορισμοί για άχρηστους πίνακες
@@ -163,7 +184,7 @@ ALTER TABLE `room`
 -- Περιορισμοί για πίνακα `customer`
 --
 ALTER TABLE `customer`
-  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`Αριθμός δωματίου`) REFERENCES `room` (`Αριθμός δωματίου`);
+  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`Αριθμός_δωματίου`) REFERENCES `room` (`Αριθμός_δωματίου`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
