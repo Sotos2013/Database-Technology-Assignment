@@ -1,220 +1,239 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package hotel.management.system;
 
 
-import java.awt.EventQueue;
-
-
 import java.awt.*;
-import java.awt.event.*;
-import java.sql.*;
 import javax.swing.*;
+import java.awt.event.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLIntegrityConstraintViolationException;
 
-public class AddEmployee extends JFrame{ //Third Frame
+public class AddEmployee extends JFrame implements ActionListener{
 
+    private JPanel contentPane;
+    private JTextField t1,t2,t3,t4, t5, t6, t7,t8,t9,t10;
+    private JComboBox comboBox, comboBox2;
+    JLabel l9, l11;
+    JButton b1,b2;
+    Choice c1;
+
+    public static void main(String[] args) {
+        new AddEmployee().setVisible(true);
+    }
+
+
+    public AddEmployee() {
+        setBounds(450, 200, 1000, 550);
+	contentPane = new JPanel();
+	setContentPane(contentPane);
+	contentPane.setLayout(null);
+        
+        ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/tenth.jpg"));
+                Image i3 = i1.getImage().getScaledInstance(500, 300,Image.SCALE_DEFAULT);
+                ImageIcon i2 = new ImageIcon(i3);
+                JLabel l15 = new JLabel(i2);
+                l15.setBounds(400,30,500,370);
+                add(l15);
+        
+        JLabel l10 = new JLabel("Προσθήκη νέου υπαλλήλου");
+        l10.setFont(new Font("Arial", Font.BOLD, 18));
+	l10.setBounds(194, 10, 1200, 22);
+	contentPane.add(l10);
+        
+	
+        
+	JLabel l1 = new JLabel("ID:");
+	l1.setForeground(Color.black);
+	l1.setFont(new Font("Arial", Font.BOLD, 14));
+	l1.setBounds(64, 70, 102, 22);
+	contentPane.add(l1);
+        
+        
+        t1 = new JTextField();
+	t1.setBounds(174, 70, 156, 20);
+	contentPane.add(t1);
+        
+
+	JLabel l2 = new JLabel("Όνομα:");
+	l2.setForeground(Color.black);
+	l2.setFont(new Font("Arial", Font.BOLD, 14));
+	l2.setBounds(64, 110, 102, 22);
+	contentPane.add(l2);
+        
+        t2 = new JTextField();
+	t2.setBounds(174, 110, 156, 20);
+	contentPane.add(t2);
+        
+        JLabel l8 = new JLabel("Επώνυμο:");
+	l8.setForeground(Color.black);
+	l8.setFont(new Font("Arial", Font.BOLD, 14));
+	l8.setBounds(64, 150, 102, 22);
+	contentPane.add(l8);
+        
+        t6 = new JTextField();
+	t6.setBounds(174, 150, 156, 20);
+	contentPane.add(t6);
+        
+        l9 = new JLabel("Ηλικία:");
+	l9.setForeground(Color.black);
+	l9.setFont(new Font("Arial", Font.BOLD, 14));
+	l9.setBounds(64, 190, 102, 22);
+	contentPane.add(l9);
+        
+        t7 = new JTextField();
+	t7.setBounds(174, 190, 156, 20);
+	contentPane.add(t7);
+
+
+	JLabel l3 = new JLabel("Φύλο");
+	l3.setForeground(Color.black);
+	l3.setFont(new Font("Arial", Font.BOLD, 14));
+	l3.setBounds(64, 230, 102, 22);
+	contentPane.add(l3);
+        
+        comboBox = new JComboBox(new String[] { "Άνδρας", "Γυναίκα" });
+	comboBox.setBounds(176, 230, 154, 20);
+	contentPane.add(comboBox);
+
+	JLabel l4 = new JLabel("Είδος Εργασίας:");
+	l4.setForeground(Color.BLACK);
+	l4.setFont(new Font("Arial", Font.BOLD, 14));
+	l4.setBounds(64, 270, 102, 22);
+	contentPane.add(l4);
+        
+        comboBox2 = new JComboBox(new String[] { "Σέφ", "Προσωπικό Κουζίνας", "Υπάλληλος Reception", "Καθαρισμός Δωματίων", "Room Service",});
+	comboBox2.setBounds(174, 270, 156, 20);
+	contentPane.add(comboBox2);
+
+
+	
+        JLabel l6 = new JLabel("Μισθός:");
+	l6.setForeground(Color.BLACK);
+	l6.setFont(new Font("Arial", Font.BOLD, 14));
+	l6.setBounds(64, 310, 102, 22);
+	contentPane.add(l6);
+        
+        t3 = new JTextField();
+        t3.setBounds(176, 310, 154, 20);
+        contentPane.add(t3);
+        
+        JLabel l7 = new JLabel("Τηλέφωνο:");
+	l7.setForeground(Color.BLACK);
+	l7.setFont(new Font("Arial", Font.BOLD, 14));
+	l7.setBounds(64, 350, 102, 22);
+	contentPane.add(l7);
+        
+        t8 = new JTextField();
+        t8.setBounds(176, 350, 154, 20);
+        contentPane.add(t8);
+        
+        JLabel l11 = new JLabel("Email:");
+	l11.setForeground(Color.BLACK);
+	l11.setFont(new Font("Arial", Font.BOLD, 14));
+	l11.setBounds(64, 390, 102, 22);
+	contentPane.add(l11);
+        
+        t9 = new JTextField();
+        t9.setBounds(176, 390, 154, 20);
+        contentPane.add(t9);
+        
+        
+
+	b1 = new JButton("Προσθήκη");
+	b1.addActionListener(this);
+	b1.setBounds(64, 430, 111, 33);
+        b1.setBackground(Color.BLACK);
+        b1.setForeground(Color.WHITE);
+	contentPane.add(b1);
+
+	b2 = new JButton("Πίσω");
+	b2.addActionListener(this);
+	b2.setBounds(198, 430, 111, 33);
+        b2.setBackground(Color.BLACK);
+        b2.setForeground(Color.WHITE);
+	contentPane.add(b2);
+
+	
+        contentPane.setBackground(Color.WHITE);
     
-	JTextField textField,textField_1,textField_2,textField_3,textField_4,textField_5,textField_6, textField_7, textField_8;
-        JComboBox c1;
-        ButtonGroup G1;
-
-        public AddEmployee(){
-            getContentPane().setForeground(Color.BLUE);
-            getContentPane().setBackground(Color.WHITE);
-            setTitle("Προσθήκη νέου υπαλλήλου");
-		 
-            setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-            setSize(778,486);
-            getContentPane().setLayout(null);
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent ae){
+        try{
             
-            JLabel id = new JLabel("ID:");
-            id.setFont(new Font("Arial", Font.PLAIN, 17));
-            id.setBounds(60, 30, 150, 27);
-            add(id);
-            
-            textField_7 = new JTextField();
-            textField_7.setBounds(200, 30, 150, 27);
-            add(textField_7);
-			
-            JLabel Name = new JLabel("Όνομα:");
-            Name.setFont(new Font("Arial", Font.PLAIN, 17));
-            Name.setBounds(60, 70, 150, 27);
-            add(Name);
-            
-            textField = new JTextField();
-            textField.setBounds(200, 70, 150, 27);
-            add(textField);
-            
-            JLabel surName = new JLabel("Επώνυμο:");
-            surName.setFont(new Font("Arial", Font.PLAIN, 17));
-            surName.setBounds(60, 110, 150, 27);
-            add(surName);
-            
-            textField_8 = new JTextField();
-            textField_8.setBounds(200, 110, 150, 27);
-            add(textField_8);
-			
-            JButton Next = new JButton("Καταχώρηση");
-            Next.setBounds(200, 420, 150, 30);
-            Next.setBackground(Color.BLACK);
-            Next.setForeground(Color.WHITE);
-            add(Next);
-			
-            JLabel Pnrno = new JLabel("Ηλικία:");
-            Pnrno.setFont(new Font("Arial", Font.PLAIN, 17));
-            Pnrno.setBounds(60, 150, 150, 27);
-            add(Pnrno);
-			
-            textField_1 = new JTextField();
-            textField_1.setBounds(200, 150, 150, 27);
-            add(textField_1);
-            
-            JLabel Gender = new JLabel("Φύλο:");
-            Gender.setFont(new Font("Arial", Font.PLAIN, 17));
-            Gender.setBounds(60, 190, 150, 27);
-            add(Gender);
-	
-            G1 = new ButtonGroup();
-            
-            JRadioButton Male = new JRadioButton("Άνδρας");
-            Male.setBackground(Color.WHITE);
-            Male.setBounds(200, 190, 70, 27);
-            add(Male);
-	
-            JRadioButton Female = new JRadioButton("Γυναίκα");
-            Female.setBackground(Color.WHITE);
-            Female.setBounds(280, 190, 70, 27);
-            add(Female);
-            
-            this.add(Male); 
-	    this.add(Female); 
-                
-            G1.add(Male); 
-            G1.add(Female);
-            
-            JLabel Address = new JLabel("Τύπος Εργασίας");
-            Address.setFont(new Font("Arial", Font.PLAIN, 17));
-            Address.setBounds(60, 230, 150, 27);
-            add(Address);
-			
-            String course[] = {"Υπάλληλος Reception","Πορτιέρης","Καμαριέρης","Σέφ","Υπηρεσία Δωματίου","Προσωπικό Κουζίνας"};
-            c1 = new JComboBox(course);
-            c1.setBackground(Color.WHITE);
-            c1.setBounds(200,230,150,30);
-            add(c1);
-            		
-            JLabel Nationality = new JLabel("Μισθός:");
-            Nationality.setFont(new Font("Arial", Font.PLAIN, 17));
-            Nationality.setBounds(60, 270, 150, 27);
-            add(Nationality);
-			
-            textField_3 = new JTextField();
-            textField_3.setBounds(200, 270, 150, 27);
-            add(textField_3);
-	
-            JLabel Phone = new JLabel("Τηλέφωνο:");
-            Phone.setFont(new Font("Arial", Font.PLAIN, 17));
-            Phone.setBounds(60, 310, 150, 27);
-            add(Phone);
-	
-            textField_4 = new JTextField();
-            textField_4.setBounds(200, 310, 150, 27);
-            add(textField_4);
-	
-            
-            JLabel email = new JLabel("E-mail:");
-            email.setFont(new Font("Arial", Font.PLAIN, 17));
-            email.setBounds(60, 350, 150, 27);
-            add(email);
-			
-            textField_6 = new JTextField();
-            textField_6.setBounds(200, 350, 150, 27);
-            add(textField_6);
-	
-            setVisible(true);
-	
-            JLabel AddPassengers = new JLabel("ADD EMPLOYEE DETAILS");
-            AddPassengers.setForeground(Color.BLUE);
-            AddPassengers.setFont(new Font("Tahoma", Font.PLAIN, 31));
-            AddPassengers.setBounds(450, 24, 442, 35);
-            add(AddPassengers);
-			
-     
-            ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/tenth.jpg"));
-            Image i3 = i1.getImage().getScaledInstance(500, 500,Image.SCALE_DEFAULT);
-            ImageIcon i2 = new ImageIcon(i3);
-            JLabel image = new JLabel(i2);
-            image.setBounds(410,80,480,410);
-            add(image);
-
-            
-            Next.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent ae){
-                    int id;
+            if(ae.getSource() == b1){
+                try{
+                //Connect c = new Connect();
+                int id;
+                try {
+                     id = Integer.parseInt(t1.getText());
+                      
+                     } catch (Exception z) { 
+                         JOptionPane.showMessageDialog(this, "Το πεδίο 'ID' δέχεται μόνο ακέραιες τιμές!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                         t1.setText("");
+                         return;
+                }
+                String name = t2.getText();
+                String surname = t6.getText();
+                int age;
+                try {
+                     age = Integer.parseInt(t7.getText());
+                      
+                     } catch (Exception z) { 
+                         JOptionPane.showMessageDialog(this, "Το πεδίο 'Ηλικία' δέχεται μόνο ακέραιες τιμές!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                         t7.setText("");
+                         return;
+                }
+                String gender = (String)comboBox.getSelectedItem();
+                int salary;
+                try {
+                     salary = Integer.parseInt(t3.getText());
+                      
+                     } catch (Exception z) { 
+                         JOptionPane.showMessageDialog(this, "Το πεδίο 'Μισθός' δέχεται μόνο ακέραιες τιμές!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                         t7.setText("");
+                         return;
+                }
+                int phone;
+                try {
+                     phone = Integer.parseInt(t8.getText());
+                      
+                     } catch (Exception z) { 
+                         JOptionPane.showMessageDialog(this, "Το πεδίο 'Τηλέφωνο' δέχεται μόνο ακέραιες τιμές!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                         t7.setText("");
+                         return;
+                }
+                String email = t9.getText();
+                String job = (String)comboBox2.getSelectedItem();
+                if(name.equals("")){
+                    JOptionPane.showMessageDialog(this, "Το πεδίο 'Όνομα' δεν μπορεί να μείνει κενό!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(surname.equals("")){
+                    JOptionPane.showMessageDialog(this, "Το πεδίο 'Επώνυμο' δεν μπορεί να μείνει κενό!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(email.equals("")){
+                    JOptionPane.showMessageDialog(this, "Το πεδίο 'Email' δεν μπορεί να μείνει κενό!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    Connection con;
+                    CallableStatement cs;
                     try{
-                        id = Integer.parseInt(textField_7.getText());
-                    } catch (Exception z){
-                        JOptionPane.showMessageDialog(null, "Το πεδίο 'ID' δεν μπορεί να μείνει κενό!",
-                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
-                        textField_7.setText("");
-                        return;
-                    }
-                    String name = textField.getText();
-                    int age;
-                    try{
-                        age = Integer.parseInt(textField_1.getText());
-                    } catch (Exception z){
-                        JOptionPane.showMessageDialog(null, "Το πεδίο 'Ηλικία' δεν μπορεί να μείνει κενό!",
-                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
-                        textField_1.setText("");
-                        return;
-                    }
-                    String surname = textField_8.getText();
-                    int salary,phone;
-                    try{
-                        salary = Integer.parseInt(textField_3.getText());
-                    } catch (Exception z){
-                        JOptionPane.showMessageDialog(null, "Το πεδίο 'Μισθός' δέχεται μόνο αριθμούς!",
-                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
-                        textField_3.setText("");
-                        return;
-                    }
-                    try{
-                        phone = Integer.parseInt(textField_4.getText());
-                    } catch (Exception z){
-                        JOptionPane.showMessageDialog(null, "Το πεδίο 'Τηλέφωνο' δέχεται μόνο αριθμούς!",
-                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
-                        textField_4.setText("");
-                        return;
-                    }
-                    String email = textField_6.getText();
-                   
-                    String gender = null;
-                    
-                    if(Male.isSelected())
-                        gender = "Άνδρας";
-                    else if(Female.isSelected())
-                        gender = "Γυναίκα";
-                        
-                    String job = (String)c1.getSelectedItem();
-                    if(name.equals("")){
-                        JOptionPane.showMessageDialog(null, "Το πεδίο 'Όνομα' δεν μπορεί να μείνει κενό!",
-                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
-                    }
-                    
-                    else if(surname.equals("")){
-                        JOptionPane.showMessageDialog(null, "Το πεδίο 'Επώνυμο' δεν μπορεί να μείνει κενό!",
-                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
-                    }
-                    
-                    else if(email.equals("")){
-                        JOptionPane.showMessageDialog(null, "Το πεδίο 'E-Mail' δεν μπορεί να μείνει κενό!",
-                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
-                    }
-                    else{
-                        Connection con;
-                        CallableStatement cs;
-                        try {
-                            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root","");
-                            cs = con.prepareCall("{ call Add_Employee(?,?,?,?,?,?,?,?,?)}");
+                        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root","");
+                        cs = con.prepareCall("{ call Add_Employee(?,?,?,?,?,?,?,?,?)}");
                             cs.setInt("id", id);
                             cs.setString("name", name);
                             cs.setString("surname", surname);
@@ -225,25 +244,30 @@ public class AddEmployee extends JFrame{ //Third Frame
                             cs.setInt("phone", phone);
                             cs.setString("email", email);
                             cs.executeUpdate();
-                            JOptionPane.showMessageDialog(null,"Employee Added");
-                            setVisible(true);
-
-                        } catch(Exception ex){
-                            JOptionPane.showMessageDialog(null, "Υπάρχει ήδη καταχωρημένος υπάλληλος με το ID που εισάγατε!","Πρόβλημα με τα στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
-                            textField_7.setText("");
-                        
+                        if(comboBox.getSelectedItem().equals("Άνδρας")){
+                            JOptionPane.showMessageDialog(null, "Ο "+name+" προστέθηκε στους υπαλλήλους!");
+                            this.setVisible(false);
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Η "+name+" προστέθηκε στους υπαλλήλους!");
+                            this.setVisible(false);
                         }
                     }
-		}
-            });
-			
-            setSize(900,600);
-            setVisible(true);
-            setLocation(530,200);
-			
-	}
-        
-    public static void main(String[] args){
-        new AddEmployee();
-    }   
+                    catch(SQLIntegrityConstraintViolationException ex){
+                        JOptionPane.showMessageDialog(this, "Υπάρχει ήδη καταχωρημένος υπάλληλος με το ID που εισάγατε!","Πρόβλημα με τα στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                        t1.setText("");
+                        
+                    }
+                }
+               
+                }catch(Exception ee){
+                    System.out.println(ee);
+                }
+            }
+            else if(ae.getSource() == b2){
+                this.setVisible(false);
+            }
+        }catch(Exception eee){
+        }
+    }
 }
