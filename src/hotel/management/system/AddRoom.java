@@ -39,16 +39,16 @@ public class AddRoom extends JFrame implements ActionListener{
                 l15.setBounds(400,30,500,370);
                 add(l15);
         
-        JLabel l10 = new JLabel("Add Rooms");
-        l10.setFont(new Font("Tahoma", Font.BOLD, 18));
-	l10.setBounds(194, 10, 120, 22);
+        JLabel l10 = new JLabel("Προσθήκη Δωματίων");
+        l10.setFont(new Font("Arial", Font.BOLD, 18));
+	l10.setBounds(194, 10, 400, 22);
 	contentPane.add(l10);
         
 	
         
-	JLabel l1 = new JLabel("Room Number");
+	JLabel l1 = new JLabel("Αριθμός Δωματίου:");
 	l1.setForeground(new Color(25, 25, 112));
-	l1.setFont(new Font("Tahoma", Font.BOLD, 14));
+	l1.setFont(new Font("Arial", Font.BOLD, 14));
 	l1.setBounds(64, 70, 102, 22);
 	contentPane.add(l1);
         
@@ -58,30 +58,30 @@ public class AddRoom extends JFrame implements ActionListener{
 	contentPane.add(t4);
         
 
-	JLabel l2 = new JLabel("Availability");
+	JLabel l2 = new JLabel("Διαθεσιμότητα:");
 	l2.setForeground(new Color(25, 25, 112));
-	l2.setFont(new Font("Tahoma", Font.BOLD, 14));
+	l2.setFont(new Font("Arial", Font.BOLD, 14));
 	l2.setBounds(64, 110, 102, 22);
 	contentPane.add(l2);
         
-        comboBox = new JComboBox(new String[] { "Available", "Occupied" });
+        comboBox = new JComboBox(new String[] { "Διαθέσιμο", "Μη Διαθέσιμο" });
 	comboBox.setBounds(176, 110, 154, 20);
 	contentPane.add(comboBox);
 
 
-	JLabel l3 = new JLabel("Cleaning Status");
+	JLabel l3 = new JLabel("Καθαρισμός:");
 	l3.setForeground(new Color(25, 25, 112));
 	l3.setFont(new Font("Tahoma", Font.BOLD, 14));
 	l3.setBounds(64, 150, 102, 22);
 	contentPane.add(l3);
         
-        comboBox_2 = new JComboBox(new String[] { "Cleaned", "Dirty" });
+        comboBox_2 = new JComboBox(new String[] { "Καθαρό", "Μη Καθαρό" });
 	comboBox_2.setBounds(176, 150, 154, 20);
 	contentPane.add(comboBox_2);
 
-	JLabel l4 = new JLabel("Price");
+	JLabel l4 = new JLabel("Τιμή:");
 	l4.setForeground(new Color(25, 25, 112));
-	l4.setFont(new Font("Tahoma", Font.BOLD, 14));
+	l4.setFont(new Font("Arial", Font.BOLD, 14));
 	l4.setBounds(64, 190, 102, 22);
 	contentPane.add(l4);
         
@@ -89,14 +89,14 @@ public class AddRoom extends JFrame implements ActionListener{
 	t2.setBounds(174, 190, 156, 20);
 	contentPane.add(t2);
 
-        JLabel l5 = new JLabel("Bed Type");
+        JLabel l5 = new JLabel("Αριθμός Κρεβατιών:");
 	l5.setForeground(new Color(25, 25, 112));
 	l5.setFont(new Font("Tahoma", Font.BOLD, 14));
 	l5.setBounds(64, 230, 102, 22);
 	contentPane.add(l5);
 
 
-        comboBox_3 = new JComboBox(new String[] { "Single Bed", "Double Bed"});
+        comboBox_3 = new JComboBox(new String[] { "Μονόκλινο", "Δίκλινο"});
 	comboBox_3.setBounds(176, 230, 154, 20);
 	contentPane.add(comboBox_3);
 
@@ -104,14 +104,14 @@ public class AddRoom extends JFrame implements ActionListener{
 
 	
 
-	b1 = new JButton("Add");
+	b1 = new JButton("Προσθήκη");
 	b1.addActionListener(this);
 	b1.setBounds(64, 321, 111, 33);
         b1.setBackground(Color.BLACK);
         b1.setForeground(Color.WHITE);
 	contentPane.add(b1);
 
-	b2 = new JButton("Back");
+	b2 = new JButton("Πίσω");
 	b2.addActionListener(this);
 	b2.setBounds(198, 321, 111, 33);
         b2.setBackground(Color.BLACK);
@@ -128,18 +128,50 @@ public class AddRoom extends JFrame implements ActionListener{
             
             if(ae.getSource() == b1){
                 try{
-                Connect c = new Connect();
-                String room = t4.getText();
-                String available = (String)comboBox.getSelectedItem();
-                String status = (String)comboBox_2.getSelectedItem();
-                String price  = t2.getText();
-                String type = (String)comboBox_3.getSelectedItem();
-                String str = "INSERT INTO room values( '"+room+"', '"+available+"', '"+status+"','"+price+"', '"+type+"')";
-              
+                //Connect c = new Connect();
+                int room_num;
+                try {
+                     room_num = Integer.parseInt(t4.getText());
+                      
+                     } catch (Exception z) { 
+                         JOptionPane.showMessageDialog(this, "Το πεδίο 'Αριθμός Δωματίου' δέχεται μόνο ακέραιες τιμές!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                         t4.setText("");
+                         return;
+                }
+                String availability = (String)comboBox.getSelectedItem();
+                String clean = (String)comboBox_2.getSelectedItem();
+                int price;
+                try {
+                     price = Integer.parseInt(t2.getText());
+                      
+                     } catch (Exception z) { 
+                         JOptionPane.showMessageDialog(this, "Το πεδίο 'Τιμή' δέχεται μόνο ακέραιες τιμές!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                         t2.setText("");
+                         return;
+                }
+                String bednum = (String)comboBox_3.getSelectedItem();
+                    Connection con;
+                    CallableStatement cs;
+                    try{
+                        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root","");
+                        cs = con.prepareCall("{ call Add_Room(?,?,?,?,?)}");
+                        cs.setInt("RoomNum", room_num);
+                        cs.setString("Availability", availability);
+                        cs.setString("Clean", clean);
+                        cs.setInt("Price", price);
+                        cs.setString("BedNum", bednum);
+                        cs.executeUpdate();
+                        JOptionPane.showMessageDialog(null, " Το δωμάτιο με αριθμό "+room_num+" προστέθηκε στα δωμάτια!");
+                        this.setVisible(false);
+                    }
+                    catch(SQLIntegrityConstraintViolationException ex){
+                        JOptionPane.showMessageDialog(this, "Υπάρχει ήδη καταχωρημένο δωμάτιο με τον αριθμό δωματίου που εισάγατε!","Πρόβλημα με τα στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                        t4.setText("");
+                        
+                    }
                 
-		c.s.executeUpdate(str);
-		JOptionPane.showMessageDialog(null, "Room Successfully Added");
-                this.setVisible(false);
                
                 }catch(Exception ee){
                     System.out.println(ee);
