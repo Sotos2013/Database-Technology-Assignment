@@ -78,7 +78,7 @@ public class CheckOut extends JFrame{
                     Connect c = new Connect();
                     ResultSet rs = c.s.executeQuery("select * from customer");
                     while(rs.next()){
-                        c1.add(rs.getString("number"));    
+                        c1.add(rs.getString("Αριθμός_Εγγράφου"));    
                     }
                 }catch(Exception e){ }
                 c1.setBounds(130, 82, 150, 20);
@@ -98,12 +98,12 @@ public class CheckOut extends JFrame{
                         try{
                             
                             Connect c = new Connect();
-                            String number = c1.getSelectedItem();
-                            ResultSet rs = c.s.executeQuery("select * from customer where number = "+number);
+                            String id = c1.getSelectedItem();
+                            ResultSet rs = c.s.executeQuery("select * from customer where ID = "+id);
                             
                             if(rs.next()){
                                 System.out.println("clicked");
-                                t1.setText(rs.getString("room_number"));    
+                                t1.setText(rs.getString("Αριθμός_δωματίου"));    
                             }
                         }catch(Exception e){ }
                     }
@@ -127,10 +127,10 @@ public class CheckOut extends JFrame{
 		JButton btnCheckOut = new JButton("Check Out");
 		btnCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-                                String id = c1.getSelectedItem();
+                                String id_num = c1.getSelectedItem();
                                 String s1 = t1.getText();
-				String deleteSQL = "Delete from customer where number = "+id;
-                                String q2 = "update room set availability = 'Available' where room_number = "+s1;
+				String deleteSQL = "Delete from customer where Αριθμός_Εγγράφου = "+id_num;
+                                String q2 = "update room set Διαθεσιμότητα = 'Διαθέσιμο' where Αριθμός_δωματίου = "+s1;
                                 
                                 
 				Connect c = new Connect();

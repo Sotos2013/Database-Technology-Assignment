@@ -79,7 +79,7 @@ public class UpdateCheck extends JFrame {
                     Connect c = new Connect();
                     ResultSet rs = c.s.executeQuery("select * from customer");
                     while(rs.next()){
-                        c1.add(rs.getString("number"));    
+                        c1.add(rs.getString("ID"));    
                     }
                 }catch(Exception e){ }
                 c1.setBounds(248, 85, 140, 20);
