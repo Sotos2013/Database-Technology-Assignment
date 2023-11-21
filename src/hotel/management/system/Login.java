@@ -106,8 +106,8 @@ public class Login extends JFrame implements ActionListener{
                 cs.setString("Username", u);
                 cs.setString("Pass", HashPass);
                 cs.setString("LastLogin", CurrDate);
-                boolean rs = cs.execute();
-                if(rs==true){ 
+                ResultSet rs = cs.executeQuery();
+                if(rs.next()){ 
                     new Dashboard().setVisible(true);
                     setVisible(false);
                 }else{
