@@ -11,6 +11,9 @@ import java.awt.event.*;
 import java.sql.*;
 import java.security.MessageDigest;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Login extends JFrame implements ActionListener{
   
@@ -18,6 +21,8 @@ public class Login extends JFrame implements ActionListener{
     JTextField t1;
     JPasswordField t2;
     JButton b1,b2;
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    
 
     Login(){
            
@@ -90,17 +95,29 @@ public class Login extends JFrame implements ActionListener{
                 for (byte b : hash) {
                     hexString.append(String.format("%02x", b));
                 }
-                String q = "select * from login where username='"+u+"' and password='"+hexString+"'";
-
-                ResultSet rs = c1.s.executeQuery(q); 
-                if(rs.next()){ 
+                String HashPass = hexString.toString();
+                Date date = new Date();
+                Timestamp timestamp = new Timestamp(date.getTime());
+                String CurrDate = sdf.format(timestamp);
+                Connection con;
+                CallableStatement cs;
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root","");
+                cs = con.prepareCall("{ call Login(?,?,?)}");
+                cs.setString("Username", u);
+                cs.setString("Pass", HashPass);
+                cs.setString("LastLogin", CurrDate);
+                boolean rs = cs.execute();
+                if(rs==true){ 
                     new Dashboard().setVisible(true);
                     setVisible(false);
                 }else{
                     Object[] options= {"Ναι", "Όχι"};
                     int result =JOptionPane.showOptionDialog(null, "Λάθος στοιχεία σύνδεσης! Θέλετε να ξανά προσπαθήσετε;","Λανθασμένα στοιχεία σύνδεσης!",JOptionPane.DEFAULT_OPTION,JOptionPane.PLAIN_MESSAGE,null,options,options[0]);
                     if(result==0){
-                        JOptionPane.getRootFrame().dispose();}
+                        JOptionPane.getRootFrame().dispose();
+                        t1.setText("");
+                        t2.setText("");
+                    }
                     else if(result==1){
                                 setVisible(false);
                                 }
