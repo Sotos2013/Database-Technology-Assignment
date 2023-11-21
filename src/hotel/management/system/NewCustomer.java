@@ -22,7 +22,7 @@ public class NewCustomer extends JFrame {
 	PreparedStatement pst = null;
 	private JPanel contentPane;
 	private JTextField t1,t2,t3,t4,t5,t6,t8;
-        JComboBox comboBox;
+        JComboBox comboBox,comboBox2;
         JRadioButton r1,r2;
         ButtonGroup G1;
         Choice c1;
@@ -112,23 +112,10 @@ public class NewCustomer extends JFrame {
                 
                 G1 = new ButtonGroup();
                 
-                r1 = new JRadioButton("Άνδρας");
-                r1.setFont(new Font("Raleway", Font.BOLD, 14));
-                r1.setBackground(Color.WHITE);
-                r1.setBounds(271, 231, 80, 12);
-                add(r1);
-                
-                r2 = new JRadioButton("Γυναίκα");
-                r2.setFont(new Font("Raleway", Font.BOLD, 14));
-                r2.setBackground(Color.WHITE);
-                r2.setBounds(350, 231, 100, 12);
-		add(r2);
-                
-                this.add(r1); 
-		this.add(r2); 
-                
-                G1.add(r1); 
-		G1.add(r2);
+                comboBox2 = new JComboBox(new String[] { "Άνδρας", "Γυναίκα" });
+                comboBox2.setBackground(Color.WHITE);
+                comboBox2.setBounds(271, 231, 150, 20);
+                add(comboBox2);
                 
                 //6
                 
@@ -150,7 +137,7 @@ public class NewCustomer extends JFrame {
                 c1 = new Choice();
                 try{
                     Connect c = new Connect();
-                    ResultSet rs = c.s.executeQuery("select * from room");
+                    ResultSet rs = c.s.executeQuery("select * from room where Διαθεσιμότητα = 'Διαθέσιμο'");
                     while(rs.next()){
                         c1.add(rs.getString("Αριθμός_δωματίου"));    
                     }
@@ -181,14 +168,7 @@ public class NewCustomer extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                             Connect c = new Connect();
-                            String radio = null;
                             
-                            if(r1.isSelected()){ 
-                                radio = "Άνδρας";
-                            }
-                            else if(r2.isSelected()){ 
-                                radio = "Γυναίκα";
-                            }
                             
                             String s6 = c1.getSelectedItem();
                           
@@ -198,14 +178,14 @@ public class NewCustomer extends JFrame {
 	    			String id_num =  t1.getText();
 	    			String name =  t2.getText();
                                 String surname = t8.getText();
-                                String sex =  radio;
+                                String sex =  (String)comboBox2.getSelectedItem();
 	    			String country =  t3.getText();
                                 String room_num = (String) c1.getSelectedItem();
 	    			String checkin =  t5.getText();
                                 String pay =  t6.getText();
                                 
                                 String q1 = "INSERT INTO customer values('"+id+"', '"+id_num+"', '"+name+"','"+surname+"','"+sex+"','"+country+"','"+room_num+"','"+checkin+"','"+pay+"')";
-                                String q2 = "update room set Διαθεσιμότητα = 'Μή διαθέσιμο' where 'Αριθμός_δωματίου' = "+room_num;
+                                String q2 = "update room set Διαθεσιμότητα = 'Μή διαθέσιμο' where Αριθμός_δωματίου = '"+room_num+"'";
                                 c.s.executeUpdate(q1);
                                 c.s.executeUpdate(q2);
 	    			
