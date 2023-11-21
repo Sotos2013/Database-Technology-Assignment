@@ -21,19 +21,21 @@ public class Reception extends JFrame {
 	
 	public Reception(){
 		
-                setBounds(530, 200, 850, 570);
+                setBounds(530, 200, 250,600 );
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+             setLocationRelativeTo(null);
+        setResizable(false);
                 
-                ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/fourth.jpg"));
-                Image i3 = i1.getImage().getScaledInstance(500, 500,Image.SCALE_DEFAULT);
-                ImageIcon i2 = new ImageIcon(i3);
-                JLabel l1 = new JLabel(i2);
-                l1.setBounds(250,30,500,470);
-                add(l1);
+              // ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/fourth.jpg"));
+                //Image i3 = i1.getImage().getScaledInstance(500, 500,Image.SCALE_DEFAULT);
+               // ImageIcon i2 = new ImageIcon(i3);
+                //JLabel l1 = new JLabel(i2);
+               // l1.setBounds(250,30,500,470);
+               // add(l1);
 		
-		JButton btnNewCustomerForm = new JButton("New Customer Form");
+		JButton btnNewCustomerForm = new JButton("Καταχώριση νέου πελάτη");
 		btnNewCustomerForm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -50,7 +52,7 @@ public class Reception extends JFrame {
                 btnNewCustomerForm.setForeground(Color.WHITE);
 		contentPane.add(btnNewCustomerForm);
 		
-		JButton btnNewButton = new JButton("Room");
+		JButton btnNewButton = new JButton("Δωμάτιο");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
@@ -71,7 +73,7 @@ public class Reception extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		
-		JButton btnNewButton_2 = new JButton("All Employee Info");
+		JButton btnNewButton_2 = new JButton("Στοιχεία υπάλληλων");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -93,7 +95,7 @@ public class Reception extends JFrame {
 
 		contentPane.add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("Customer Info");
+		JButton btnNewButton_3 = new JButton("Στοιχεία πελατών");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -152,7 +154,7 @@ public class Reception extends JFrame {
 
 		contentPane.add(btnNewButton_4);
 		
-		JButton btnNewButton_5 = new JButton("Update Check Status");
+		JButton btnNewButton_5 = new JButton("Ενημέρωση κατάστασης");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -171,7 +173,7 @@ public class Reception extends JFrame {
 
 		contentPane.add(btnNewButton_5);
 		
-		JButton btnNewButton_6 = new JButton("Update Room Status");
+		JButton btnNewButton_6 = new JButton("Ενημέρωση Δωματίου");
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -190,7 +192,7 @@ public class Reception extends JFrame {
 
 		contentPane.add(btnNewButton_6);
 		
-		JButton btnPickUpSerice = new JButton("Pick up Service");
+		JButton btnPickUpSerice = new JButton("Υπηρεσία παραλαβής πελάτη");
 		btnPickUpSerice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
@@ -209,7 +211,7 @@ public class Reception extends JFrame {
 
 		contentPane.add(btnPickUpSerice);
 		
-		JButton btnSearchRoom = new JButton("Search Room");
+		JButton btnSearchRoom = new JButton("Αναζήτηση δωματίου");
 		btnSearchRoom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -228,7 +230,7 @@ public class Reception extends JFrame {
 
 		contentPane.add(btnSearchRoom);
 
-		JButton btnNewButton_7 = new JButton("Log Out");
+		JButton btnNewButton_7 = new JButton("Αποσύνδεση");
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				try {

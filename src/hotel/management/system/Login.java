@@ -90,7 +90,7 @@ public class Login extends JFrame implements ActionListener{
                 for (byte b : hash) {
                     hexString.append(String.format("%02x", b));
                 }
-                String q = "select * from login where username='"+u+"' and password='"+hexString+"'";
+                String q = "select * from login where username='"+u+"' and pass='"+hexString+"'";
 
                 ResultSet rs = c1.s.executeQuery(q); 
                 if(rs.next()){ 
