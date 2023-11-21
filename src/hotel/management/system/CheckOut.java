@@ -84,35 +84,14 @@ public class CheckOut extends JFrame{
                 combobox.addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                      
-                          
-           if (combobox.getSelectedItem() != null) {
-               String selectedRoom = (String) combobox.getSelectedItem();
-
-           try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root",""); ) {
-        
-        String sql = "select * from room  join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου =?";
-     
-        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-            pstmt.setString(1, selectedRoom);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    t1.setText(rs.getString(1)); // Assuming that the first column should be displayed in t1
-                   System.out.println("Selected Room: " + selectedRoom);
-                        System.out.println("Value from Database: " + sql);
-                    } else {
-                        // Handle the case where no matching records were found
-                        System.out.println("No records found for room: " + selectedRoom);
+                    try{
+                        Connect c = new Connect();
+                        ResultSet rs = c.s.executeQuery("select Διαθεσιμότητα from room");
+                        while(rs.next()){
+                            t1.setText("dddd");
+                        }
+                    }catch(Exception ee){ }
                     }
-                }
-                
-            
-        }
-    } catch (SQLException ex) {
-        ex.printStackTrace(); // Log or handle the exception appropriately
-    }}
-}
                 
                 });
                 combobox.setBounds(130, 82, 150, 20);
@@ -145,7 +124,7 @@ public class CheckOut extends JFrame{
                 });*/
 
 		
-		JLabel lblRoomNumber = new JLabel("Room Number:");
+		/*JLabel lblRoomNumber = new JLabel("Room Number:");
 		lblRoomNumber.setBounds(20, 132, 86, 20);
 		contentPane.add(lblRoomNumber);
 		
@@ -153,7 +132,7 @@ public class CheckOut extends JFrame{
                 t1.setText("");
                 t1.setBounds(130, 132, 150, 20);
 		contentPane.add(t1);
-                //t1.setEditable(false);
+                //t1.setEditable(false); */
                 
                 
                 
@@ -166,7 +145,7 @@ public class CheckOut extends JFrame{
 		btnCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                                 String id_num = (String) combobox.getSelectedItem();
-                                String s1 = t1.getText();
+                                String s1 = "select Αριθμός_δωματίου from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου where customer.Αριθμός_Εγγράφου = ";
 				String deleteSQL = "Delete from customer where Αριθμός_Εγγράφου = '"+id_num+"'";
                                 String q2 = "update room set Διαθεσιμότητα = 'Διαθέσιμο' where Αριθμός_δωματίου = '"+s1+"'";
                                 
