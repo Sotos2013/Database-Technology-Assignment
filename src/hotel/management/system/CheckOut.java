@@ -133,9 +133,10 @@ public class CheckOut extends JFrame{
 		contentPane.add(lblRoomNumber);
 		
 		t1 = new JTextField();
+                t1.setText("");
                 t1.setBounds(130, 132, 150, 20);
 		contentPane.add(t1);
-                t1.setEditable(false);
+                //t1.setEditable(false);
                 
                 
                 
