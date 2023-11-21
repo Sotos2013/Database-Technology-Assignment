@@ -85,11 +85,12 @@ public class CheckOut extends JFrame{
                     @Override
                     public void actionPerformed(ActionEvent e) {
                       
+                          
            if (combobox.getSelectedItem() != null) {
            try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root",""); ) {
         String selectedRoom = (String) combobox.getSelectedItem();
-        t1.setText("");
-        String sql = "select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου =?";
+
+        String sql = "SELECT * FROM room  JOIN customer ON room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου WHERE room.Αριθμός_δωματίου = ?";
      
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setString(1, selectedRoom);
