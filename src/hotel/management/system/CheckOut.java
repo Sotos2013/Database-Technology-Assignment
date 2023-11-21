@@ -92,7 +92,7 @@ public class CheckOut extends JFrame{
                             String sql = "select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου";
                             ResultSet rs=c.s.executeQuery(sql);
                             while(rs.next()){
-                                t1.setText(rs.getString(1));    
+                                t1.setText(rs.getString("Αριθμός_δωματίου"));    
                             }
                         }catch(SQLException eee){ }
                     }
