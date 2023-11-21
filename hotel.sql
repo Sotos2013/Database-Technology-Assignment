@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Εξυπηρετητής: 127.0.0.1
--- Χρόνος δημιουργίας: 21 Νοε 2023 στις 11:25:04
+-- Χρόνος δημιουργίας: 21 Νοε 2023 στις 21:07:46
 -- Έκδοση διακομιστή: 10.4.28-MariaDB
 -- Έκδοση PHP: 8.1.17
 
@@ -37,7 +37,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Add_Room` (IN `RoomNum` INT(4), IN 
 	INSERT INTO room values(RoomNum,Availability,Clean,Price,BedNum);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `CheckOut` (IN `id` VARCHAR(30))   select * from customer where ID = id$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CheckOut` ()   select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCustomerId` ()   select Αριθμός_Εγγράφου from customer$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCustomers` ()   BEGIN
+    select * from customer;
+END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Login` (IN `Username` VARCHAR(64), IN `Pass` VARCHAR(64), IN `LastLogin` TIMESTAMP)   BEGIN
    select * from login where username = Username and password = Pass;
@@ -70,7 +76,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`ID`, `Αριθμός_Εγγράφου`, `Όνομα`, `Επώνυμο`, `Φύλο`, `Χώρα_Διαμονής`, `Αριθμός_δωματίου`, `Προσέλευση`, `Ποσό_Πληρωμής`) VALUES
-('Ταυτότητα', 'yhrdsz6', 'uteujtdg', 'jdgjgdz', 'Male', 'teaujtd', 3, 'hdzh', 'ute');
+('Ταυτότητα', 'ηδφηφχ', 'ηγδυφχ', 'τδξθδζηθ', 'Άνδρας', 'τδσθζθητδ', 9999, 'τηδζηθυ', 'τδηυθτδ');
 
 -- --------------------------------------------------------
 
@@ -94,7 +100,8 @@ CREATE TABLE `driver` (
 
 INSERT INTO `driver` (`ID`, `Όνομα`, `Επώνυμο`, `Ηλικία`, `Φύλο`, `Αυτοκίνητο`, `Διαθεσιμότητα`) VALUES
 (1, 'hsrHRF', 'hsrfH', 53, 'Άνδρας', 'hfs', 'Διαθέσιμος/η'),
-(44, 'hdah', 'hfgdH', 54, 'Άνδρας', 'hfdzhf', 'Διαθέσιμος/η');
+(44, 'hdah', 'hfgdH', 54, 'Άνδρας', 'hfdzhf', 'Διαθέσιμος/η'),
+(55, 'hfsdzh', 'hfdsHJf', 53, 'Άνδρας', 'hrsH', 'Διαθέσιμος/η');
 
 -- --------------------------------------------------------
 
@@ -141,7 +148,7 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`username`, `password`, `last_login`) VALUES
-('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '2023-11-21 10:22:59');
+('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '2023-11-21 17:20:27');
 
 -- --------------------------------------------------------
 
@@ -162,9 +169,13 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`Αριθμός_δωματίου`, `Διαθεσιμότητα`, `Καθαρισμός`, `Τιμή`, `Αριθμός_κρεβατιών`) VALUES
-(1, 'Διαθέσιμο', 'Καθαρό', 55, 'Μονόκλινο'),
-(2, 'Διαθέσιμο', 'Καθαρό', 66, 'Δίκλινο'),
-(3, 'Διαθέσιμο', 'Καθαρό', 66, 'Μονόκλινο');
+(1, 'Μή διαθέσιμο', 'Καθαρό', 55, 'Μονόκλινο'),
+(2, 'Μή διαθέσιμο', 'Καθαρό', 66, 'Δίκλινο'),
+(3, 'Μή διαθέσιμο', 'Καθαρό', 66, 'Μονόκλινο'),
+(66, 'Μή διαθέσιμο', 'Καθαρό', 65, 'Μονόκλινο'),
+(6666, 'Μή διαθέσιμο', 'Καθαρό', 536, 'Μονόκλινο'),
+(8888, 'Μή διαθέσιμο', 'Καθαρό', 66, 'Μονόκλινο'),
+(9999, 'Μή διαθέσιμο', 'Καθαρό', 50, 'Μονόκλινο');
 
 --
 -- Ευρετήρια για άχρηστους πίνακες
@@ -200,7 +211,8 @@ ALTER TABLE `login`
 --
 ALTER TABLE `room`
   ADD PRIMARY KEY (`Αριθμός_δωματίου`),
-  ADD KEY `Τιμή` (`Τιμή`);
+  ADD KEY `Τιμή` (`Τιμή`),
+  ADD KEY `Αριθμός_δωματίου` (`Αριθμός_δωματίου`);
 
 --
 -- Περιορισμοί για άχρηστους πίνακες
