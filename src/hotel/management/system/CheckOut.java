@@ -86,9 +86,9 @@ public class CheckOut extends JFrame{
                     public void actionPerformed(ActionEvent e) {
                     try{
                         Connect c = new Connect();
-                        ResultSet rs = c.s.executeQuery("select Διαθεσιμότητα from room");
+                        ResultSet rs = c.s.executeQuery("select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου WHERE customer.Αριθμός_Εγγράφου = '"+(String)combobox.getSelectedItem()+"'");
                         while(rs.next()){
-                            t1.setText("dddd");
+                            t1.setText(rs.getString(1));
                         }
                     }catch(Exception ee){ }
                     }
@@ -124,7 +124,7 @@ public class CheckOut extends JFrame{
                 });*/
 
 		
-		/*JLabel lblRoomNumber = new JLabel("Room Number:");
+		JLabel lblRoomNumber = new JLabel("Room Number:");
 		lblRoomNumber.setBounds(20, 132, 86, 20);
 		contentPane.add(lblRoomNumber);
 		
@@ -132,7 +132,7 @@ public class CheckOut extends JFrame{
                 t1.setText("");
                 t1.setBounds(130, 132, 150, 20);
 		contentPane.add(t1);
-                //t1.setEditable(false); */
+                t1.setEditable(false);
                 
                 
                 
@@ -145,9 +145,9 @@ public class CheckOut extends JFrame{
 		btnCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                                 String id_num = (String) combobox.getSelectedItem();
-                                String s1 = "select Αριθμός_δωματίου from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου where customer.Αριθμός_Εγγράφου = ";
+                                String s1 = t1.getText();
 				String deleteSQL = "Delete from customer where Αριθμός_Εγγράφου = '"+id_num+"'";
-                                String q2 = "update room set Διαθεσιμότητα = 'Διαθέσιμο' where Αριθμός_δωματίου = '"+s1+"'";
+                                String q2 = "update room set Διαθεσιμότητα = 'Διαθέσιμο' where Αριθμός_δωματίου = "+s1;
                                 
                                 
 				Connect c = new Connect();
