@@ -92,7 +92,7 @@ public class CheckOut extends JFrame{
                             String sql = "select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου";
                             ResultSet rs=c.s.executeQuery(sql);
                             while(rs.next()){
-                                t1.setText(rs.getString(4));    
+                                t1.setText(rs.getString(1));    
                             }
                         }catch(SQLException eee){ }
                     }
@@ -147,7 +147,7 @@ public class CheckOut extends JFrame{
 		JButton btnCheckOut = new JButton("Check Out");
 		btnCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-                                String id_num = c1.getSelectedItem();
+                                String id_num = (String) combobox.getSelectedItem();
                                 String s1 = t1.getText();
 				String deleteSQL = "Delete from customer where Αριθμός_Εγγράφου = '"+id_num+"'";
                                 String q2 = "update room set Διαθεσιμότητα = 'Διαθέσιμο' where Αριθμός_δωματίου = '"+s1+"'";
