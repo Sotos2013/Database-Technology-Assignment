@@ -87,20 +87,27 @@ public class CheckOut extends JFrame{
                       
                           
            if (combobox.getSelectedItem() != null) {
-           try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root",""); ) {
-        String selectedRoom = (String) combobox.getSelectedItem();
+               String selectedRoom = (String) combobox.getSelectedItem();
 
-        String sql = "SELECT * FROM room  JOIN customer ON room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου WHERE room.Αριθμός_δωματίου = ?";
+           try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root",""); ) {
+        
+        String sql = "select * from room  join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου =?";
      
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setString(1, selectedRoom);
 
             try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
+                if (rs.next()) {
                     t1.setText(rs.getString(1)); // Assuming that the first column should be displayed in t1
-                    // You might want to adjust the column index or use column names based on your database schema
+                   System.out.println("Selected Room: " + selectedRoom);
+                        System.out.println("Value from Database: " + sql);
+                    } else {
+                        // Handle the case where no matching records were found
+                        System.out.println("No records found for room: " + selectedRoom);
+                    }
                 }
-            }
+                
+            
         }
     } catch (SQLException ex) {
         ex.printStackTrace(); // Log or handle the exception appropriately
