@@ -91,7 +91,7 @@ public class CheckOut extends JFrame{
                 l2.setBounds(290,82,20,20);
                 add(l2);
                 
-                l2.addActionListener(new ActionListener(){
+                /*c1.add(new ActionListener(){
                     
                     public void actionPerformed(ActionEvent ae){
                         System.out.println("Hi");
@@ -107,7 +107,7 @@ public class CheckOut extends JFrame{
                             }
                         }catch(Exception e){ }
                     }
-                });
+                });*/
 
 		
 		JLabel lblRoomNumber = new JLabel("Room Number:");
@@ -115,8 +115,17 @@ public class CheckOut extends JFrame{
 		contentPane.add(lblRoomNumber);
 		
 		t1 = new JTextField();
+                try{
+                    Connect c = new Connect();
+                    ResultSet rs = c.s.executeQuery("select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου");
+                    while(rs.next()){
+                        t1.setText(rs.getString("Αριθμός_δωματίου"));    
+                    }
+                }catch(Exception e){ }
                 t1.setBounds(130, 132, 150, 20);
 		contentPane.add(t1);
+                t1.setEditable(false);
+                
                 
                 
                 
@@ -129,8 +138,8 @@ public class CheckOut extends JFrame{
 			public void actionPerformed(ActionEvent e) {
                                 String id_num = c1.getSelectedItem();
                                 String s1 = t1.getText();
-				String deleteSQL = "Delete from customer where Αριθμός_Εγγράφου = "+id_num;
-                                String q2 = "update room set Διαθεσιμότητα = 'Διαθέσιμο' where Αριθμός_δωματίου = "+s1;
+				String deleteSQL = "Delete from customer where Αριθμός_Εγγράφου = '"+id_num+"'";
+                                String q2 = "update room set Διαθεσιμότητα = 'Διαθέσιμο' where Αριθμός_δωματίου = '"+s1+"'";
                                 
                                 
 				Connect c = new Connect();

@@ -152,7 +152,7 @@ public class NewCustomer extends JFrame {
                     Connect c = new Connect();
                     ResultSet rs = c.s.executeQuery("select * from room");
                     while(rs.next()){
-                        c1.add(rs.getString("Αριθμός δωματίου"));    
+                        c1.add(rs.getString("Αριθμός_δωματίου"));    
                     }
                 }catch(Exception e){ }
                 c1.setBounds(271, 314, 150, 20);
@@ -184,10 +184,10 @@ public class NewCustomer extends JFrame {
                             String radio = null;
                             
                             if(r1.isSelected()){ 
-                                radio = "Male";
+                                radio = "Άνδρας";
                             }
                             else if(r2.isSelected()){ 
-                                radio = "Female";
+                                radio = "Γυναίκα";
                             }
                             
                             String s6 = c1.getSelectedItem();
@@ -205,7 +205,7 @@ public class NewCustomer extends JFrame {
                                 String pay =  t6.getText();
                                 
                                 String q1 = "INSERT INTO customer values('"+id+"', '"+id_num+"', '"+name+"','"+surname+"','"+sex+"','"+country+"','"+room_num+"','"+checkin+"','"+pay+"')";
-                                String q2 = "update room set Διαθεσιμότητα = 'Μή διαθέσιμο' where 'Αριθμός δωματίου' = "+room_num;
+                                String q2 = "update room set Διαθεσιμότητα = 'Μή διαθέσιμο' where 'Αριθμός_δωματίου' = "+room_num;
                                 c.s.executeUpdate(q1);
                                 c.s.executeUpdate(q2);
 	    			
