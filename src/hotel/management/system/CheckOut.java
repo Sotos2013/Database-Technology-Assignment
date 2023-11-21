@@ -81,7 +81,23 @@ public class CheckOut extends JFrame{
                         combobox.addItem(rs.getString("Αριθμός_Εγγράφου"));
                     }
                 }catch(Exception e){ }
+                combobox.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Connection con = null;
+                        CallableStatement cs;
+                        try{
+                            Connect c = new Connect();
+                            String tmp = (String) combobox.getSelectedItem();
+                            String sql = "select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου";
+                            ResultSet rs=c.s.executeQuery(sql);
+                            while(rs.next()){
+                                t1.setText(rs.getString(4));    
+                            }
+                        }catch(SQLException eee){ }
+                    }
                 
+                });
                 combobox.setBounds(130, 82, 150, 20);
 		contentPane.add(combobox);
                 
@@ -117,14 +133,6 @@ public class CheckOut extends JFrame{
 		contentPane.add(lblRoomNumber);
 		
 		t1 = new JTextField();
-                String tmp = (String) combobox.getSelectedItem();
-                try{
-                    Connect c = new Connect();
-                    ResultSet rs2 = c.s.executeQuery("select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου where customer.Αριθμός_Εγγράφου = '"+tmp+"'");
-                    if(rs2.next()){
-                        t1.setText(rs2.getString("Αριθμός_δωματίου"));    
-                    }
-                }catch(Exception e){ }
                 t1.setBounds(130, 132, 150, 20);
 		contentPane.add(t1);
                 t1.setEditable(false);
