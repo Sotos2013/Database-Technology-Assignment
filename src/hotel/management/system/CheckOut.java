@@ -73,16 +73,18 @@ public class CheckOut extends JFrame{
 		lblName.setBounds(20, 85, 80, 14);
 		contentPane.add(lblName);
                 
-                c1 = new Choice();
+                JComboBox combobox = new JComboBox();
                 try{
                     Connect c = new Connect();
                     ResultSet rs = c.s.executeQuery("select * from customer");
                     while(rs.next()){
-                        c1.add(rs.getString("Αριθμός_Εγγράφου"));    
+                        combobox.addItem(rs.getString("Αριθμός_Εγγράφου"));
                     }
                 }catch(Exception e){ }
-                c1.setBounds(130, 82, 150, 20);
-		contentPane.add(c1);
+                
+                combobox.setBounds(130, 82, 150, 20);
+		contentPane.add(combobox);
+                
                 
                 ImageIcon i4 = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/tick.png"));
                 Image i5 = i4.getImage().getScaledInstance(20, 20,Image.SCALE_DEFAULT);
@@ -115,11 +117,12 @@ public class CheckOut extends JFrame{
 		contentPane.add(lblRoomNumber);
 		
 		t1 = new JTextField();
+                String tmp = (String) combobox.getSelectedItem();
                 try{
                     Connect c = new Connect();
-                    ResultSet rs = c.s.executeQuery("select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου");
-                    while(rs.next()){
-                        t1.setText(rs.getString("Αριθμός_δωματίου"));    
+                    ResultSet rs2 = c.s.executeQuery("select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου where customer.Αριθμός_Εγγράφου = '"+tmp+"'");
+                    if(rs2.next()){
+                        t1.setText(rs2.getString("Αριθμός_δωματίου"));    
                     }
                 }catch(Exception e){ }
                 t1.setBounds(130, 132, 150, 20);

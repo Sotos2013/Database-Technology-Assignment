@@ -23,8 +23,8 @@ public class NewCustomer extends JFrame {
 	private JPanel contentPane;
 	private JTextField t1,t2,t3,t4,t5,t6,t8;
         JComboBox comboBox,comboBox2;
-        JRadioButton r1,r2;
-        ButtonGroup G1;
+        //JRadioButton r1,r2;
+        //ButtonGroup G1;
         Choice c1;
 	/**
 	 * Launch the application.
@@ -110,7 +110,7 @@ public class NewCustomer extends JFrame {
 		lblGender.setBounds(35, 231, 200, 14);
 		contentPane.add(lblGender);
                 
-                G1 = new ButtonGroup();
+                //G1 = new ButtonGroup();
                 
                 comboBox2 = new JComboBox(new String[] { "Άνδρας", "Γυναίκα" });
                 comboBox2.setBackground(Color.WHITE);
