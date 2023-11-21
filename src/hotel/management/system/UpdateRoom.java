@@ -81,7 +81,7 @@ PreparedStatement pst = null;
                     Connect c = new Connect();
                     ResultSet rs = c.s.executeQuery("select * from customer");
                     while(rs.next()){
-                        c1.add(rs.getString("number"));    
+                        c1.add(rs.getString("Αριθμός_Εγγράφου"));    
                     }
                 }catch(Exception e){ }
                 c1.setBounds(160, 84, 140, 20);
@@ -117,18 +117,18 @@ PreparedStatement pst = null;
                             try{
                                 String s1 = c1.getSelectedItem();
 				Connect c = new Connect();
-                                ResultSet rs1 = c.s.executeQuery("select * from customer where number = "+s1);
+                                ResultSet rs1 = c.s.executeQuery("select * from customer where Αριθμός_Εγγράφου = "+s1);
                                 
                                 while(rs1.next()){
-                                    txt_Room.setText(rs1.getString("room_number"));    
+                                    txt_Room.setText(rs1.getString("Αριθμός_δωματίου"));    
                                 }
                             }catch(Exception ee){}
                             try{
                                 Connect c  = new Connect();
-                                ResultSet rs2 = c.s.executeQuery("select * from room where room_number = "+txt_Room.getText());
+                                ResultSet rs2 = c.s.executeQuery("select * from room where Αριθμός_δωματίου = "+txt_Room.getText());
                                 while(rs2.next()){
-                                    txt_Ava.setText(rs2.getString("availability")); 
-                                    txt_Status.setText(rs2.getString("clean_status"));
+                                    txt_Ava.setText(rs2.getString("Διαθεσιμότητα")); 
+                                    txt_Status.setText(rs2.getString("Καθαρισμός"));
                                 }
                             }catch(Exception ee){}
                         }
@@ -144,7 +144,7 @@ PreparedStatement pst = null;
 				
 				try{
                                     Connect c = new Connect();
-                                    String str = "update room set clean_status = '"+txt_Status.getText()+"' where room_number = "+txt_Room.getText();
+                                    String str = "update room set Καθαρισμός = '"+txt_Status.getText()+"' where Αριθμός_δωματίου  = "+txt_Room.getText();
                                     c.s.executeUpdate(str);
                                     JOptionPane.showMessageDialog(null, "Update Sucessful");
                                     

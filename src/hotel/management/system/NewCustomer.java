@@ -173,26 +173,48 @@ public class NewCustomer extends JFrame {
                             String s6 = c1.getSelectedItem();
                           
                             try{
-	    			
                                 String id = (String)comboBox.getSelectedItem(); 
-	    			String id_num =  t1.getText();
-	    			String name =  t2.getText();
-                                String surname = t8.getText();
-                                String sex =  (String)comboBox2.getSelectedItem();
-	    			String country =  t3.getText();
-                                String room_num = (String) c1.getSelectedItem();
-	    			String checkin =  t5.getText();
-                                String pay =  t6.getText();
-                                
-                                String q1 = "INSERT INTO customer values('"+id+"', '"+id_num+"', '"+name+"','"+surname+"','"+sex+"','"+country+"','"+room_num+"','"+checkin+"','"+pay+"')";
-                                String q2 = "update room set Διαθεσιμότητα = 'Μή διαθέσιμο' where Αριθμός_δωματίου = '"+room_num+"'";
-                                c.s.executeUpdate(q1);
-                                c.s.executeUpdate(q2);
-	    			
-	    			
-	    			JOptionPane.showMessageDialog(null, "Data Inserted Successfully");
-                                new Reception().setVisible(true);
-                                setVisible(false);
+                                    String id_num =  t1.getText();
+                                    String name =  t2.getText();
+                                    String surname = t8.getText();
+                                    String sex =  (String)comboBox2.getSelectedItem();
+                                    String country =  t3.getText();
+                                    String room_num = (String) c1.getSelectedItem();
+                                    String checkin =  t5.getText();
+                                    String pay =  t6.getText();
+	    			if(id_num.equals("")){
+                                    JOptionPane.showMessageDialog(null, "Το πεδίο 'Αριθμός Εγγράφου' δεν μπορεί να μείνει κενό!",
+                                    "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                                }
+                                else if(name.equals("")){
+                                    JOptionPane.showMessageDialog(null, "Το πεδίο 'Όνομα' δεν μπορεί να μείνει κενό!",
+                                    "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                                }
+                                else if(surname.equals("")){
+                                    JOptionPane.showMessageDialog(null, "Το πεδίο 'Επώνυμο' δεν μπορεί να μείνει κενό!",
+                                    "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                                }
+                                else if(country.equals("")){
+                                    JOptionPane.showMessageDialog(null, "Το πεδίο 'Χώρα' δεν μπορεί να μείνει κενό!",
+                                    "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                                }
+                                else if(checkin.equals("")){
+                                    JOptionPane.showMessageDialog(null, "Το πεδίο 'CheckIn' δεν μπορεί να μείνει κενό!",
+                                    "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                                }
+                                else if(pay.equals("")){
+                                    JOptionPane.showMessageDialog(null, "Το πεδίο 'Πληρωμή' δεν μπορεί να μείνει κενό!",
+                                    "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                                }
+                                else{
+                                    String q1 = "INSERT INTO customer values('"+id+"', '"+id_num+"', '"+name+"','"+surname+"','"+sex+"','"+country+"','"+room_num+"','"+checkin+"','"+pay+"')";
+                                    String q2 = "update room set Διαθεσιμότητα = 'Μή διαθέσιμο' where Αριθμός_δωματίου = '"+room_num+"'";
+                                    c.s.executeUpdate(q1);
+                                    c.s.executeUpdate(q2);
+                                    JOptionPane.showMessageDialog(null, "Data Inserted Successfully");
+                                    new Reception().setVisible(true);
+                                    setVisible(false);
+                                }
 	    		}catch(SQLException e1){
 	    			System.out.println(e1.getMessage());
 	    		}

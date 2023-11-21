@@ -79,7 +79,7 @@ public class UpdateCheck extends JFrame {
                     Connect c = new Connect();
                     ResultSet rs = c.s.executeQuery("select * from customer");
                     while(rs.next()){
-                        c1.add(rs.getString("ID"));    
+                        c1.add(rs.getString(2));    
                     }
                 }catch(Exception e){ }
                 c1.setBounds(248, 85, 140, 20);
@@ -143,7 +143,7 @@ public class UpdateCheck extends JFrame {
                                 String s4 = txt_Date.getText(); //status;    
                                 String s5 = txt_Time.getText(); //deposit    
 				
-                                c.s.executeUpdate("update customer set Αριθμός δωματίου = '"+s2+"', name = '"+s3+"', status = '"+s4+"', deposit = '"+s5+"' where number = '"+s1+"'");
+                                c.s.executeUpdate("update customer set Αριθμός_δωματίου = '"+s2+"', Προσέλευση = '"+s4+"', Ποσό_Πληρωμής = '"+s5+"' where Αριθμός_Εγγράφου = '"+s1+"'");
                                 
                                 JOptionPane.showMessageDialog(null, "Data Updated Successfully");
                                 new Reception().setVisible(true);
@@ -179,22 +179,22 @@ public class UpdateCheck extends JFrame {
                             try{
 				String s1 = c1.getSelectedItem();
 				Connect c = new Connect();
-                                ResultSet rs1 = c.s.executeQuery("select * from customer where number = "+s1);
+                                ResultSet rs1 = c.s.executeQuery("select * from customer where ID = '"+s1+"'");
                                 
                                 while(rs1.next()){
-                                    txt_ID.setText(rs1.getString("room_number"));    
-                                    txt_Status.setText(rs1.getString("name"));    
-                                    txt_Date.setText(rs1.getString("status"));    
-                                    txt_Time.setText(rs1.getString("deposit"));    
+                                    txt_ID.setText(rs1.getString("Αριθμός_δωματίου"));    
+                                    txt_Status.setText(rs1.getString("Όνομα"));    
+                                    txt_Date.setText(rs1.getString("Προσέλευση"));    
+                                    txt_Time.setText(rs1.getString("Ποσό_Πληρωμής"));    
                                 }
                             }catch(Exception ee){}
                             
                             try{
                                 String total = "";
                                 Connect c  = new Connect();
-                                ResultSet rs2 = c.s.executeQuery("select * from room where room_number = "+txt_ID.getText());
+                                ResultSet rs2 = c.s.executeQuery("select * from room where Αριθμός_δωματίου = "+txt_ID.getText());
                                 while(rs2.next()){
-                                    total = rs2.getString("price"); 
+                                    total = rs2.getString(4); 
                                     
                                 }
                                 String paid = txt_Time.getText();
