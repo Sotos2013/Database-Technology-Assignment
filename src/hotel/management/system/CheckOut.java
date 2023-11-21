@@ -84,18 +84,27 @@ public class CheckOut extends JFrame{
                 combobox.addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        Connection con = null;
-                        CallableStatement cs;
-                        try{
-                            Connect c = new Connect();
-                            String tmp = (String) combobox.getSelectedItem();
-                            String sql = "select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου";
-                            ResultSet rs=c.s.executeQuery(sql);
-                            while(rs.next()){
-                                t1.setText(rs.getString("Αριθμός_δωματίου"));    
-                            }
-                        }catch(SQLException eee){ }
-                    }
+                      
+           if (combobox.getSelectedItem() != null) {
+           try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root",""); ) {
+        String selectedRoom = (String) combobox.getSelectedItem();
+        t1.setText("");
+        String sql = "select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου =?";
+     
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setString(1, selectedRoom);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    t1.setText(rs.getString(1)); // Assuming that the first column should be displayed in t1
+                    // You might want to adjust the column index or use column names based on your database schema
+                }
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace(); // Log or handle the exception appropriately
+    }}
+}
                 
                 });
                 combobox.setBounds(130, 82, 150, 20);
