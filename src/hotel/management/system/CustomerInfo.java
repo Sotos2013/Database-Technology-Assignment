@@ -80,13 +80,14 @@ public class CustomerInfo extends JFrame {
 		JButton btnLoadData = new JButton("Φόρτωση");
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+                            Connection con;
+                            CallableStatement cs;
 				try{
-                                    Connect c  = new Connect();
-                                    
-				String displayCustomersql = "select * from Customer";
-				ResultSet rs = c.s.executeQuery(displayCustomersql);
-				table.setModel(DbUtils.resultSetToTableModel(rs));
-			}
+                                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root","");
+                                    cs = con.prepareCall("{ call getCustomers()}");
+                                    ResultSet rs = cs.executeQuery();
+                                    table.setModel(DbUtils.resultSetToTableModel(rs));
+                                }
 				catch(Exception e)
 				{
 					e.printStackTrace();
