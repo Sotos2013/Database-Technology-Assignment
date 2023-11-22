@@ -54,25 +54,25 @@ PreparedStatement pst = null;
 	public UpdateRoom() throws SQLException {
 		//conn = Javaconnect.getDBConnection();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(530, 200, 1000, 450);
+		setBounds(530, 200, 450, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+                 setLocationRelativeTo(null);
+        setResizable(false);
                 
-                ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/seventh.jpg"));
-                Image i3 = i1.getImage().getScaledInstance(550, 250,Image.SCALE_DEFAULT);
-                ImageIcon i2 = new ImageIcon(i3);
-                JLabel l1 = new JLabel(i2);
-                l1.setBounds(400,80,600,250);
-                add(l1);
+              
+             
+              
+             
 		
-		JLabel lblUpdateRoomStatus = new JLabel("Update Room Status");
+		JLabel lblUpdateRoomStatus = new JLabel("Ενημέρωση Κατάστασης δωμάτιου");
 		lblUpdateRoomStatus.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblUpdateRoomStatus.setBounds(85, 11, 206, 34);
 		contentPane.add(lblUpdateRoomStatus);
 		
-		JLabel lblNewLabel = new JLabel("Guest ID:");
+		JLabel lblNewLabel = new JLabel("ID:");
 		lblNewLabel.setBounds(27, 87, 90, 14);
 		contentPane.add(lblNewLabel);
                 
