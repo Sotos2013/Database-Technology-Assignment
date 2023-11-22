@@ -105,23 +105,6 @@ public class CheckOut extends JFrame{
                 l2.setBounds(290,82,20,20);
                 add(l2);
                 
-                /*c1.add(new ActionListener(){
-                    
-                    public void actionPerformed(ActionEvent ae){
-                        System.out.println("Hi");
-                        try{
-                            
-                            Connect c = new Connect();
-                            String id = c1.getSelectedItem();
-                            ResultSet rs = c.s.executeQuery("select * from customer where ID = "+id);
-                            
-                            if(rs.next()){
-                                System.out.println("clicked");
-                                t1.setText(rs.getString("Αριθμός_δωματίου"));    
-                            }
-                        }catch(Exception e){ }
-                    }
-                });*/
 
 		
 		JLabel lblRoomNumber = new JLabel("Room Number:");
