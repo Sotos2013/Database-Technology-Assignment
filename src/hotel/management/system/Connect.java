@@ -15,10 +15,10 @@ public class Connect {
     Statement s;
     Connect(){  
         try{  
-            Class.forName("com.mysql.cj.jdbc.Driver");  
+            Class.forName("oracle.jdbc.driver.OracleDriver");  
             c =DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/hotel",
-                "root", "");
+                "jdbc:oracle:thin:@192.168.6.21:1521:dblabs",
+                "iee2019187", "mydata");
             
             s =c.createStatement();  
            

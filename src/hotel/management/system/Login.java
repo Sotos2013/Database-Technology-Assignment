@@ -101,11 +101,11 @@ public class Login extends JFrame implements ActionListener{
                 String CurrDate = sdf.format(timestamp);
                 Connection con;
                 CallableStatement cs;
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root","");
-                cs = con.prepareCall("{ call Login(?,?,?)}");
-                cs.setString("Username", u);
-                cs.setString("Pass", HashPass);
-                cs.setString("LastLogin", CurrDate);
+                Connect c = new Connect();
+                con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187","mydata");
+                cs = con.prepareCall("{ CALL LOGINC(?,?);}");
+                cs.setString(1, u);
+                cs.setString(2, HashPass);
                 ResultSet rs = cs.executeQuery();
                 if(rs.next()){ 
                     new Dashboard().setVisible(true);
