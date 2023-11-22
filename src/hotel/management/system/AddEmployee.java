@@ -220,6 +220,11 @@ public class AddEmployee extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(this, "Το πεδίο 'Όνομα' δεν μπορεί να μείνει κενό!",
                             "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
                 }
+                else if(age<18 || age>100){
+                    JOptionPane.showMessageDialog(this, "Μη αποδεκτή ηλικία!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                    t7.setText("");
+                }
                 else if(surname.equals("")){
                     JOptionPane.showMessageDialog(this, "Το πεδίο 'Επώνυμο' δεν μπορεί να μείνει κενό!",
                             "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
