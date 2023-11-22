@@ -23,10 +23,7 @@ public class Employee extends JFrame {
 	Connection conn = null;
 	private JPanel contentPane;
 	private JTable table;
-	private JLabel lblNewLabel;
-	private JLabel lblJob;
-	private JLabel lblName;
-	private JLabel lblDepartment;
+	private JLabel lID, lName, lSurname, lAge, lGender, lJob, lSalary ,lPhone, lEmail;
 
 	/**
 	 * Launch the application.
@@ -68,9 +65,14 @@ public class Employee extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try{
                                     Connect c = new Connect();
-				String displayCustomersql = "select * from Employee";
+				String displayCustomersql = "select * from employee";
 				ResultSet rs = c.s.executeQuery(displayCustomersql);
 				table.setModel(DbUtils.resultSetToTableModel(rs));
+                                table.setEnabled(false);
+                                    int trows = table.getRowCount();
+                                    if(trows==0)
+                                        JOptionPane.showMessageDialog(null, "Δεν υπάρχουν καταχωρημένοι Υπάλληλοι!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
 			}
 				catch(Exception e1){
 					e1.printStackTrace();
@@ -95,33 +97,41 @@ public class Employee extends JFrame {
                 btnExit.setForeground(Color.WHITE);
 		contentPane.add(btnExit);
 		
-		lblNewLabel = new JLabel("Name");
-		lblNewLabel.setBounds(41, 11, 46, 14);
-		contentPane.add(lblNewLabel);
+		lID = new JLabel("ID");
+		lID.setBounds(40, 11, 46, 14);
+		contentPane.add(lID);
 		
-		lblJob = new JLabel("Age");
-		lblJob.setBounds(159, 11, 46, 14);
-		contentPane.add(lblJob);
+		lName = new JLabel("Όνομα");
+		lName.setBounds(140, 11, 46, 14);
+		contentPane.add(lName);
 		
-		lblName = new JLabel("Gender");
-		lblName.setBounds(273, 11, 46, 14);
-		contentPane.add(lblName);
+		lSurname = new JLabel("Επώνυμο");
+		lSurname.setBounds(250, 11, 70, 14);
+		contentPane.add(lSurname);
 		
-		lblDepartment = new JLabel("Job");
-		lblDepartment.setBounds(416, 11, 86, 14);
-		contentPane.add(lblDepartment);
+		lAge = new JLabel("Ηλικία");
+		lAge.setBounds(360, 11, 86, 14);
+		contentPane.add(lAge);
                 
-                JLabel l1 = new JLabel("Salary");
-		l1.setBounds(536, 11, 86, 14);
-		contentPane.add(l1);
+                lGender = new JLabel("Φύλο");
+		lGender.setBounds(470, 11, 86, 14);
+		contentPane.add(lGender);
                 
-                JLabel l2 = new JLabel("Phone");
-		l2.setBounds(656, 11, 86, 14);
-		contentPane.add(l2);
+                lJob = new JLabel("Έιδος Εργασίας");
+		lJob.setBounds(550, 11, 100, 14);
+		contentPane.add(lJob);
                 
-                JLabel l4 = new JLabel("Gmail");
-		l4.setBounds(896, 11, 86, 14);
-		contentPane.add(l4);
+                lSalary = new JLabel("Μισθός");
+		lSalary.setBounds(690, 11, 86, 14);
+		contentPane.add(lSalary);
+                
+                lPhone = new JLabel("Τηλέφωνο");
+		lPhone.setBounds(800, 11, 86, 14);
+		contentPane.add(lPhone);
+                
+                lEmail = new JLabel("Gmail");
+		lEmail.setBounds(910, 11, 86, 14);
+		contentPane.add(lEmail);
                 
                 getContentPane().setBackground(Color.WHITE);
 	}

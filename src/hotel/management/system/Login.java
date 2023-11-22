@@ -86,7 +86,7 @@ public class Login extends JFrame implements ActionListener{
       
         if(ae.getSource()==b1 ){
             try{
-                Connect c1 = new Connect();
+                //Connect c1 = new Connect();
                 String u = t1.getText();
                 String v = t2.getText();
                 MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -101,12 +101,13 @@ public class Login extends JFrame implements ActionListener{
                 String CurrDate = sdf.format(timestamp);
                 Connection con;
                 CallableStatement cs;
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root","");
-                cs = con.prepareCall("{ call Login(?,?,?)}");
+                Connect c = new Connect();
+                con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187","mydata");
+                /*cs = con.prepareCall("{ call Login(?,?,?)}");
                 cs.setString("Username", u);
                 cs.setString("Pass", HashPass);
-                cs.setString("LastLogin", CurrDate);
-                ResultSet rs = cs.executeQuery();
+                cs.setString("LastLogin", CurrDate);*/
+                ResultSet rs = c.s.executeQuery("select * from login where username='"+u+"' and password='"+HashPass+"'");
                 if(rs.next()){ 
                     new Dashboard().setVisible(true);
                     setVisible(false);

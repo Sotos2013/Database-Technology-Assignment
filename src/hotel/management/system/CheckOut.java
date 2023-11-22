@@ -84,35 +84,14 @@ public class CheckOut extends JFrame{
                 combobox.addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                      
-                          
-           if (combobox.getSelectedItem() != null) {
-               String selectedRoom = (String) combobox.getSelectedItem();
-
-           try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root",""); ) {
-        
-        String sql = "select * from room  join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου =?";
-     
-        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-            pstmt.setString(1, selectedRoom);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    t1.setText(rs.getString(1)); // Assuming that the first column should be displayed in t1
-                   System.out.println("Selected Room: " + selectedRoom);
-                        System.out.println("Value from Database: " + sql);
-                    } else {
-                        // Handle the case where no matching records were found
-                        System.out.println("No records found for room: " + selectedRoom);
+                    try{
+                        Connect c = new Connect();
+                        ResultSet rs = c.s.executeQuery("select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου WHERE customer.Αριθμός_Εγγράφου = '"+(String)combobox.getSelectedItem()+"'");
+                        while(rs.next()){
+                            t1.setText(rs.getString(1));
+                        }
+                    }catch(Exception ee){ }
                     }
-                }
-                
-            
-        }
-    } catch (SQLException ex) {
-        ex.printStackTrace(); // Log or handle the exception appropriately
-    }}
-}
                 
                 });
                 combobox.setBounds(130, 82, 150, 20);
@@ -126,23 +105,6 @@ public class CheckOut extends JFrame{
                 l2.setBounds(290,82,20,20);
                 add(l2);
                 
-                /*c1.add(new ActionListener(){
-                    
-                    public void actionPerformed(ActionEvent ae){
-                        System.out.println("Hi");
-                        try{
-                            
-                            Connect c = new Connect();
-                            String id = c1.getSelectedItem();
-                            ResultSet rs = c.s.executeQuery("select * from customer where ID = "+id);
-                            
-                            if(rs.next()){
-                                System.out.println("clicked");
-                                t1.setText(rs.getString("Αριθμός_δωματίου"));    
-                            }
-                        }catch(Exception e){ }
-                    }
-                });*/
 
 		
 		JLabel lblRoomNumber = new JLabel("Room Number:");
@@ -153,7 +115,7 @@ public class CheckOut extends JFrame{
                 t1.setText("");
                 t1.setBounds(130, 132, 150, 20);
 		contentPane.add(t1);
-                //t1.setEditable(false);
+                t1.setEditable(false);
                 
                 
                 
@@ -168,7 +130,8 @@ public class CheckOut extends JFrame{
                                 String id_num = (String) combobox.getSelectedItem();
                                   String s1 = t1.getText();
 				String deleteSQL = "Delete from customer where Αριθμός_Εγγράφου = '"+id_num+"'";
-                                String q2 = "update room set Διαθεσιμότητα = 'Διαθέσιμο' where Αριθμός_δωματίου = '"+s1+"'";
+                                String q2 = "update room set Διαθεσιμότητα = 'Διαθέσιμο' where Αριθμός_δωματίου = "+s1;
+                                String q3 = "update room set Καθαρισμός = 'Καθαρό' where Αριθμός_δωματίου = "+s1;
                                 
                                 
 				Connect c = new Connect();
@@ -178,6 +141,7 @@ public class CheckOut extends JFrame{
 	    			
 	    			c.s.executeUpdate(deleteSQL);
 	    			c.s.executeUpdate(q2);
+                                c.s.executeUpdate(q3);
 	    			JOptionPane.showMessageDialog(null, "Check Out Successful");
 	    			new Reception().setVisible(true);
                                 setVisible(false);

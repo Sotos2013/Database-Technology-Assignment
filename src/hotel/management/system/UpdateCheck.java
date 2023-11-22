@@ -179,7 +179,7 @@ public class UpdateCheck extends JFrame {
                             try{
 				String s1 = c1.getSelectedItem();
 				Connect c = new Connect();
-                                ResultSet rs1 = c.s.executeQuery("select * from customer where ID = '"+s1+"'");
+                                ResultSet rs1 = c.s.executeQuery("select * from customer where Αριθμός_Εγγράφου = '"+s1+"'");
                                 
                                 while(rs1.next()){
                                     txt_ID.setText(rs1.getString("Αριθμός_δωματίου"));    

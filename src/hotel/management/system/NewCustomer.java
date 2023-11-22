@@ -23,9 +23,7 @@ public class NewCustomer extends JFrame {
 	private JPanel contentPane;
 	private JTextField t1,t2,t3,t4,t5,t6,t8;
         JComboBox comboBox,comboBox2;
-        //JRadioButton r1,r2;
-        //ButtonGroup G1;
-        Choice c1;
+        JComboBox c1;
 	/**
 	 * Launch the application.
 	 */
@@ -134,19 +132,39 @@ public class NewCustomer extends JFrame {
 		lblReserveRoomNumber.setBounds(35, 314, 200, 14);
 		contentPane.add(lblReserveRoomNumber);
                 
-                c1 = new Choice();
+                c1 = new JComboBox();
+                int Totalpay;
                 try{
                     Connect c = new Connect();
                     ResultSet rs = c.s.executeQuery("select * from room where Διαθεσιμότητα = 'Διαθέσιμο'");
                     while(rs.next()){
-                        c1.add(rs.getString("Αριθμός_δωματίου"));    
+                        c1.addItem(rs.getString("Αριθμός_δωματίου"));    
                     }
                 }catch(Exception e){ }
+                c1.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                    try{
+                        int totalpay;
+                        Connect c = new Connect();
+                        ResultSet rs = c.s.executeQuery("select Τιμή from room WHERE room.Αριθμός_δωματίου = '"+(String)c1.getSelectedItem()+"'");
+                        //ResultSet rs2 = c.s.executeQuery("select Ημέρες_διαμονής from customer WHERE customer.Αριθμός_Εγγράφου = '"+t1.getText()+"'");
+                        while(rs.next()){
+                            int price = Integer.parseInt(rs.getString(1));
+                            int days = Integer.parseInt(t5.getText());
+                            totalpay = price*days;
+                            String tPay = String.valueOf(totalpay);
+                            t6.setText(tPay);
+                        }
+                    }catch(Exception ee){ }
+                    }
+                
+                });
                 c1.setBounds(271, 314, 150, 20);
 		contentPane.add(c1);
 		
                 //8
-		JLabel lblCheckInStatus = new JLabel("Προσέλευση :");
+		JLabel lblCheckInStatus = new JLabel("Ημέρες Διαμονής :");
 		lblCheckInStatus.setBounds(35, 356, 200, 14);
 		contentPane.add(lblCheckInStatus);
 		t5 = new JTextField();
@@ -155,13 +173,14 @@ public class NewCustomer extends JFrame {
 		t5.setColumns(10);
                 
                 //9
-		JLabel lblDeposite = new JLabel("Πληρωμή :");
+		JLabel lblDeposite = new JLabel("Ποσο Πληρωμής :");
 		lblDeposite.setBounds(35, 399, 200, 14);
 		contentPane.add(lblDeposite);
 		t6 = new JTextField();
 		t6.setBounds(271, 399, 150, 20);
 		contentPane.add(t6);
 		t6.setColumns(10);
+                t6.setEnabled(false);
 		
 
 		JButton btnNewButton = new JButton("Προσθήκη");
@@ -170,7 +189,7 @@ public class NewCustomer extends JFrame {
                             Connect c = new Connect();
                             
                             
-                            String s6 = c1.getSelectedItem();
+                            //String s6 = c1.getSelectedItem();
                           
                             try{
                                 String id = (String)comboBox.getSelectedItem(); 
@@ -180,8 +199,8 @@ public class NewCustomer extends JFrame {
                                     String sex =  (String)comboBox2.getSelectedItem();
                                     String country =  t3.getText();
                                     String room_num = (String) c1.getSelectedItem();
-                                    String checkin =  t5.getText();
-                                    String pay =  t6.getText();
+                                    int days =  Integer.parseInt(t5.getText());
+                                    int pay = Integer.parseInt(t6.getText());
 	    			if(id_num.equals("")){
                                     JOptionPane.showMessageDialog(null, "Το πεδίο 'Αριθμός Εγγράφου' δεν μπορεί να μείνει κενό!",
                                     "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
@@ -198,19 +217,13 @@ public class NewCustomer extends JFrame {
                                     JOptionPane.showMessageDialog(null, "Το πεδίο 'Χώρα' δεν μπορεί να μείνει κενό!",
                                     "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
                                 }
-                                else if(checkin.equals("")){
-                                    JOptionPane.showMessageDialog(null, "Το πεδίο 'CheckIn' δεν μπορεί να μείνει κενό!",
-                                    "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
-                                }
-                                else if(pay.equals("")){
-                                    JOptionPane.showMessageDialog(null, "Το πεδίο 'Πληρωμή' δεν μπορεί να μείνει κενό!",
-                                    "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
-                                }
                                 else{
-                                    String q1 = "INSERT INTO customer values('"+id+"', '"+id_num+"', '"+name+"','"+surname+"','"+sex+"','"+country+"','"+room_num+"','"+checkin+"','"+pay+"')";
-                                    String q2 = "update room set Διαθεσιμότητα = 'Μή διαθέσιμο' where Αριθμός_δωματίου = '"+room_num+"'";
+                                    String q1 = "INSERT INTO customer values('"+id+"', '"+id_num+"', '"+name+"','"+surname+"','"+sex+"','"+country+"','"+room_num+"','"+days+"',"+pay+")";
+                                    String q2 = "update room set Διαθεσιμότητα = 'Μη διαθέσιμο' where Αριθμός_δωματίου = '"+room_num+"'";
+                                    String q3 = "update room set Καθαρισμός = 'Χρησιμοποιείται' where Αριθμός_δωματίου = '"+room_num+"'";
                                     c.s.executeUpdate(q1);
                                     c.s.executeUpdate(q2);
+                                    c.s.executeUpdate(q3);
                                     JOptionPane.showMessageDialog(null, "Data Inserted Successfully");
                                     new Reception().setVisible(true);
                                     setVisible(false);
