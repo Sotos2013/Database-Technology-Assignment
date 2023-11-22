@@ -86,7 +86,7 @@ public class Login extends JFrame implements ActionListener{
       
         if(ae.getSource()==b1 ){
             try{
-                Connect c1 = new Connect();
+                //Connect c1 = new Connect();
                 String u = t1.getText();
                 String v = t2.getText();
                 MessageDigest md = MessageDigest.getInstance("SHA-256");

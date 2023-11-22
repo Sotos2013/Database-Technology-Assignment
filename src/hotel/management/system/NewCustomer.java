@@ -208,9 +208,11 @@ public class NewCustomer extends JFrame {
                                 }
                                 else{
                                     String q1 = "INSERT INTO customer values('"+id+"', '"+id_num+"', '"+name+"','"+surname+"','"+sex+"','"+country+"','"+room_num+"','"+checkin+"','"+pay+"')";
-                                    String q2 = "update room set Διαθεσιμότητα = 'Μή διαθέσιμο' where Αριθμός_δωματίου = '"+room_num+"'";
+                                    String q2 = "update room set Διαθεσιμότητα = 'Μη διαθέσιμο' where Αριθμός_δωματίου = '"+room_num+"'";
+                                    String q3 = "update room set Καθαρισμός = 'Χρησιμοποιείται' where Αριθμός_δωματίου = '"+room_num+"'";
                                     c.s.executeUpdate(q1);
                                     c.s.executeUpdate(q2);
+                                    c.s.executeUpdate(q3);
                                     JOptionPane.showMessageDialog(null, "Data Inserted Successfully");
                                     new Reception().setVisible(true);
                                     setVisible(false);

@@ -148,6 +148,7 @@ public class CheckOut extends JFrame{
                                 String s1 = t1.getText();
 				String deleteSQL = "Delete from customer where Αριθμός_Εγγράφου = '"+id_num+"'";
                                 String q2 = "update room set Διαθεσιμότητα = 'Διαθέσιμο' where Αριθμός_δωματίου = "+s1;
+                                String q3 = "update room set Καθαρισμός = 'Καθαρό' where Αριθμός_δωματίου = "+s1;
                                 
                                 
 				Connect c = new Connect();
@@ -157,6 +158,7 @@ public class CheckOut extends JFrame{
 	    			
 	    			c.s.executeUpdate(deleteSQL);
 	    			c.s.executeUpdate(q2);
+                                c.s.executeUpdate(q3);
 	    			JOptionPane.showMessageDialog(null, "Check Out Successful");
 	    			new Reception().setVisible(true);
                                 setVisible(false);
