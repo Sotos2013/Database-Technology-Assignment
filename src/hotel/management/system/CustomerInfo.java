@@ -87,6 +87,7 @@ public class CustomerInfo extends JFrame {
                                     cs = con.prepareCall("{ call getCustomers()}");
                                     ResultSet rs = cs.executeQuery();
                                     table.setModel(DbUtils.resultSetToTableModel(rs));
+                                    table.setEnabled(false);
                                     int trows = table.getRowCount();
                                     if(trows==0)
                                         JOptionPane.showMessageDialog(null, "Δεν υπάρχουν καταχωρημένοι πελάτες!",
