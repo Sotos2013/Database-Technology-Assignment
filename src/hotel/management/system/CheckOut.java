@@ -166,7 +166,7 @@ public class CheckOut extends JFrame{
 		btnCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                                 String id_num = (String) combobox.getSelectedItem();
-                                String s1 = t1.getText();
+                                  String s1 = t1.getText();
 				String deleteSQL = "Delete from customer where Αριθμός_Εγγράφου = '"+id_num+"'";
                                 String q2 = "update room set Διαθεσιμότητα = 'Διαθέσιμο' where Αριθμός_δωματίου = '"+s1+"'";
                                 

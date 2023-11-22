@@ -164,7 +164,7 @@ public class NewCustomer extends JFrame {
 		t6.setColumns(10);
 		
 
-		JButton btnNewButton = new JButton("Add");
+		JButton btnNewButton = new JButton("Προσθήκη");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                             Connect c = new Connect();
@@ -228,7 +228,7 @@ public class NewCustomer extends JFrame {
                 btnNewButton.setForeground(Color.WHITE);
 		contentPane.add(btnNewButton);
 		
-		JButton btnExit = new JButton("Back");
+		JButton btnExit = new JButton("Πίσω");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                             new Reception().setVisible(true);
