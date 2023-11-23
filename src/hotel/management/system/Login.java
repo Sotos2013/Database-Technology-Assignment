@@ -21,7 +21,7 @@ public class Login extends JFrame implements ActionListener{
     JTextField t1;
     JPasswordField t2;
     JButton b1,b2;
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     
 
     Login(){
