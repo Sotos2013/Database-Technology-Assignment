@@ -83,7 +83,7 @@ public class CustomerInfo extends JFrame {
                             Connection con;
                             CallableStatement cs;
 				try{
-                                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root","");
+                                    con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187", "mydata");
                                     cs = con.prepareCall("{ call getCustomers()}");
                                     ResultSet rs = cs.executeQuery();
                                     table.setModel(DbUtils.resultSetToTableModel(rs));
