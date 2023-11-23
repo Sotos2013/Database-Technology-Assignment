@@ -84,8 +84,10 @@ public class CustomerInfo extends JFrame {
                             CallableStatement cs;
 				try{
                                     con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187", "mydata");
-                                    cs = con.prepareCall("{ call getCustomers()}");
-                                    ResultSet rs = cs.executeQuery();
+                                    cs = con.prepareCall("{ call GETCUSTOMERS(?)}");
+                                    cs.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+                                    cs.executeQuery();
+                                    ResultSet rs = (ResultSet) cs.getObject(1);
                                     table.setModel(DbUtils.resultSetToTableModel(rs));
                                     table.setEnabled(false);
                                     int trows = table.getRowCount();
