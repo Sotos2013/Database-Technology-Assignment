@@ -190,7 +190,7 @@ public class AddDrivers extends JFrame implements ActionListener{
                     Connection con;
                     CallableStatement cs;
                     try{
-                        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel","root","");
+                        con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");
                         cs = con.prepareCall("{ call Add_Driver(?,?,?,?,?,?,?)}");
                         cs.setInt("Id", id);
                         cs.setString("Name", name);

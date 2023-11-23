@@ -103,11 +103,12 @@ public class Login extends JFrame implements ActionListener{
                 CallableStatement cs;
                 Connect c = new Connect();
                 con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187","mydata");
-                /*cs = con.prepareCall("{ call Login(?,?,?)}");
-                cs.setString("Username", u);
-                cs.setString("Pass", HashPass);
-                cs.setString("LastLogin", CurrDate);*/
-                ResultSet rs = c.s.executeQuery("select * from login where username='"+u+"' and password='"+HashPass+"'");
+                cs = con.prepareCall("{ call LOGINC(?,?,?)}");
+                cs.setString(1, u);
+                cs.setString(2, HashPass);
+                cs.registerOutParameter(3, oracle.jdbc.OracleTypes.CURSOR);
+                cs.executeQuery();
+                ResultSet rs = (ResultSet) cs.getObject(3);
                 if(rs.next()){ 
                     new Dashboard().setVisible(true);
                     setVisible(false);

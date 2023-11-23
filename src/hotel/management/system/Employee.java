@@ -65,10 +65,10 @@ public class Employee extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try{
                                     Connect c = new Connect();
-				String displayCustomersql = "select * from employee";
-				ResultSet rs = c.s.executeQuery(displayCustomersql);
-				table.setModel(DbUtils.resultSetToTableModel(rs));
-                                table.setEnabled(false);
+                                    String displayCustomersql = "select * from employee";
+                                    ResultSet rs = c.s.executeQuery(displayCustomersql);
+                                    table.setModel(DbUtils.resultSetToTableModel(rs));
+                                    table.setEnabled(false);
                                     int trows = table.getRowCount();
                                     if(trows==0)
                                         JOptionPane.showMessageDialog(null, "Δεν υπάρχουν καταχωρημένοι Υπάλληλοι!",
