@@ -63,10 +63,14 @@ public class Employee extends JFrame {
 		JButton btnLoadData = new JButton("Load Data");
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Connection con;
+                                CallableStatement cs;
 				try{
-                                    Connect c = new Connect();
-                                    String displayCustomersql = "select * from employee";
-                                    ResultSet rs = c.s.executeQuery(displayCustomersql);
+                                    con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187", "mydata");
+                                    cs = con.prepareCall("{ call GETEMPLOYEE(?)}");
+                                    cs.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+                                    cs.executeQuery();
+                                    ResultSet rs = (ResultSet) cs.getObject(1);
                                     table.setModel(DbUtils.resultSetToTableModel(rs));
                                     table.setEnabled(false);
                                     int trows = table.getRowCount();

@@ -138,7 +138,7 @@ public class NewCustomer extends JFrame {
                     Connect c = new Connect();
                     ResultSet rs = c.s.executeQuery("select * from room where Διαθεσιμότητα = 'Διαθέσιμο'");
                     while(rs.next()){
-                        c1.addItem(rs.getString("Αριθμός_δωματίου"));    
+                        c1.addItem(rs.getString(1));    
                     }
                 }catch(Exception e){ }
                 c1.addActionListener(new ActionListener(){
