@@ -1,227 +1,345 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Εξυπηρετητής: 127.0.0.1
--- Χρόνος δημιουργίας: 22 Νοε 2023 στις 07:31:08
--- Έκδοση διακομιστή: 10.4.28-MariaDB
--- Έκδοση PHP: 8.2.4
+--------------------------------------------------------
+--  File created - Σάββατο-Νοεμβρίου-25-2023   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table CUSTOMER
+--------------------------------------------------------
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+  CREATE TABLE "IEE2019187"."CUSTOMER" 
+   (	"ID" VARCHAR2(30 CHAR), 
+	"ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ" VARCHAR2(30 CHAR), 
+	"ΟΝΟΜΑ" VARCHAR2(30 CHAR), 
+	"ΕΠΩΝΥΜΟ" VARCHAR2(30 CHAR), 
+	"ΦΥΛΟ" VARCHAR2(30 CHAR), 
+	"ΧΩΡΑ_ΔΙΑΜΟΝΗΣ" VARCHAR2(30 CHAR), 
+	"ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ" NUMBER(10,0), 
+	"ΗΜΕΡΕΣ_ΔΙΑΜΟΝΗΣ" NUMBER(10,0), 
+	"ΠΟΣΟ_ΠΛΗΡΩΜΗΣ" NUMBER(10,0)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table DRIVER
+--------------------------------------------------------
 
+  CREATE TABLE "IEE2019187"."DRIVER" 
+   (	"ID" NUMBER(10,0), 
+	"ΟΝΟΜΑ" VARCHAR2(30 CHAR), 
+	"ΕΠΩΝΥΜΟ" VARCHAR2(30 CHAR), 
+	"ΗΛΙΚΙΑ" NUMBER(10,0), 
+	"ΦΥΛΟ" VARCHAR2(20 CHAR), 
+	"ΑΥΤΟΚΙΝΗΤΟ" VARCHAR2(30 CHAR), 
+	"ΔΙΑΘΕΣΙΜΟΤΗΤΑ" VARCHAR2(30 CHAR)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table EMPLOYEE
+--------------------------------------------------------
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+  CREATE TABLE "IEE2019187"."EMPLOYEE" 
+   (	"ID" NUMBER(10,0), 
+	"ΟΝΟΜΑ" VARCHAR2(30 CHAR), 
+	"ΕΠΩΝΥΜΟ" VARCHAR2(30 CHAR), 
+	"ΗΛΙΚΙΑ" NUMBER(10,0), 
+	"ΦΥΛΟ" VARCHAR2(30 CHAR), 
+	"ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ" VARCHAR2(30 CHAR), 
+	"ΜΙΣΘΟΣ" NUMBER(10,0), 
+	"ΤΗΛΕΦΩΝΟ" NUMBER(10,0), 
+	"EMAIL" VARCHAR2(40 CHAR)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table LOGIN
+--------------------------------------------------------
 
---
--- Βάση δεδομένων: `hotel`
---
+  CREATE TABLE "IEE2019187"."LOGIN" 
+   (	"USERNAME" VARCHAR2(64 CHAR), 
+	"PASSWORD" VARCHAR2(150 CHAR)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ROOM
+--------------------------------------------------------
 
-DELIMITER $$
---
--- Διαδικασίες
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Add_Driver` (IN `Id` INT(30), IN `Name` VARCHAR(30), IN `Surname` VARCHAR(30), IN `Age` INT(2), IN `Sex` VARCHAR(20), IN `Car` VARCHAR(30), IN `Availability` VARCHAR(30))   BEGIN
-	INSERT INTO driver(ID, Όνομα, Επώνυμο, Ηλικία, Φύλο, Αυτοκίνητο, Διαθεσιμότητα) values(Id,Name,Surname,Age,Sex,Car,Availability);
-END$$
+  CREATE TABLE "IEE2019187"."ROOM" 
+   (	"ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ" NUMBER(10,0), 
+	"ΔΙΑΘΕΣΙΜΟΤΗΤΑ" VARCHAR2(20 CHAR), 
+	"ΚΑΘΑΡΙΣΜΟΣ" VARCHAR2(20 CHAR), 
+	"ΤΙΜΗ" NUMBER(10,0), 
+	"ΑΡΙΘΜΟΣ_ΚΡΕΒΑΤΙΩΝ" VARCHAR2(20 CHAR)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+REM INSERTING into IEE2019187.CUSTOMER
+SET DEFINE OFF;
+Insert into IEE2019187.CUSTOMER (ID,"ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ","ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΦΥΛΟ","ΧΩΡΑ_ΔΙΑΜΟΝΗΣ","ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ","ΗΜΕΡΕΣ_ΔΙΑΜΟΝΗΣ","ΠΟΣΟ_ΠΛΗΡΩΜΗΣ") values ('Ταυτότητα','7','ητραυ','υραυρσ','Άνδρας','θτθταδτ','1','5','200');
+Insert into IEE2019187.CUSTOMER (ID,"ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ","ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΦΥΛΟ","ΧΩΡΑ_ΔΙΑΜΟΝΗΣ","ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ","ΗΜΕΡΕΣ_ΔΙΑΜΟΝΗΣ","ΠΟΣΟ_ΠΛΗΡΩΜΗΣ") values ('Ταυτότητα','teaute','utaeduyta','jdtudz','Άνδρας','utdh','2','6','264');
+Insert into IEE2019187.CUSTOMER (ID,"ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ","ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΦΥΛΟ","ΧΩΡΑ_ΔΙΑΜΟΝΗΣ","ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ","ΗΜΕΡΕΣ_ΔΙΑΜΟΝΗΣ","ΠΟΣΟ_ΠΛΗΡΩΜΗΣ") values ('Ταυτότητα','hhfsh','fxhfyt','jtdgzjd','Άνδρας','jtdzjtzd','666666','6','4662');
+REM INSERTING into IEE2019187.DRIVER
+SET DEFINE OFF;
+Insert into IEE2019187.DRIVER (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΑΥΤΟΚΙΝΗΤΟ","ΔΙΑΘΕΣΙΜΟΤΗΤΑ") values ('1','hsrHRF','hsrfH','53','Άνδρας','hfs','Διαθέσιμος/η');
+Insert into IEE2019187.DRIVER (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΑΥΤΟΚΙΝΗΤΟ","ΔΙΑΘΕΣΙΜΟΤΗΤΑ") values ('44','hdah','hfgdH','54','Άνδρας','hfdzhf','Διαθέσιμος/η');
+Insert into IEE2019187.DRIVER (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΑΥΤΟΚΙΝΗΤΟ","ΔΙΑΘΕΣΙΜΟΤΗΤΑ") values ('55','hfsdzh','hfdsHJf','53','Άνδρας','hrsH','Διαθέσιμος/η');
+Insert into IEE2019187.DRIVER (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΑΥΤΟΚΙΝΗΤΟ","ΔΙΑΘΕΣΙΜΟΤΗΤΑ") values ('234','dssa','asdad','23','Άνδρας','eqw','Διαθέσιμος/η');
+REM INSERTING into IEE2019187.EMPLOYEE
+SET DEFINE OFF;
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('111','patatas','patatakias','30','Άνδρας','Σέφ','2222','333123','fgsfg');
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('2','fds','dfssdf','34','Άνδρας','Σέφ','112','343','43');
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('245','asdas','αδσαδα','66','Άνδρας','Σέφ','4','6','4fds');
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('1','GRSH','HRWHR','43','Άνδρας','Σέφ','464236','753','FHDDAH');
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('6','HRH','HTAJHT','32','Άνδρας','Σέφ','434','653','GSGH');
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('77','hahsr','hrahrs','53','Άνδρας','Σέφ','4654','5642624','hgdash');
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('764784','hdshfsh','rshysHY','64','Άνδρας','Σέφ','6436','7537537','gfshy');
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('23','fsdf','fghfgh ','45','Άνδρας','Σέφ','454','5454','gfd');
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('678','sotos','mpla','24','Άνδρας','Σέφ','657','888767','ppp@gmal.com');
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('232','fgdfgd','fghfgh','42','Άνδρας','Προσωπικό Κουζίνας','545','24','767h');
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('64','dfssdf','sdfsdf','45','Άνδρας','Σέφ','454','3423','gdf');
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('133','d','d','32','Άνδρας','Σέφ','2','232','ddas');
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('43','fsdfs','fdsfd','43','Άνδρας','Σέφ','456','3434','gffsd');
+Insert into IEE2019187.EMPLOYEE (ID,"ΟΝΟΜΑ","ΕΠΩΝΥΜΟ","ΗΛΙΚΙΑ","ΦΥΛΟ","ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ","ΜΙΣΘΟΣ","ΤΗΛΕΦΩΝΟ",EMAIL) values ('45','sdfsdf','sdfsdf','45','Άνδρας','Σέφ','213','75','fgd');
+REM INSERTING into IEE2019187.LOGIN
+SET DEFINE OFF;
+Insert into IEE2019187.LOGIN (USERNAME,PASSWORD) values ('admin','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
+REM INSERTING into IEE2019187.ROOM
+SET DEFINE OFF;
+Insert into IEE2019187.ROOM ("ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ","ΔΙΑΘΕΣΙΜΟΤΗΤΑ","ΚΑΘΑΡΙΣΜΟΣ","ΤΙΜΗ","ΑΡΙΘΜΟΣ_ΚΡΕΒΑΤΙΩΝ") values ('1','Μη διαθέσιμο','Χρησιμοποιείται','40','Μονόκλινο');
+Insert into IEE2019187.ROOM ("ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ","ΔΙΑΘΕΣΙΜΟΤΗΤΑ","ΚΑΘΑΡΙΣΜΟΣ","ΤΙΜΗ","ΑΡΙΘΜΟΣ_ΚΡΕΒΑΤΙΩΝ") values ('2','Μη διαθέσιμο','Χρησιμοποιείται','44','Δίκλινο');
+Insert into IEE2019187.ROOM ("ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ","ΔΙΑΘΕΣΙΜΟΤΗΤΑ","ΚΑΘΑΡΙΣΜΟΣ","ΤΙΜΗ","ΑΡΙΘΜΟΣ_ΚΡΕΒΑΤΙΩΝ") values ('666666','Μη διαθέσιμο','Χρησιμοποιείται','777','Μονόκλινο');
+Insert into IEE2019187.ROOM ("ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ","ΔΙΑΘΕΣΙΜΟΤΗΤΑ","ΚΑΘΑΡΙΣΜΟΣ","ΤΙΜΗ","ΑΡΙΘΜΟΣ_ΚΡΕΒΑΤΙΩΝ") values ('555','Διαθέσιμο','Καθαρό','50','Δίκλινο');
+--------------------------------------------------------
+--  DDL for Index ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ
+--------------------------------------------------------
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Add_Employee` (IN `id` INT(11), IN `name` VARCHAR(30), IN `surname` VARCHAR(30), IN `age` INT(2), IN `sex` VARCHAR(30), IN `job` VARCHAR(30), IN `salary` INT(6), IN `phone` INT(30), IN `email` VARCHAR(40))   BEGIN
-	INSERT INTO employee 		values(id,name,surname,age,sex,job,salary,phone,email);
-END$$
+  CREATE UNIQUE INDEX "IEE2019187"."ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ" ON "IEE2019187"."CUSTOMER" ("ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ
+--------------------------------------------------------
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Add_Room` (IN `RoomNum` INT(4), IN `Availability` VARCHAR(20), IN `Clean` VARCHAR(20), IN `Price` INT(4), IN `BedNum` VARCHAR(20))   BEGIN
+  CREATE UNIQUE INDEX "IEE2019187"."ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ" ON "IEE2019187"."ROOM" ("ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ID
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "IEE2019187"."ID" ON "IEE2019187"."DRIVER" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Procedure ADD_CUSTOMER
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "IEE2019187"."ADD_CUSTOMER" ( Cid IN VARCHAR2, CidNum IN VARCHAR2, CName IN VARCHAR2, Surname IN VARCHAR2, Sex IN VARCHAR2, Country IN VARCHAR, RoomNum IN VARCHAR2, CDays IN NUMBER, CPay IN NUMBER)   IS
+   BEGIN
+	INSERT INTO customer values(Cid,CidNum,CName,Surname,Sex,Country,RoomNum,CDays,CPay);
+    UPDATE room SET διαθεσιμοτητα = 'Μη διαθέσιμο' where αριθμοσ_δωματιου = RoomNum;
+    UPDATE room SET καθαρισμος = 'Χρησιμοποιείται' where αριθμοσ_δωματιου = RoomNum;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure ADD_DRIVER
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "IEE2019187"."ADD_DRIVER" ( Id IN NUMBER, Name IN VARCHAR2, Surname IN VARCHAR2, Age IN NUMBER, Sex IN VARCHAR2, Car IN VARCHAR2, Availability IN VARCHAR2)   IS
+   BEGIN
+
+	INSERT INTO driver values(Id,Name,Surname,Age,Sex,Car,Availability);
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure ADD_EMPLOYEE
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "IEE2019187"."ADD_EMPLOYEE" ( id IN NUMBER, name IN VARCHAR2, surname IN VARCHAR2, age IN NUMBER, sex IN VARCHAR2, job IN VARCHAR2, salary IN NUMBER, phone IN NUMBER, email IN VARCHAR2)   IS
+   BEGIN
+
+	INSERT INTO employee values(id,name,surname,age,sex,job,salary,phone,email);
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure ADD_ROOM
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "IEE2019187"."ADD_ROOM" ( RoomNum IN NUMBER, Availability IN VARCHAR2, Clean IN VARCHAR2, Price IN NUMBER, BedNum IN VARCHAR2)   IS
+   BEGIN
+
 	INSERT INTO room values(RoomNum,Availability,Clean,Price,BedNum);
-END$$
+END;
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `CheckOut` ()   select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου$$
+/
+--------------------------------------------------------
+--  DDL for Procedure CHECKOUT
+--------------------------------------------------------
+set define off;
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getCustomerId` ()   select Αριθμός_Εγγράφου from customer$$
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "IEE2019187"."CHECKOUT" (CidNum IN VARCHAR2, cur OUT SYS_REFCURSOR) IS 
+BEGIN   
+   open cur for select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου WHERE customer.Αριθμός_Εγγράφου = CidNum ;
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getCustomers` ()   BEGIN
-    select * from customer;
-END$$
+END;
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Login` (IN `Username` VARCHAR(64), IN `Pass` VARCHAR(64), IN `LastLogin` TIMESTAMP)   BEGIN
-   select * from login where username = Username and password = Pass;
-   update login
-   set last_login=LastLogin;
-END$$
+/
+--------------------------------------------------------
+--  DDL for Procedure GETCUSTOMERS
+--------------------------------------------------------
+set define off;
 
-DELIMITER ;
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "IEE2019187"."GETCUSTOMERS" (
+    rec OUT SYS_REFCURSOR
+) IS
+BEGIN
+    -- Open the cursor for the result set
+    OPEN rec FOR
+        SELECT * FROM customer ;
+        
+    -- You can add more logic here if needed
+END;
 
--- --------------------------------------------------------
+/
+--------------------------------------------------------
+--  DDL for Procedure GETEMPLOYEE
+--------------------------------------------------------
+set define off;
 
---
--- Δομή πίνακα για τον πίνακα `customer`
---
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "IEE2019187"."GETEMPLOYEE" (
+    rec OUT SYS_REFCURSOR
+) IS
+BEGIN
+    -- Open the cursor for the result set
+    OPEN rec FOR
+        SELECT * FROM employee ;
 
-CREATE TABLE `customer` (
-  `ID` varchar(30) NOT NULL,
-  `Αριθμός_Εγγράφου` varchar(30) NOT NULL,
-  `Όνομα` varchar(30) NOT NULL,
-  `Επώνυμο` varchar(30) NOT NULL,
-  `Φύλο` varchar(30) NOT NULL,
-  `Χώρα_Διαμονής` varchar(30) NOT NULL,
-  `Αριθμός_δωματίου` int(4) NOT NULL,
-  `Ημέρες_διαμονής` int(2) NOT NULL,
-  `Ποσό_Πληρωμής` int(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    -- You can add more logic here if needed
+END;
 
---
--- Άδειασμα δεδομένων του πίνακα `customer`
---
+/
+--------------------------------------------------------
+--  DDL for Procedure LOGINC
+--------------------------------------------------------
+set define off;
 
-INSERT INTO `customer` (`ID`, `Αριθμός_Εγγράφου`, `Όνομα`, `Επώνυμο`, `Φύλο`, `Χώρα_Διαμονής`, `Αριθμός_δωματίου`, `Ημέρες_διαμονής`, `Ποσό_Πληρωμής`) VALUES
-('Ταυτότητα', 'ffffffffff', 'ggggggggggggg', 'hhhhhhhhhh', 'Γυναίκα', 'ddddddddd', 1, 0, 0),
-('Ταυτότητα', 'tttt', 'yyyy', 'uuuu', 'Άνδρας', 'ttttt', 2, 3, 132);
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "IEE2019187"."LOGINC" (
+    Uname IN VARCHAR2,
+    Pass IN VARCHAR2,
+    rec OUT SYS_REFCURSOR
+) IS
+BEGIN
+    -- Open the cursor for the result set
+    OPEN rec FOR
+        SELECT * FROM login WHERE username = Uname AND password = Pass;
+        
+    -- You can add more logic here if needed
+END;
 
--- --------------------------------------------------------
+/
+--------------------------------------------------------
+--  Constraints for Table EMPLOYEE
+--------------------------------------------------------
 
---
--- Δομή πίνακα για τον πίνακα `driver`
---
+  ALTER TABLE "IEE2019187"."EMPLOYEE" MODIFY ("EMAIL" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."EMPLOYEE" MODIFY ("ΤΗΛΕΦΩΝΟ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."EMPLOYEE" MODIFY ("ΜΙΣΘΟΣ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."EMPLOYEE" MODIFY ("ΕΙΔΟΣ_ΕΡΓΑΣΙΑΣ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."EMPLOYEE" MODIFY ("ΦΥΛΟ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."EMPLOYEE" MODIFY ("ΗΛΙΚΙΑ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."EMPLOYEE" MODIFY ("ΕΠΩΝΥΜΟ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."EMPLOYEE" MODIFY ("ΟΝΟΜΑ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."EMPLOYEE" MODIFY ("ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table LOGIN
+--------------------------------------------------------
 
-CREATE TABLE `driver` (
-  `ID` int(30) NOT NULL,
-  `Όνομα` varchar(30) NOT NULL,
-  `Επώνυμο` varchar(30) NOT NULL,
-  `Ηλικία` int(2) NOT NULL,
-  `Φύλο` varchar(20) NOT NULL,
-  `Αυτοκίνητο` varchar(30) NOT NULL,
-  `Διαθεσιμότητα` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  ALTER TABLE "IEE2019187"."LOGIN" MODIFY ("PASSWORD" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."LOGIN" MODIFY ("USERNAME" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table CUSTOMER
+--------------------------------------------------------
 
---
--- Άδειασμα δεδομένων του πίνακα `driver`
---
+  ALTER TABLE "IEE2019187"."CUSTOMER" MODIFY ("ΠΟΣΟ_ΠΛΗΡΩΜΗΣ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."CUSTOMER" MODIFY ("ΗΜΕΡΕΣ_ΔΙΑΜΟΝΗΣ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."CUSTOMER" MODIFY ("ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."CUSTOMER" MODIFY ("ΧΩΡΑ_ΔΙΑΜΟΝΗΣ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."CUSTOMER" MODIFY ("ΦΥΛΟ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."CUSTOMER" MODIFY ("ΕΠΩΝΥΜΟ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."CUSTOMER" MODIFY ("ΟΝΟΜΑ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."CUSTOMER" MODIFY ("ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."CUSTOMER" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."CUSTOMER" ADD CONSTRAINT "ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ" PRIMARY KEY ("ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table DRIVER
+--------------------------------------------------------
 
-INSERT INTO `driver` (`ID`, `Όνομα`, `Επώνυμο`, `Ηλικία`, `Φύλο`, `Αυτοκίνητο`, `Διαθεσιμότητα`) VALUES
-(1, 'hsrHRF', 'hsrfH', 53, 'Άνδρας', 'hfs', 'Διαθέσιμος/η'),
-(44, 'hdah', 'hfgdH', 54, 'Άνδρας', 'hfdzhf', 'Διαθέσιμος/η'),
-(55, 'hfsdzh', 'hfdsHJf', 53, 'Άνδρας', 'hrsH', 'Διαθέσιμος/η');
+  ALTER TABLE "IEE2019187"."DRIVER" MODIFY ("ΔΙΑΘΕΣΙΜΟΤΗΤΑ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."DRIVER" MODIFY ("ΑΥΤΟΚΙΝΗΤΟ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."DRIVER" MODIFY ("ΦΥΛΟ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."DRIVER" MODIFY ("ΗΛΙΚΙΑ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."DRIVER" MODIFY ("ΕΠΩΝΥΜΟ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."DRIVER" MODIFY ("ΟΝΟΜΑ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."DRIVER" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."DRIVER" ADD CONSTRAINT "ID" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ROOM
+--------------------------------------------------------
 
--- --------------------------------------------------------
-
---
--- Δομή πίνακα για τον πίνακα `employee`
---
-
-CREATE TABLE `employee` (
-  `ID` int(11) NOT NULL,
-  `Όνομα` varchar(30) NOT NULL,
-  `Επώνυμο` varchar(30) NOT NULL,
-  `Ηλικία` int(2) NOT NULL,
-  `Φύλο` varchar(30) NOT NULL,
-  `Είδος Εργασίας` varchar(30) NOT NULL,
-  `Μισθός` int(6) NOT NULL,
-  `Τηλέφωνο` int(30) NOT NULL,
-  `Email` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Άδειασμα δεδομένων του πίνακα `employee`
---
-
-INSERT INTO `employee` (`ID`, `Όνομα`, `Επώνυμο`, `Ηλικία`, `Φύλο`, `Είδος Εργασίας`, `Μισθός`, `Τηλέφωνο`, `Email`) VALUES
-(1, 'GRSH', 'HRWHR', 43, 'Άνδρας', 'Σέφ', 464236, 753, 'FHDDAH'),
-(6, 'HRH', 'HTAJHT', 32, 'Άνδρας', 'Σέφ', 434, 653, 'GSGH'),
-(77, 'hahsr', 'hrahrs', 53, 'Άνδρας', 'Σέφ', 4654, 5642624, 'hgdash'),
-(764784, 'hdshfsh', 'rshysHY', 64, 'Άνδρας', 'Σέφ', 6436, 7537537, 'gfshy');
-
--- --------------------------------------------------------
-
---
--- Δομή πίνακα για τον πίνακα `login`
---
-
-CREATE TABLE `login` (
-  `username` varchar(64) NOT NULL,
-  `password` varchar(64) NOT NULL,
-  `last_login` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Άδειασμα δεδομένων του πίνακα `login`
---
-
-INSERT INTO `login` (`username`, `password`, `last_login`) VALUES
-('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '2023-11-21 17:20:27');
-
--- --------------------------------------------------------
-
---
--- Δομή πίνακα για τον πίνακα `room`
---
-
-CREATE TABLE `room` (
-  `Αριθμός_δωματίου` int(4) NOT NULL,
-  `Διαθεσιμότητα` varchar(20) NOT NULL,
-  `Καθαρισμός` varchar(20) NOT NULL,
-  `Τιμή` int(4) NOT NULL,
-  `Αριθμός_κρεβατιών` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Άδειασμα δεδομένων του πίνακα `room`
---
-
-INSERT INTO `room` (`Αριθμός_δωματίου`, `Διαθεσιμότητα`, `Καθαρισμός`, `Τιμή`, `Αριθμός_κρεβατιών`) VALUES
-(1, 'Μη διαθέσιμο', 'Χρησιμοποιείται', 40, 'Μονόκλινο'),
-(2, 'Μη διαθέσιμο', 'Χρησιμοποιείται', 44, 'Δίκλινο');
-
---
--- Ευρετήρια για άχρηστους πίνακες
---
-
---
--- Ευρετήρια για πίνακα `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`Αριθμός_Εγγράφου`),
-  ADD KEY `Αριθμός δωματίου` (`Αριθμός_δωματίου`),
-  ADD KEY `Ημέρες_διαμονής` (`Ημέρες_διαμονής`);
-
---
--- Ευρετήρια για πίνακα `driver`
---
-ALTER TABLE `driver`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Ευρετήρια για πίνακα `employee`
---
-ALTER TABLE `employee`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Ευρετήρια για πίνακα `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`username`);
-
---
--- Ευρετήρια για πίνακα `room`
---
-ALTER TABLE `room`
-  ADD PRIMARY KEY (`Αριθμός_δωματίου`),
-  ADD KEY `Τιμή` (`Τιμή`),
-  ADD KEY `Αριθμός_δωματίου` (`Αριθμός_δωματίου`);
-
---
--- Περιορισμοί για άχρηστους πίνακες
---
-
---
--- Περιορισμοί για πίνακα `customer`
---
-ALTER TABLE `customer`
-  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`Αριθμός_δωματίου`) REFERENCES `room` (`Αριθμός_δωματίου`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  ALTER TABLE "IEE2019187"."ROOM" MODIFY ("ΑΡΙΘΜΟΣ_ΚΡΕΒΑΤΙΩΝ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."ROOM" MODIFY ("ΤΙΜΗ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."ROOM" MODIFY ("ΚΑΘΑΡΙΣΜΟΣ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."ROOM" MODIFY ("ΔΙΑΘΕΣΙΜΟΤΗΤΑ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."ROOM" MODIFY ("ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ" NOT NULL ENABLE);
+  ALTER TABLE "IEE2019187"."ROOM" ADD CONSTRAINT "ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ" PRIMARY KEY ("ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
