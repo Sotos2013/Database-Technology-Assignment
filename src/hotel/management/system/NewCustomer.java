@@ -186,11 +186,6 @@ public class NewCustomer extends JFrame {
 		JButton btnNewButton = new JButton("Προσθήκη");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-                            Connect c = new Connect();
-                            
-                            
-                            //String s6 = c1.getSelectedItem();
-                          
                             try{
                                 String id = (String)comboBox.getSelectedItem(); 
                                     String id_num =  t1.getText();
@@ -218,22 +213,28 @@ public class NewCustomer extends JFrame {
                                     "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
                                 }
                                 else{
-                                    String q1 = "INSERT INTO customer values('"+id+"', '"+id_num+"', '"+name+"','"+surname+"','"+sex+"','"+country+"','"+room_num+"','"+days+"',"+pay+")";
-                                    String q2 = "update room set Διαθεσιμότητα = 'Μη διαθέσιμο' where Αριθμός_δωματίου = '"+room_num+"'";
-                                    String q3 = "update room set Καθαρισμός = 'Χρησιμοποιείται' where Αριθμός_δωματίου = '"+room_num+"'";
-                                    c.s.executeUpdate(q1);
-                                    c.s.executeUpdate(q2);
-                                    c.s.executeUpdate(q3);
+                                    Connection con;
+                                    CallableStatement cs;
+                                    con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");
+                                    cs = con.prepareCall("{ call Add_Customer(?,?,?,?,?,?,?,?,?)}");
+                                    cs.setString(1, id);
+                                    cs.setString(2, id_num);
+                                    cs.setString(3, name);
+                                    cs.setString(4, surname);
+                                    cs.setString(5, sex);
+                                    cs.setString(6, country);
+                                    cs.setString(7, room_num);
+                                    cs.setInt(8, days);
+                                    cs.setInt(9, pay);
+                                    cs.executeUpdate();
                                     JOptionPane.showMessageDialog(null, "Data Inserted Successfully");
                                     new Reception().setVisible(true);
                                     setVisible(false);
                                 }
 	    		}catch(SQLException e1){
-	    			System.out.println(e1.getMessage());
+	    			JOptionPane.showMessageDialog(null, "Υπάρχει ήδη καταχωρημένος πελάτης με τον αριθμό εγγράφου που εισάγατε!","Πρόβλημα με τα στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                                t1.setText("");
 	    		}
-		    		catch(NumberFormatException s){
-		    			JOptionPane.showMessageDialog(null, "Please enter a valid Number");
-			}
 			}
 		});
 		btnNewButton.setBounds(100, 430, 120, 30);

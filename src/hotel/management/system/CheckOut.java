@@ -74,23 +74,34 @@ public class CheckOut extends JFrame{
 		contentPane.add(lblName);
                 
                 JComboBox combobox = new JComboBox();
+                Connection con;
+                CallableStatement cs;
                 try{
-                    Connect c = new Connect();
-                    ResultSet rs = c.s.executeQuery("select * from customer");
+                    con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187", "mydata");
+                    cs = con.prepareCall("{ call GETCUSTOMERS(?)}");
+                    cs.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+                    cs.executeQuery();
+                    ResultSet rs = (ResultSet) cs.getObject(1);
                     while(rs.next()){
-                        combobox.addItem(rs.getString("Αριθμός_Εγγράφου"));
+                        combobox.addItem(rs.getString(2));
                     }
                 }catch(Exception e){ }
                 combobox.addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                    try{
-                        Connect c = new Connect();
-                        ResultSet rs = c.s.executeQuery("select * from room inner join customer on room.Αριθμός_δωματίου = customer.Αριθμός_δωματίου WHERE customer.Αριθμός_Εγγράφου = '"+(String)combobox.getSelectedItem()+"'");
-                        while(rs.next()){
-                            t1.setText(rs.getString(1));
-                        }
-                    }catch(Exception ee){ }
+                        Connection con;
+                        CallableStatement cs;
+                        try{
+                            con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187", "mydata");
+                            cs = con.prepareCall("{ call CHECKOUT(?,?)}");
+                            cs.setString(1, (String)combobox.getSelectedItem());
+                            cs.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+                            cs.executeQuery();
+                            ResultSet rs = (ResultSet) cs.getObject(2);
+                            while(rs.next()){
+                                t1.setText(rs.getString(1));
+                            }
+                        }catch(Exception ee){ }
                     }
                 
                 });
