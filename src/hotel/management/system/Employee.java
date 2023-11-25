@@ -91,25 +91,17 @@ public class Employee extends JFrame {
 		contentPane.add(btnLoadData);
                 
 		JButton btnprint =new JButton("Εκτύπωση");
-               btnprint.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-                            
-		MessageFormat header=new MessageFormat("Στοιχεία Υπαλλήλων");
-                MessageFormat footer=new MessageFormat("- {0} -");
-            try 
-            {
-
-                table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
-            }
-
-            catch(Exception ae)
-            { 
-                System.err.println("Error printing: " + ae.getMessage());
-
-                }
-        }
-			
-		});
+                btnprint.addActionListener(new ActionListener() {
+                         public void actionPerformed(ActionEvent e) {
+                             MessageFormat header=new MessageFormat("Στοιχεία Υπαλλήλων");
+                             MessageFormat footer=new MessageFormat("- {0} -");
+                             try {
+                                 table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+                             } catch(Exception ae){ 
+                                 System.err.println("Error printing: " + ae.getMessage());
+                             }
+                         }
+                 });
                         
                         
                         

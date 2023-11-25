@@ -17,6 +17,7 @@ public class MyLogger {
             SimpleFormatter formatter=new SimpleFormatter();
             fh.setFormatter(formatter);
             logger.info("Logger started");
+            logger.log(Level.SEVERE, "adsgdaghrasfhyra");
             
         }catch (Exception e){
             logger.log(Level.WARNING,"Exception ::",e);

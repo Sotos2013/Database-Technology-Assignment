@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.text.MessageFormat;
 
 public class CustomerInfo extends JFrame {
 	Connection conn = null;
@@ -103,10 +104,30 @@ public class CustomerInfo extends JFrame {
 				
 			
 		});
+                
+                JButton btnprint =new JButton("Εκτύπωση");
+                btnprint.addActionListener(new ActionListener() {
+                         public void actionPerformed(ActionEvent e) {
+                             MessageFormat header=new MessageFormat("Στοιχεία Πελατών");
+                             MessageFormat footer=new MessageFormat("- {0} -");
+                             try {
+                                 table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+                             } catch(Exception ae){ 
+                                 System.err.println("Error printing: " + ae.getMessage());
+                             }
+                         }
+                 });
+                
+                
 		btnLoadData.setBounds(300, 510, 120, 30);
                 btnLoadData.setBackground(Color.BLACK);
                 btnLoadData.setForeground(Color.WHITE);
 		contentPane.add(btnLoadData);
+                
+                btnprint.setBounds(600, 510, 120, 30);
+                btnprint.setBackground(Color.BLACK);
+                btnprint.setForeground(Color.WHITE);
+		contentPane.add(btnprint);
 		
 		lblId = new JLabel("ID");
 		lblId.setBounds(31, 11, 46, 14);
