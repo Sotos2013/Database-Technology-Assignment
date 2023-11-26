@@ -9,22 +9,20 @@ package hotel.management.system;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLIntegrityConstraintViolationException;
 
-
 public class AddEmployee extends JFrame implements ActionListener{
-       
+
     private JPanel contentPane;
     private JTextField t1,t2,t3,t4, t5, t6, t7,t8,t9,t10;
     private JComboBox comboBox, comboBox2;
     JLabel l9, l11;
     JButton b1,b2;
     Choice c1;
-     
+
     public static void main(String[] args) {
         new AddEmployee().setVisible(true);
     }
@@ -168,12 +166,8 @@ public class AddEmployee extends JFrame implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent ae){
-      
-            
-       
-     
         try{
-           MyLogger.init();
+            
             if(ae.getSource() == b1){
                 try{
                 //Connect c = new Connect();
@@ -242,7 +236,7 @@ public class AddEmployee extends JFrame implements ActionListener{
                 else{
                     Connection con;
                     CallableStatement cs;
-                    try{           MyLogger.init();
+                    try{
                             con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");                        
                             cs = con.prepareCall("{ call Add_Employee(?,?,?,?,?,?,?,?,?)}");
                             cs.setInt("id", id);

@@ -19,7 +19,6 @@ import java.sql.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.text.MessageFormat;
 public class Employee extends JFrame {
 	Connection conn = null;
 	private JPanel contentPane;
@@ -91,30 +90,7 @@ public class Employee extends JFrame {
                 btnLoadData.setBackground(Color.BLACK);
                 btnLoadData.setForeground(Color.WHITE);
 		contentPane.add(btnLoadData);
-                
-		JButton btnprint =new JButton("Εκτύπωση");
-               btnprint.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-                            
-		MessageFormat header=new MessageFormat("Στοιχεία Υπαλλήλων");
-                MessageFormat footer=new MessageFormat("- {0} -");
-            try 
-            {
-
-                table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
-            }
-
-            catch(Exception ae)
-            { 
-                System.err.println("Error printing: " + ae.getMessage());
-
-                }
-        }
-			
-		});
-                        
-                        
-                        
+		
 		JButton btnExit = new JButton("Back");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -122,11 +98,6 @@ public class Employee extends JFrame {
                                 setVisible(false);
 			}
 		});
-                btnprint.setBounds(800, 500, 120, 30);
-                btnprint.setBackground(Color.BLACK);
-                btnprint.setForeground(Color.WHITE);
-		contentPane.add(btnprint);
-                
 		btnExit.setBounds(510, 500, 120, 30);
                 btnExit.setBackground(Color.BLACK);
                 btnExit.setForeground(Color.WHITE);

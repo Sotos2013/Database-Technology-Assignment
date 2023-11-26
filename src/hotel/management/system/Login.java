@@ -54,7 +54,7 @@ public class Login extends JFrame implements ActionListener{
         add(l3);
 
 
-        b1 = new JButton("Σύνδεση");
+        b1 = new JButton("Σύνδεση:");
         b1.setBounds(40,180,120,30);
         b1.setFont(new Font("serif",Font.BOLD,15));
         b1.addActionListener(this);
