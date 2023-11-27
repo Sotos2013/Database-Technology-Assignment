@@ -32,6 +32,8 @@ public class LogInfo extends JFrame {
 	private JLabel lblRoom;
 	private JLabel lblStatus;
 	private JLabel lblNewLabel_1;
+        private JButton btnDelData;
+        private JButton btnprint;
 
 	/**
 	 * Launch the application.
@@ -80,6 +82,8 @@ public class LogInfo extends JFrame {
 		JButton btnLoadData = new JButton("Φόρτωση");
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+                            btnDelData.setEnabled(true);
+                            btnprint.setEnabled(true);
                             Connection con;
                             CallableStatement cs;
 				try{
@@ -91,9 +95,11 @@ public class LogInfo extends JFrame {
                                     table.setModel(DbUtils.resultSetToTableModel(rs));
                                     table.setEnabled(false);
                                     int trows = table.getRowCount();
-                                    if(trows==0)
-                                        JOptionPane.showMessageDialog(null, "Δεν υπάρχουν καταχωρημένοι πελάτες!",
-                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                                    if(trows==0){
+                                        JOptionPane.showMessageDialog(null, "Δεν υπάρχουν εγγραφές!","Ενημέρωση!", JOptionPane.ERROR_MESSAGE);
+                                        btnDelData.setEnabled(false);
+                                        btnprint.setEnabled(false);
+                                    }
                                 }
 				catch(Exception e)
 				{
@@ -104,7 +110,7 @@ public class LogInfo extends JFrame {
 			
 		});
                 
-                JButton btnDelData = new JButton("Διαγραφή LOG");
+                btnDelData = new JButton("Διαγραφή LOG");
 		btnDelData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
                             Connection con;
@@ -112,8 +118,14 @@ public class LogInfo extends JFrame {
 				try{
                                     con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187", "mydata");
                                     cs = con.prepareCall("{ call DELLOG()}");
-                                    cs.executeUpdate();
-                                    JOptionPane.showMessageDialog(null, "Δεν υπάρχουν καταχωρημένοι πελάτες!","Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                                    cs.executeQuery();
+                                    String displayCustomersql = "select * from change_tracking";
+                                    ResultSet rs = cs.executeQuery(displayCustomersql);
+                                    table.setModel(DbUtils.resultSetToTableModel(rs));
+                                    table.setEnabled(false);
+                                    JOptionPane.showMessageDialog(null, "Το αρχείο LOG άδειασε!","Ενημέρωση", JOptionPane.INFORMATION_MESSAGE);
+                                    btnDelData.setEnabled(false);
+                                    btnprint.setEnabled(false);
                                 }
 				catch(Exception e)
 				{
@@ -124,7 +136,7 @@ public class LogInfo extends JFrame {
 			
 		});
                 
-                JButton btnprint =new JButton("Εκτύπωση");
+                btnprint =new JButton("Εκτύπωση");
                 btnprint.addActionListener(new ActionListener() {
                          public void actionPerformed(ActionEvent e) {
                              MessageFormat header=new MessageFormat("Log File");
@@ -144,11 +156,13 @@ public class LogInfo extends JFrame {
 		contentPane.add(btnLoadData);
                 
                 btnDelData.setBounds(100, 510, 120, 30);
+                btnDelData.setEnabled(false);
                 btnDelData.setBackground(Color.BLACK);
                 btnDelData.setForeground(Color.WHITE);
 		contentPane.add(btnDelData);
                 
                 btnprint.setBounds(600, 510, 120, 30);
+                btnprint.setEnabled(false);
                 btnprint.setBackground(Color.BLACK);
                 btnprint.setForeground(Color.WHITE);
 		contentPane.add(btnprint);
