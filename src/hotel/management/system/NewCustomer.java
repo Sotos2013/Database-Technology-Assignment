@@ -148,7 +148,6 @@ public class NewCustomer extends JFrame {
                         int totalpay;
                         Connect c = new Connect();
                         ResultSet rs = c.s.executeQuery("select Τιμή from room WHERE room.Αριθμός_δωματίου = '"+(String)c1.getSelectedItem()+"'");
-                        //ResultSet rs2 = c.s.executeQuery("select Ημέρες_διαμονής from customer WHERE customer.Αριθμός_Εγγράφου = '"+t1.getText()+"'");
                         while(rs.next()){
                             int price = Integer.parseInt(rs.getString(1));
                             int days = Integer.parseInt(t5.getText());

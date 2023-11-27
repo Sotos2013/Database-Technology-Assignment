@@ -7,6 +7,7 @@ package hotel.management.system;
 
 import java.awt.BorderLayout;
 import java.awt.*;
+import static java.awt.PageAttributes.OrientationRequestedType.LANDSCAPE;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,7 +20,11 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.print.PageFormat;
+import java.awt.print.PrinterJob;
 import java.text.MessageFormat;
+import static javax.swing.JTable.PrintMode.FIT_WIDTH;
+import javax.swing.table.TableColumn;
 
 public class LogInfo extends JFrame {
 	Connection conn = null;
@@ -60,7 +65,7 @@ public class LogInfo extends JFrame {
 	 */
 	public LogInfo() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(530, 200, 900, 600);
+		setBounds(530, 200, 1100, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -94,6 +99,18 @@ public class LogInfo extends JFrame {
                                     ResultSet rs = (ResultSet) cs.getObject(1);
                                     table.setModel(DbUtils.resultSetToTableModel(rs));
                                     table.setEnabled(false);
+                                    TableColumn Column1 = table.getColumnModel().getColumn(0);
+                                    TableColumn Column2 = table.getColumnModel().getColumn(1);
+                                    TableColumn Column3 = table.getColumnModel().getColumn(2);
+                                    TableColumn Column4 = table.getColumnModel().getColumn(3);
+                                    TableColumn Column5 = table.getColumnModel().getColumn(4);
+                                    TableColumn Column6 = table.getColumnModel().getColumn(5);
+                                    Column1.setPreferredWidth(200);
+                                    Column2.setPreferredWidth(500);
+                                    Column3.setPreferredWidth(300);
+                                    Column4.setPreferredWidth(200);
+                                    Column5.setPreferredWidth(400);
+                                    Column6.setPreferredWidth(1500);
                                     int trows = table.getRowCount();
                                     if(trows==0){
                                         JOptionPane.showMessageDialog(null, "Δεν υπάρχουν εγγραφές!","Ενημέρωση!", JOptionPane.ERROR_MESSAGE);
@@ -142,6 +159,9 @@ public class LogInfo extends JFrame {
                              MessageFormat header=new MessageFormat("Log File");
                              MessageFormat footer=new MessageFormat("- {0} -");
                              try {
+                                PrinterJob printerJob = PrinterJob.getPrinterJob();
+                                PageFormat pageFormat = printerJob.defaultPage();
+                                pageFormat.setOrientation(PageFormat.LANDSCAPE);
                                  table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
                              } catch(Exception ae){ 
                                  System.err.println("Error printing: " + ae.getMessage());
