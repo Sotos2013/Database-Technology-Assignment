@@ -60,6 +60,7 @@ PreparedStatement pst = null;
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
                  setLocationRelativeTo(null);
+                 
         setResizable(false);
                 
               
@@ -67,7 +68,7 @@ PreparedStatement pst = null;
               
              
 		
-		JLabel lblUpdateRoomStatus = new JLabel("Ενημέρωση Κατάστασης δωμάτιου");
+		JLabel lblUpdateRoomStatus = new JLabel("Ενημέρωση δωμάτιου");
 		lblUpdateRoomStatus.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblUpdateRoomStatus.setBounds(85, 11, 206, 34);
 		contentPane.add(lblUpdateRoomStatus);
@@ -87,11 +88,11 @@ PreparedStatement pst = null;
                 c1.setBounds(160, 84, 140, 20);
 		contentPane.add(c1);
 		
-		JLabel lblAvailability = new JLabel("Availability:");
+		JLabel lblAvailability = new JLabel("Διαθεσιμότητα:");
 		lblAvailability.setBounds(27, 187, 90, 14);
 		contentPane.add(lblAvailability);
 		
-		JLabel lblCleanStatus = new JLabel("Clean Status:");
+		JLabel lblCleanStatus = new JLabel("Κατάσταση:");
 		lblCleanStatus.setBounds(27, 240, 90, 14);
 		contentPane.add(lblCleanStatus);
 		
@@ -111,7 +112,7 @@ PreparedStatement pst = null;
 		contentPane.add(txt_Room);
 		txt_Room.setColumns(10);
                 
-                JButton b1 = new JButton("Check");
+                JButton b1 = new JButton("Έλεγχος");
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                             try{
@@ -132,7 +133,7 @@ PreparedStatement pst = null;
                 b1.setForeground(Color.WHITE);
 		contentPane.add(b1);
 		
-		JButton btnUpdate = new JButton("Update");
+		JButton btnUpdate = new JButton("Ενημέρωση");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) throws NumberFormatException {
 				
@@ -157,7 +158,7 @@ PreparedStatement pst = null;
                 btnUpdate.setForeground(Color.WHITE);
 		contentPane.add(btnUpdate);
 		
-		JButton btnExit = new JButton("Back");
+		JButton btnExit = new JButton("Πίσω");
 		btnExit.addActionListener(new ActionListener() {
                         @Override
 			public void actionPerformed(ActionEvent e) {
@@ -170,7 +171,7 @@ PreparedStatement pst = null;
                 btnExit.setForeground(Color.WHITE);
 		contentPane.add(btnExit);
 		
-		JLabel lblRoomId = new JLabel("Room Number:");
+		JLabel lblRoomId = new JLabel("Νο. Δωματιου:");
 		lblRoomId.setBounds(27, 133, 100, 14);
 		contentPane.add(lblRoomId);
 		

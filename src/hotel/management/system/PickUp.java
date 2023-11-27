@@ -67,7 +67,7 @@ public class PickUp extends JFrame {
 		
 		JLabel lblPickUpService = new JLabel("Υπηρεσία παραλαβής πελάτη");
 		lblPickUpService.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblPickUpService.setBounds(90, 11, 200, 25);
+		lblPickUpService.setBounds(90, 11, 300, 25);
 		contentPane.add(lblPickUpService);
 		
 		JLabel lblTypeOfCar = new JLabel("Τύπος αυτοκινήτου");

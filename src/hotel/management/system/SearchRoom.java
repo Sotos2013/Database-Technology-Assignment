@@ -62,32 +62,32 @@ public class SearchRoom extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblSearchForRoom = new JLabel("Search For Room");
+		JLabel lblSearchForRoom = new JLabel("Αναζήτηση Δωματίου");
 		lblSearchForRoom.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblSearchForRoom.setBounds(250, 11, 186, 31);
 		contentPane.add(lblSearchForRoom);
 		
-		JLabel lblRoomAvailable = new JLabel("Room Bed Type:");
+		JLabel lblRoomAvailable = new JLabel("Τύπος δωματίου:");
 		lblRoomAvailable.setBounds(50, 73, 96, 14);
 		contentPane.add(lblRoomAvailable);
 		
-		JLabel lblRoomType = new JLabel("Room Number");
+		JLabel lblRoomType = new JLabel("Νο. Δωματίου");
 		lblRoomType.setBounds(23, 162, 96, 14);
 		contentPane.add(lblRoomType);
 		
-		JLabel lblRoomAvailable_1 = new JLabel("Availability");
+		JLabel lblRoomAvailable_1 = new JLabel("Διαθεσιμότητα");
 		lblRoomAvailable_1.setBounds(175, 162, 120, 14);
 		contentPane.add(lblRoomAvailable_1);
 		
-		JLabel lblPrice_1 = new JLabel("Price");
+		JLabel lblPrice_1 = new JLabel("Τιμή");
 		lblPrice_1.setBounds(458, 162, 46, 14);
 		contentPane.add(lblPrice_1);
                 
-                JLabel l1 = new JLabel("Bed Type");
+                JLabel l1 = new JLabel("Τύπος Δωματίου");
 		l1.setBounds(580, 162, 96, 14);
 		contentPane.add(l1);
 		
-		JCheckBox checkRoom = new JCheckBox("Only display Available");
+		JCheckBox checkRoom = new JCheckBox("Εμφάνιση μόνο των διαθεσίμων");
 		checkRoom.setBounds(400, 69, 205, 23);
                 checkRoom.setBackground(Color.WHITE);
 		contentPane.add(checkRoom);
@@ -99,7 +99,7 @@ public class SearchRoom extends JFrame {
                 c1.setBounds(153, 70, 120, 20);
 		contentPane.add(c1);
 		
-		JButton btnSearch = new JButton("Search");
+		JButton btnSearch = new JButton("Αναζήτηση");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String SQL = "select * from room where Αριθμός_κρεβατιών = '"+c1.getSelectedItem()+"'";
@@ -128,7 +128,7 @@ public class SearchRoom extends JFrame {
                 btnSearch.setForeground(Color.WHITE);
 		contentPane.add(btnSearch);
 		
-		JButton btnExit = new JButton("Back");
+		JButton btnExit = new JButton("Πίσω");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new Reception().setVisible(true);
@@ -144,7 +144,7 @@ public class SearchRoom extends JFrame {
 		table.setBounds(0, 187, 700, 300);
 		contentPane.add(table);
 		
-		JLabel lblCleanStatus = new JLabel("Clean Status");
+		JLabel lblCleanStatus = new JLabel("Καθάρισμα");
 		lblCleanStatus.setBounds(306, 162, 96, 14);
 		contentPane.add(lblCleanStatus);
                 

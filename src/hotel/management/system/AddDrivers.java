@@ -28,21 +28,18 @@ public class AddDrivers extends JFrame implements ActionListener{
 
 
     public AddDrivers() {
-        setBounds(450, 200, 1000, 500);
+        setBounds(450, 200, 500, 500);
 	contentPane = new JPanel();
 	setContentPane(contentPane);
 	contentPane.setLayout(null);
+         setLocationRelativeTo(null);
+        setResizable(false);
         
-        ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/eleven.jpg"));
-        Image i3 = i1.getImage().getScaledInstance(500, 300,Image.SCALE_DEFAULT);
-        ImageIcon i2 = new ImageIcon(i3);
-        JLabel l15 = new JLabel(i2);
-        l15.setBounds(400,30,500,370);
-        add(l15);
+
         
         JLabel l10 = new JLabel("Προσθήκη νέου οδηγού");
         l10.setFont(new Font("Arial", Font.BOLD, 18));
-	l10.setBounds(194, 10, 1200, 22);
+	l10.setBounds(150, 10, 1200, 22);
 	contentPane.add(l10);
         
 	

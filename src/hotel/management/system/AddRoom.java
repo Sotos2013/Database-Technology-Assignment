@@ -27,26 +27,23 @@ public class AddRoom extends JFrame implements ActionListener{
 
 
     public AddRoom() {
-        setBounds(450, 200, 1000, 450);
+        setBounds(450, 200, 500, 450);
 	contentPane = new JPanel();
 	setContentPane(contentPane);
 	contentPane.setLayout(null);
+        setLocationRelativeTo(null);
+        setResizable(false);
         
-        ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/twelve.jpg"));
-                Image i3 = i1.getImage().getScaledInstance(500, 300,Image.SCALE_DEFAULT);
-                ImageIcon i2 = new ImageIcon(i3);
-                JLabel l15 = new JLabel(i2);
-                l15.setBounds(400,30,500,370);
-                add(l15);
+       
         
         JLabel l10 = new JLabel("Προσθήκη Δωματίων");
         l10.setFont(new Font("Arial", Font.BOLD, 18));
-	l10.setBounds(194, 10, 400, 22);
+	l10.setBounds(150, 10, 400, 22);
 	contentPane.add(l10);
         
 	
         
-	JLabel l1 = new JLabel("Αριθμός Δωματίου:");
+	JLabel l1 = new JLabel("No. Δωματίου:");
 	l1.setForeground(new Color(25, 25, 112));
 	l1.setFont(new Font("Arial", Font.BOLD, 14));
 	l1.setBounds(64, 70, 102, 22);
@@ -89,7 +86,7 @@ public class AddRoom extends JFrame implements ActionListener{
 	t2.setBounds(174, 190, 156, 20);
 	contentPane.add(t2);
 
-        JLabel l5 = new JLabel("Αριθμός Κρεβατιών:");
+        JLabel l5 = new JLabel("Κρεβάτια:");
 	l5.setForeground(new Color(25, 25, 112));
 	l5.setFont(new Font("Tahoma", Font.BOLD, 14));
 	l5.setBounds(64, 230, 102, 22);

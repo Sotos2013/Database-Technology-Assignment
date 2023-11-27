@@ -48,21 +48,16 @@ public class AddEmployee extends JFrame implements ActionListener{
     }*/
 
     public AddEmployee() {
-        setBounds(450, 200, 1000, 550);
+        setBounds(450, 200, 420, 550);
 	contentPane = new JPanel();
 	setContentPane(contentPane);
 	contentPane.setLayout(null);
-        
-        ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/tenth.jpg"));
-                Image i3 = i1.getImage().getScaledInstance(500, 300,Image.SCALE_DEFAULT);
-                ImageIcon i2 = new ImageIcon(i3);
-                JLabel l15 = new JLabel(i2);
-                l15.setBounds(400,30,500,370);
-                add(l15);
-        
+           setLocationRelativeTo(null);
+        setResizable(false);
+      
         JLabel l10 = new JLabel("Προσθήκη νέου υπαλλήλου");
         l10.setFont(new Font("Arial", Font.BOLD, 18));
-	l10.setBounds(194, 10, 1200, 22);
+	l10.setBounds(100, 10, 1200, 22);
 	contentPane.add(l10);
         
 	

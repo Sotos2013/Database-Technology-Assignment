@@ -51,25 +51,23 @@ public class CheckOut extends JFrame{
 	public CheckOut() throws SQLException {
 		//conn = Javaconnect.getDBConnection();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(530, 200, 800, 294);
+		setBounds(530, 200, 400, 294);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+                   setLocationRelativeTo(null);
+        setResizable(false);
+		
                 
-                ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/sixth.jpg"));
-                Image i3 = i1.getImage().getScaledInstance(400, 225,Image.SCALE_DEFAULT);
-                ImageIcon i2 = new ImageIcon(i3);
-                JLabel l1 = new JLabel(i2);
-                l1.setBounds(300,0,500,225);
-                add(l1);
+            
 		
 		JLabel lblCheckOut = new JLabel("Check Out ");
 		lblCheckOut.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblCheckOut.setBounds(70, 11, 140, 35);
+		lblCheckOut.setBounds(110, 11, 140, 35);
 		contentPane.add(lblCheckOut);
 		
-		JLabel lblName = new JLabel("Number :");
+		JLabel lblName = new JLabel("Αριθμός:");
 		lblName.setBounds(20, 85, 80, 14);
 		contentPane.add(lblName);
                 
@@ -118,7 +116,7 @@ public class CheckOut extends JFrame{
                 
 
 		
-		JLabel lblRoomNumber = new JLabel("Room Number:");
+		JLabel lblRoomNumber = new JLabel("Νο. δωματίου:");
 		lblRoomNumber.setBounds(20, 132, 86, 20);
 		contentPane.add(lblRoomNumber);
 		
@@ -168,7 +166,7 @@ public class CheckOut extends JFrame{
                 btnCheckOut.setForeground(Color.WHITE);
 		contentPane.add(btnCheckOut);
 		
-		JButton btnExit = new JButton("Back");
+		JButton btnExit = new JButton("Πίσω");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new Reception().setVisible(true);

@@ -42,17 +42,13 @@ public class NewCustomer extends JFrame {
 
 	public NewCustomer() throws SQLException {
 		
-                setBounds(530, 200, 850, 550);
+                setBounds(530, 200, 550, 550);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-                
-                ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/fifth.png"));
-                Image i3 = i1.getImage().getScaledInstance(300, 400,Image.SCALE_DEFAULT);
-                ImageIcon i2 = new ImageIcon(i3);
-                JLabel l1 = new JLabel(i2);
-                l1.setBounds(480,10,300,500);
-                add(l1);
+                   setLocationRelativeTo(null);
+        setResizable(false);
+              
 		
 		JLabel lblName = new JLabel("Καταχώρηση νέου πελάτη");
 		lblName.setFont(new Font("Arial", Font.PLAIN, 20));
