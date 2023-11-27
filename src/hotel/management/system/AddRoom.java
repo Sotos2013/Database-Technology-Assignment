@@ -161,7 +161,6 @@ public class AddRoom extends JFrame implements ActionListener{
                         cs.setString("BedNum", bednum);
                         cs.executeUpdate();
                         String s_room = Integer.toString(room_num);
-                        ChangeTracking.logChange("INSERT","ADMINISTRATOR","ROOM","ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ",s_room);
                         JOptionPane.showMessageDialog(null, " Το δωμάτιο με αριθμό "+room_num+" προστέθηκε στα δωμάτια!");
                         this.setVisible(false);
                     }

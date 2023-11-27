@@ -135,13 +135,16 @@ PreparedStatement pst = null;
 		
 		JButton btnUpdate = new JButton("Ενημέρωση");
 		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) throws NumberFormatException {
-				
+			public void actionPerformed(ActionEvent e){
+                            Connection con;
+                            CallableStatement cs;
 				try{
-                                    Connect c = new Connect();
-                                    String str = "update room set Καθαρισμος = '"+txt_Status.getText()+"' where ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ  = '"+txt_Room.getText()+"'";
-                                    c.s.executeUpdate(str);
-                                    ChangeTracking.logChange("UPDATE","ADMINISTRATOR","ROOM","ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ",txt_Room.getText());
+                                    con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");
+                                    cs =con.prepareCall("{ call UPDATE_ROOM(?,?)}");
+                                    cs.setString(1, txt_Status.getText());
+                                    int room_num = Integer.parseInt(txt_Room.getText());
+                                    cs.setInt(2, room_num);
+                                    cs.executeUpdate();
                                     JOptionPane.showMessageDialog(null, "Update Sucessful");
                                     
                                     new Reception().setVisible(true);

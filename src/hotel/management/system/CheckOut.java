@@ -23,6 +23,7 @@ public class CheckOut extends JFrame{
 	PreparedStatement pst = null;
 	private JPanel contentPane;
 	private JTextField t1;
+        private JButton btnCheckOut;
         Choice c1;
 
 	/**
@@ -87,6 +88,7 @@ public class CheckOut extends JFrame{
                 combobox.addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        btnCheckOut.setEnabled(true);
                         Connection con;
                         CallableStatement cs;
                         try{
@@ -133,35 +135,29 @@ public class CheckOut extends JFrame{
                 
 		
                 
-		JButton btnCheckOut = new JButton("Check Out");
+		btnCheckOut = new JButton("Check Out");
 		btnCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+                            Connection c;
+                            CallableStatement s;
                                 String id_num = (String) combobox.getSelectedItem();
                                 String s1 = t1.getText();
-				String deleteSQL = "Delete from customer where ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ = '"+id_num+"'";
-                                String q2 = "update room set ΔΙΑΘΕΣΙΜΟΤΗΤΑ = 'Διαθέσιμο' where ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ = "+s1;
-                                String q3 = "update room set ΚΑΘΑΡΙΣΜΟΣ = 'Καθαρό' where ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ = "+s1;
-                                
-                                
-				Connect c = new Connect();
-
-	    		try{
-	    			
-	    			
-	    			c.s.executeUpdate(deleteSQL);
-	    			c.s.executeUpdate(q2);
-                                c.s.executeUpdate(q3);
-                                ChangeTracking.logChange("DELETE","ADMINISTRATOR","CUSTOMER","ID",id_num);
-                                ChangeTracking.logChange("UPDATE","ADMINISTRATOR","ROOM","ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ",s1);                               
-	    			JOptionPane.showMessageDialog(null, "Check Out Successful");
-	    			new Reception().setVisible(true);
-                                setVisible(false);
-	    		}catch(SQLException e1){
-	    			System.out.println(e1.getMessage());
-	    		}
+                                try{
+                                    c = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");                        
+                                    s = c.prepareCall("{ call DEL_CUSTOMER(?,?)}");
+                                    s.setString(1, id_num);
+                                    s.setString(2, s1);
+                                    s.executeQuery();
+                                    JOptionPane.showMessageDialog(null, "Check Out Successful");
+                                    new Reception().setVisible(true);
+                                    setVisible(false);
+                                }catch(SQLException e1){
+                                    System.out.println(e1.getMessage());
+                                }
 			}
 		});
 		btnCheckOut.setBounds(50, 200, 100, 25);
+                btnCheckOut.setEnabled(false);
                 btnCheckOut.setBackground(Color.BLACK);
                 btnCheckOut.setForeground(Color.WHITE);
 		contentPane.add(btnCheckOut);
