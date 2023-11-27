@@ -19,6 +19,7 @@ import java.sql.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.text.MessageFormat;
 public class Room extends JFrame {
 	Connection conn = null;
 	private JPanel contentPane;
@@ -50,25 +51,22 @@ public class Room extends JFrame {
 	public Room() throws SQLException {
 		//conn = Javaconnect.getDBConnection();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(450, 200, 1100, 600);
+		setBounds(450, 200, 700, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+                  setLocationRelativeTo(null);
+        setResizable(false);
                 
-                ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/eight.jpg"));
-                Image i3 = i1.getImage().getScaledInstance(600, 600,Image.SCALE_DEFAULT);
-                ImageIcon i2 = new ImageIcon(i3);
-                JLabel l1 = new JLabel(i2);
-                l1.setBounds(500,0,600,600);
-                add(l1);
+             
                 
 		
 		table = new JTable();
 		table.setBounds(0, 40, 500, 400);
 		contentPane.add(table);
 		
-		JButton btnLoadData = new JButton("Load Data");
+		JButton btnLoadData = new JButton("Εμφάνιση");
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -90,37 +88,62 @@ public class Room extends JFrame {
                 btnLoadData.setForeground(Color.WHITE);
 		contentPane.add(btnLoadData);
 		
-		JButton btnNewButton = new JButton("Back");
+		JButton btnNewButton = new JButton("Πίσω");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new Reception().setVisible(true);
                                 setVisible(false);
 			}
 		});
+                JButton btnprint =new JButton("Εκτύπωση");
+               btnprint.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                            
+		MessageFormat header=new MessageFormat("Στοιχεία Δωματίων");
+                MessageFormat footer=new MessageFormat("- {0} -");
+            try 
+            {
+
+                table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+            }
+
+            catch(Exception ae)
+            { 
+                System.err.println("Error printing: " + ae.getMessage());
+
+                }
+        }
+			
+		});
 		btnNewButton.setBounds(290, 470, 120, 30);
                 btnNewButton.setBackground(Color.BLACK);
                 btnNewButton.setForeground(Color.WHITE);
 		contentPane.add(btnNewButton);
+                
+                btnprint.setBounds(500, 470, 120, 30);
+                btnprint.setBackground(Color.BLACK);
+                btnprint.setForeground(Color.WHITE);
+		contentPane.add(btnprint);
 		
-		lblAvailability = new JLabel("Availability");
-		lblAvailability.setBounds(119, 15, 69, 14);
+		lblAvailability = new JLabel("Διαθεσιμότητα");
+		lblAvailability.setBounds(121, 15, 85, 14);
 		contentPane.add(lblAvailability);
 		
-		lblCleanStatus = new JLabel("Clean Status");
+		lblCleanStatus = new JLabel("Κατάσταση");
 		lblCleanStatus.setBounds(216, 15, 76, 14);
 		contentPane.add(lblCleanStatus);
 		
-		lblNewLabel = new JLabel("Price");
+		lblNewLabel = new JLabel("Τιμή");
 		lblNewLabel.setBounds(330, 15, 46, 14);
 		contentPane.add(lblNewLabel);
 		
-		lblNewLabel_1 = new JLabel("Bed Type");
-		lblNewLabel_1.setBounds(417, 15, 76, 14);
+		lblNewLabel_1 = new JLabel("Τύπος κρεβατιού");
+		lblNewLabel_1.setBounds(430, 15, 100, 14);
 		contentPane.add(lblNewLabel_1);
 
 		
-		lblId = new JLabel("Room Number");
-		lblId.setBounds(12, 15, 90, 14);
+		lblId = new JLabel("Αριθμός δωματίου");
+		lblId.setBounds(12, 15, 120, 14);
 		contentPane.add(lblId);
                 
                 getContentPane().setBackground(Color.WHITE);
