@@ -150,7 +150,6 @@ PreparedStatement pst = null;
                                     
                                     new Reception().setVisible(true);
                                     setVisible(false);
-                                    MyLogger.init();
 				}catch (Exception ee){
 					ee.printStackTrace();
 				}

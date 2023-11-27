@@ -59,7 +59,6 @@ public class ManagerInfo extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		MyLogger.init();
 		table = new JTable();
 		table.setBounds(0, 34, 1000, 450);
 		contentPane.add(table);

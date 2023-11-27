@@ -13,7 +13,9 @@ import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.Timestamp;
 
 
 public class AddEmployee extends JFrame implements ActionListener{
@@ -29,6 +31,21 @@ public class AddEmployee extends JFrame implements ActionListener{
         new AddEmployee().setVisible(true);
     }
 
+    public static void logChange(String changeType, String user, String tableName, String primaryKeyColumn, String Value) {
+        try (Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata")) {
+            try (CallableStatement callableStatement = connection.prepareCall("{call log_change(?, ?, ?, ?, ?, ?)}")) {
+                callableStatement.setString(1, changeType);
+                callableStatement.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+                callableStatement.setString(3, user);
+                callableStatement.setString(4, tableName);
+                callableStatement.setString(5, primaryKeyColumn);
+                callableStatement.setString(6, Value);
+                callableStatement.execute();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public AddEmployee() {
         setBounds(450, 200, 1000, 550);
@@ -173,7 +190,6 @@ public class AddEmployee extends JFrame implements ActionListener{
        
      
         try{
-           MyLogger.init();
             if(ae.getSource() == b1){
                 try{
                 //Connect c = new Connect();
@@ -242,7 +258,7 @@ public class AddEmployee extends JFrame implements ActionListener{
                 else{
                     Connection con;
                     CallableStatement cs;
-                    try{           MyLogger.init();
+                    try{
                             con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");                        
                             cs = con.prepareCall("{ call Add_Employee(?,?,?,?,?,?,?,?,?)}");
                             cs.setInt("id", id);
@@ -255,6 +271,8 @@ public class AddEmployee extends JFrame implements ActionListener{
                             cs.setInt("phone", phone);
                             cs.setString("email", email);
                             cs.executeUpdate();
+                            String sid = Integer.toString(id);
+                            logChange("INSERT","ADMINISTRATOR","EMPLOYEE","ID",sid);
                         if(comboBox.getSelectedItem().equals("Άνδρας")){
                             JOptionPane.showMessageDialog(null, "Ο "+name+" προστέθηκε στους υπαλλήλους!");
                             this.setVisible(false);
