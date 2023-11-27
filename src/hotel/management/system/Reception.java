@@ -154,7 +154,7 @@ public class Reception extends JFrame {
 
 		contentPane.add(btnNewButton_4);
 		
-		JButton btnNewButton_5 = new JButton("Ενημέρωση κατάστασης");
+		/*JButton btnNewButton_5 = new JButton("Ενημέρωση κατάστασης");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -171,7 +171,7 @@ public class Reception extends JFrame {
                 btnNewButton_5.setBackground(Color.BLACK);
                 btnNewButton_5.setForeground(Color.WHITE);
 
-		contentPane.add(btnNewButton_5);
+		contentPane.add(btnNewButton_5); */
 		
 		JButton btnNewButton_6 = new JButton("Ενημέρωση Δωματίου");
 		btnNewButton_6.addActionListener(new ActionListener() {

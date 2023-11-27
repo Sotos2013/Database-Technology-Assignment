@@ -31,7 +31,7 @@ public class AddEmployee extends JFrame implements ActionListener{
         new AddEmployee().setVisible(true);
     }
 
-    public static void logChange(String changeType, String user, String tableName, String primaryKeyColumn, String Value) {
+    /*public static void logChange(String changeType, String user, String tableName, String primaryKeyColumn, String Value) {
         try (Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata")) {
             try (CallableStatement callableStatement = connection.prepareCall("{call log_change(?, ?, ?, ?, ?, ?)}")) {
                 callableStatement.setString(1, changeType);
@@ -45,7 +45,7 @@ public class AddEmployee extends JFrame implements ActionListener{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public AddEmployee() {
         setBounds(450, 200, 1000, 550);
@@ -272,7 +272,7 @@ public class AddEmployee extends JFrame implements ActionListener{
                             cs.setString("email", email);
                             cs.executeUpdate();
                             String sid = Integer.toString(id);
-                            logChange("INSERT","ADMINISTRATOR","EMPLOYEE","ID",sid);
+                            ChangeTracking.logChange("INSERT","ADMINISTRATOR","EMPLOYEE","ID",sid);
                         if(comboBox.getSelectedItem().equals("Άνδρας")){
                             JOptionPane.showMessageDialog(null, "Ο "+name+" προστέθηκε στους υπαλλήλους!");
                             this.setVisible(false);

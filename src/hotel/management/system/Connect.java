@@ -18,7 +18,7 @@ public class Connect {
             Class.forName("oracle.jdbc.driver.OracleDriver");  
             c =DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");
             
-            s =c.createStatement();  
+            s = c.createStatement();  
            
         }
         catch(Exception e){ 

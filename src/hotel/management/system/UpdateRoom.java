@@ -79,9 +79,9 @@ PreparedStatement pst = null;
                 c1 = new Choice();
                 try{
                     Connect c = new Connect();
-                    ResultSet rs = c.s.executeQuery("select * from customer");
+                    ResultSet rs = c.s.executeQuery("select * from room");
                     while(rs.next()){
-                        c1.add(rs.getString(2));    
+                        c1.add(rs.getString(1));    
                     }
                 }catch(Exception e){ }
                 c1.setBounds(160, 84, 140, 20);
@@ -117,18 +117,12 @@ PreparedStatement pst = null;
                             try{
                                 String s1 = c1.getSelectedItem();
 				Connect c = new Connect();
-                                ResultSet rs1 = c.s.executeQuery("select * from customer where ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ = "+s1);
+                                ResultSet rs1 = c.s.executeQuery("select * from room where ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ = "+s1);
                                 
                                 while(rs1.next()){
-                                    txt_Room.setText(rs1.getString(2));    
-                                }
-                            }catch(Exception ee){}
-                            try{
-                                Connect c  = new Connect();
-                                ResultSet rs2 = c.s.executeQuery("select * from room where ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ = '"+txt_Room.getText()+"'");
-                                while(rs2.next()){
-                                    txt_Ava.setText(rs2.getString("Διαθεσιμοτητα")); 
-                                    txt_Status.setText(rs2.getString("Καθαρισμος"));
+                                    txt_Room.setText(rs1.getString(1));
+                                    txt_Ava.setText(rs1.getString(2)); 
+                                    txt_Status.setText(rs1.getString(3));
                                 }
                             }catch(Exception ee){}
                         }
@@ -146,6 +140,7 @@ PreparedStatement pst = null;
                                     Connect c = new Connect();
                                     String str = "update room set Καθαρισμος = '"+txt_Status.getText()+"' where ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ  = '"+txt_Room.getText()+"'";
                                     c.s.executeUpdate(str);
+                                    ChangeTracking.logChange("UPDATE","ADMINISTRATOR","ROOM","ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ",txt_Room.getText());
                                     JOptionPane.showMessageDialog(null, "Update Sucessful");
                                     
                                     new Reception().setVisible(true);
