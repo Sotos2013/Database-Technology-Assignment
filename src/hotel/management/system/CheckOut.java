@@ -139,10 +139,10 @@ public class CheckOut extends JFrame{
 		btnCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                                 String id_num = (String) combobox.getSelectedItem();
-                                  String s1 = t1.getText();
-				String deleteSQL = "Delete from customer where Αριθμός_Εγγράφου = '"+id_num+"'";
-                                String q2 = "update room set Διαθεσιμότητα = 'Διαθέσιμο' where Αριθμός_δωματίου = "+s1;
-                                String q3 = "update room set Καθαρισμός = 'Καθαρό' where Αριθμός_δωματίου = "+s1;
+                                String s1 = t1.getText();
+				String deleteSQL = "Delete from customer where ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ = '"+id_num+"'";
+                                String q2 = "update room set ΔΙΑΘΕΣΙΜΟΤΗΤΑ = 'Διαθέσιμο' where ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ = "+s1;
+                                String q3 = "update room set ΚΑΘΑΡΙΣΜΟΣ = 'Καθαρό' where ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ = "+s1;
                                 
                                 
 				Connect c = new Connect();
@@ -153,6 +153,8 @@ public class CheckOut extends JFrame{
 	    			c.s.executeUpdate(deleteSQL);
 	    			c.s.executeUpdate(q2);
                                 c.s.executeUpdate(q3);
+                                ChangeTracking.logChange("DELETE","ADMINISTRATOR","CUSTOMER","ID",id_num);
+                                ChangeTracking.logChange("UPDATE","ADMINISTRATOR","ROOM","ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ",s1);                               
 	    			JOptionPane.showMessageDialog(null, "Check Out Successful");
 	    			new Reception().setVisible(true);
                                 setVisible(false);

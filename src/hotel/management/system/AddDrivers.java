@@ -200,6 +200,8 @@ public class AddDrivers extends JFrame implements ActionListener{
                         cs.setString("Car", car);
                         cs.setString("Availability", availability);
                         cs.executeUpdate();
+                        String sid = Integer.toString(id);
+                        ChangeTracking.logChange("INSERT","ADMINISTRATOR","DRIVER","ID",sid);
                         if(comboBox.getSelectedItem().equals("Άνδρας")){
                             JOptionPane.showMessageDialog(null, "Ο "+name+" προστέθηκε στους οδηγούς!");
                             this.setVisible(false);
