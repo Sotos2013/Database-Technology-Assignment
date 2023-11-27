@@ -21,12 +21,12 @@ public class Reception extends JFrame {
 	
 	public Reception(){
 		
-                setBounds(530, 200, 250,600 );
+                setBounds(530, 200, 250,450 );
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-             setLocationRelativeTo(null);
-        setResizable(false);
+                setLocationRelativeTo(null);
+                setResizable(false);
                 
               // ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/fourth.jpg"));
                 //Image i3 = i1.getImage().getScaledInstance(500, 500,Image.SCALE_DEFAULT);
@@ -52,6 +52,8 @@ public class Reception extends JFrame {
                 btnNewCustomerForm.setForeground(Color.WHITE);
 		contentPane.add(btnNewCustomerForm);
 		
+                
+                
 		JButton btnNewButton = new JButton("Δωμάτιο");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -69,8 +71,29 @@ public class Reception extends JFrame {
 		btnNewButton.setBounds(10, 70, 200, 30);
                 btnNewButton.setBackground(Color.BLACK);
                 btnNewButton.setForeground(Color.WHITE);
-
 		contentPane.add(btnNewButton);
+                
+                
+                
+                JButton btnNewLog = new JButton("Αρχείο");
+		btnNewLog.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+				LogInfo logInfo = new LogInfo();
+				logInfo.setVisible(true);
+                                setVisible(false);
+				}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		btnNewLog.setBounds(10, 110, 200, 30);
+                btnNewLog.setBackground(Color.BLACK);
+                btnNewLog.setForeground(Color.WHITE);
+
+		contentPane.add(btnNewLog);
 		
 		
 		JButton btnNewButton_2 = new JButton("Στοιχεία υπάλληλων");
@@ -99,7 +122,6 @@ public class Reception extends JFrame {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					//error ---------------------
 					CustomerInfo customer = new CustomerInfo();
 					customer.setVisible(true);				
 					setVisible(false);
@@ -109,30 +131,12 @@ public class Reception extends JFrame {
 				}
 			}
 		});
-		btnNewButton_3.setBounds(10, 190, 200, 30);
+		btnNewButton_3.setBounds(10, 150, 200, 30);
                 btnNewButton_3.setBackground(Color.BLACK);
                 btnNewButton_3.setForeground(Color.WHITE);
 
 		contentPane.add(btnNewButton_3);
 		
-		JButton btnManagerInfo = new JButton("Manager Info");
-		btnManagerInfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
-				ManagerInfo mana = new ManagerInfo();
-				mana.setVisible(true);
-                                setVisible(false);
-				}
-				catch (Exception e1){
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnManagerInfo.setBounds(10, 230, 200, 30);
-                btnManagerInfo.setBackground(Color.BLACK);
-                btnManagerInfo.setForeground(Color.WHITE);
-
-		contentPane.add(btnManagerInfo);
 		
 		JButton btnNewButton_4 = new JButton("Check Out");
 		btnNewButton_4.addActionListener(new ActionListener() {
@@ -148,30 +152,12 @@ public class Reception extends JFrame {
 				}
 			}
 		});
-		btnNewButton_4.setBounds(10, 270, 200, 30);
+		btnNewButton_4.setBounds(10, 190, 200, 30);
                 btnNewButton_4.setBackground(Color.BLACK);
                 btnNewButton_4.setForeground(Color.WHITE);
 
 		contentPane.add(btnNewButton_4);
-		
-		/*JButton btnNewButton_5 = new JButton("Ενημέρωση κατάστασης");
-		btnNewButton_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
-				UpdateCheck update = new UpdateCheck();
-				update.setVisible(true);
-                                setVisible(false);
-				}
-				catch(Exception e1){
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton_5.setBounds(10, 310, 200, 30);
-                btnNewButton_5.setBackground(Color.BLACK);
-                btnNewButton_5.setForeground(Color.WHITE);
 
-		contentPane.add(btnNewButton_5); */
 		
 		JButton btnNewButton_6 = new JButton("Ενημέρωση Δωματίου");
 		btnNewButton_6.addActionListener(new ActionListener() {
@@ -186,13 +172,13 @@ public class Reception extends JFrame {
 				}
 			}
 		});
-		btnNewButton_6.setBounds(10, 350, 200, 30);
+		btnNewButton_6.setBounds(10, 230, 200, 30);
                 btnNewButton_6.setBackground(Color.BLACK);
                 btnNewButton_6.setForeground(Color.WHITE);
 
 		contentPane.add(btnNewButton_6);
 		
-		JButton btnPickUpSerice = new JButton("Υπηρεσία παραλαβής πελάτη");
+		JButton btnPickUpSerice = new JButton("Οδηγοί");
 		btnPickUpSerice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
@@ -205,7 +191,7 @@ public class Reception extends JFrame {
 				}
 			}
 		});
-		btnPickUpSerice.setBounds(10, 390, 200, 30);
+		btnPickUpSerice.setBounds(10, 270, 200, 30);
                 btnPickUpSerice.setBackground(Color.BLACK);
                 btnPickUpSerice.setForeground(Color.WHITE);
 
@@ -224,7 +210,7 @@ public class Reception extends JFrame {
 				}
 			}
 		});
-		btnSearchRoom.setBounds(10, 430, 200, 30);
+		btnSearchRoom.setBounds(10, 310, 200, 30);
                 btnSearchRoom.setBackground(Color.BLACK);
                 btnSearchRoom.setForeground(Color.WHITE);
 
@@ -243,7 +229,7 @@ public class Reception extends JFrame {
 				
 			}
 		});
-		btnNewButton_7.setBounds(10, 470, 200, 30);
+		btnNewButton_7.setBounds(10, 350, 200, 30);
                 btnNewButton_7.setBackground(Color.BLACK);
                 btnNewButton_7.setForeground(Color.WHITE);
 
