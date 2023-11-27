@@ -272,7 +272,6 @@ public class AddEmployee extends JFrame implements ActionListener{
                             cs.setString("email", email);
                             cs.executeUpdate();
                             String sid = Integer.toString(id);
-                            ChangeTracking.logChange("INSERT","ADMINISTRATOR","EMPLOYEE","ID",sid);
                         if(comboBox.getSelectedItem().equals("Άνδρας")){
                             JOptionPane.showMessageDialog(null, "Ο "+name+" προστέθηκε στους υπαλλήλους!");
                             this.setVisible(false);

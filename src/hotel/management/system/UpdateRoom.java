@@ -140,7 +140,6 @@ PreparedStatement pst = null;
                                     Connect c = new Connect();
                                     String str = "update room set Καθαρισμος = '"+txt_Status.getText()+"' where ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ  = '"+txt_Room.getText()+"'";
                                     c.s.executeUpdate(str);
-                                    ChangeTracking.logChange("UPDATE","ADMINISTRATOR","ROOM","ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ",txt_Room.getText());
                                     JOptionPane.showMessageDialog(null, "Update Sucessful");
                                     
                                     new Reception().setVisible(true);

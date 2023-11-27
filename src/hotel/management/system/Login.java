@@ -105,7 +105,6 @@ public class Login extends JFrame implements ActionListener{
                 cs.setString(2, HashPass);
                 cs.registerOutParameter(3, oracle.jdbc.OracleTypes.CURSOR);
                 cs.executeQuery();
-                ChangeTracking.logChange("LOGIN", "ADMINISTRATOR", "LOGIN", "","");
                 ResultSet rs = (ResultSet) cs.getObject(3);
                 if(rs.next()){ 
                     new Dashboard().setVisible(true);

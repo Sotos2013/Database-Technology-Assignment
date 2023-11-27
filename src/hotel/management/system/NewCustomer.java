@@ -227,7 +227,6 @@ public class NewCustomer extends JFrame {
                                     cs.setInt(8, days);
                                     cs.setInt(9, pay);
                                     cs.executeUpdate();
-                                    ChangeTracking.logChange("INSERT","ADMINISTRATOR","CUSTOMER","ΑΡΙΘΜΟΣ_ΕΓΓΡΑΦΟΥ",id_num);
                                     JOptionPane.showMessageDialog(null, "Data Inserted Successfully");
                                     new Reception().setVisible(true);
                                     setVisible(false);
