@@ -86,7 +86,6 @@ public class Login extends JFrame implements ActionListener{
       
         if(ae.getSource()==b1 ){
             try{
-                //Connect c1 = new Connect();
                 String u = t1.getText();
                 String v = t2.getText();
                 MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -98,7 +97,6 @@ public class Login extends JFrame implements ActionListener{
                 String HashPass = hexString.toString();
                 Connection con;
                 CallableStatement cs;
-                Connect c = new Connect();
                 con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187","mydata");
                 cs = con.prepareCall("{ call LOGINC(?,?,?)}");
                 cs.setString(1, u);

@@ -18,8 +18,6 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 public class NewCustomer extends JFrame {
-	Connection conn = null;
-	PreparedStatement pst = null;
 	private JPanel contentPane;
 	private JTextField t1,t2,t3,t4,t5,t6,t8;
         JComboBox comboBox,comboBox2;
@@ -125,45 +123,56 @@ public class NewCustomer extends JFrame {
                 //7
                 
 		JLabel lblReserveRoomNumber = new JLabel("Αριθμός Δωματίου :");
-		lblReserveRoomNumber.setBounds(35, 314, 200, 14);
+		lblReserveRoomNumber.setBounds(35, 356, 200, 14);
 		contentPane.add(lblReserveRoomNumber);
                 
                 c1 = new JComboBox();
                 int Totalpay;
+                Connection con;
+                CallableStatement cs;
                 try{
-                    Connect c = new Connect();
-                    ResultSet rs = c.s.executeQuery("select * from room where Διαθεσιμότητα = 'Διαθέσιμο'");
-                    while(rs.next()){
-                        c1.addItem(rs.getString(1));    
+                    con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");
+                    cs = con.prepareCall("{ call GET_AV_ROOM(?)}");
+                    cs.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+                    cs.executeQuery();
+                    ResultSet rs2 = (ResultSet) cs.getObject(1);
+                    while(rs2.next()){
+                        c1.addItem(rs2.getString(1));    
                     }
                 }catch(Exception e){ }
                 c1.addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                    try{
-                        int totalpay;
-                        Connect c = new Connect();
-                        ResultSet rs = c.s.executeQuery("select Τιμή from room WHERE room.Αριθμός_δωματίου = '"+(String)c1.getSelectedItem()+"'");
-                        while(rs.next()){
-                            int price = Integer.parseInt(rs.getString(1));
-                            int days = Integer.parseInt(t5.getText());
-                            totalpay = price*days;
-                            String tPay = String.valueOf(totalpay);
-                            t6.setText(tPay);
+                        Connection con;
+                        CallableStatement cs;
+                        try{
+                            int totalpay;
+                            con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");
+                            cs = con.prepareCall("{ call GET_ROOM_PRICE(?,?)}");
+                            cs.setString(1, (String) c1.getSelectedItem());
+                            cs.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+                            cs.executeQuery();
+                            ResultSet rs = (ResultSet) cs.getObject(2);
+                            while(rs.next()){
+                                int price = Integer.parseInt(rs.getString(1));
+                                int days = Integer.parseInt(t5.getText());
+                                totalpay = price*days;
+                                String tPay = String.valueOf(totalpay);
+                                t6.setText(tPay);
+                            }
+                        }catch(Exception ee){ }
                         }
-                    }catch(Exception ee){ }
-                    }
                 
                 });
-                c1.setBounds(271, 314, 150, 20);
+                c1.setBounds(271, 356, 150, 20);
 		contentPane.add(c1);
 		
                 //8
 		JLabel lblCheckInStatus = new JLabel("Ημέρες Διαμονής :");
-		lblCheckInStatus.setBounds(35, 356, 200, 14);
+		lblCheckInStatus.setBounds(35, 314, 200, 14);
 		contentPane.add(lblCheckInStatus);
 		t5 = new JTextField();
-		t5.setBounds(271, 356, 150, 20);
+		t5.setBounds(271, 314, 150, 20);
 		contentPane.add(t5);
 		t5.setColumns(10);
                 

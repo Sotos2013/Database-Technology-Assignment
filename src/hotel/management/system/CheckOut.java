@@ -45,12 +45,7 @@ public class CheckOut extends JFrame{
 		this.dispose();
 	}
 
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
 	public CheckOut() throws SQLException {
-		//conn = Javaconnect.getDBConnection();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(530, 200, 400, 294);
 		contentPane = new JPanel();

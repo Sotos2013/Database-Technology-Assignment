@@ -15,22 +15,15 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.text.NumberFormat;
+import javax.swing.text.NumberFormatter;
 
 public class UpdateRoom extends JFrame {
-Connection conn = null;
-PreparedStatement pst = null;
 	private JPanel contentPane;
-	private JTextField txt_ID;
-	private JTextField txt_Ava;
-	private JTextField txt_Status;
-	private JTextField txt_Room;
-        
+	private JTextField txt_Ava, txt_Status;
+        private JFormattedTextField txtPrice;
         Choice c1;
 
-	/**
-	 * Launch the application.
-     * @param args
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -47,21 +40,15 @@ PreparedStatement pst = null;
 		this.dispose();
 	}
 
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
 	public UpdateRoom() throws SQLException {
-		//conn = Javaconnect.getDBConnection();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(530, 200, 450, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-                 setLocationRelativeTo(null);
-                 
-        setResizable(false);
+                setLocationRelativeTo(null); 
+                setResizable(false);
                 
               
              
@@ -73,14 +60,19 @@ PreparedStatement pst = null;
 		lblUpdateRoomStatus.setBounds(85, 11, 206, 34);
 		contentPane.add(lblUpdateRoomStatus);
 		
-		JLabel lblNewLabel = new JLabel("ID:");
+		JLabel lblNewLabel = new JLabel("Αριθμός Δωματίου:");
 		lblNewLabel.setBounds(27, 87, 90, 14);
 		contentPane.add(lblNewLabel);
                 
                 c1 = new Choice();
+                Connection con;
+                CallableStatement cs;
                 try{
-                    Connect c = new Connect();
-                    ResultSet rs = c.s.executeQuery("select * from room");
+                    con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187", "mydata");
+                    cs = con.prepareCall("{ call GETROOM(?)}");
+                    cs.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+                    cs.executeQuery();
+                    ResultSet rs = (ResultSet) cs.getObject(1);
                     while(rs.next()){
                         c1.add(rs.getString(1));    
                     }
@@ -107,23 +99,34 @@ PreparedStatement pst = null;
 		contentPane.add(txt_Status);
 		txt_Status.setColumns(10);
                 
-                txt_Room = new JTextField();
-		txt_Room.setBounds(160, 130, 140, 20);
-		contentPane.add(txt_Room);
-		txt_Room.setColumns(10);
+                NumberFormat format = NumberFormat.getInstance();
+                NumberFormatter formatter = new NumberFormatter(format);
+                formatter.setValueClass(Integer.class);
+                formatter.setMinimum(0);
+                formatter.setMaximum(Integer.MAX_VALUE);
+                formatter.setAllowsInvalid(false);
+                formatter.setCommitsOnValidEdit(true);
+                txtPrice = new JFormattedTextField();
+		txtPrice.setBounds(160, 130, 140, 20);
+		contentPane.add(txtPrice);
+		txtPrice.setColumns(10);
                 
                 JButton b1 = new JButton("Έλεγχος");
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+                            Connection con;
+                            CallableStatement cs;
                             try{
-                                String s1 = c1.getSelectedItem();
-				Connect c = new Connect();
-                                ResultSet rs1 = c.s.executeQuery("select * from room where ΑΡΙΘΜΟΣ_ΔΩΜΑΤΙΟΥ = "+s1);
-                                
+                                con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187", "mydata");
+                                cs = con.prepareCall("{ call SEARCH_ROOM_NUM(?,?)}");
+                                cs.setInt(1, Integer.parseInt(c1.getSelectedItem()));
+                                cs.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+                                cs.executeQuery();
+                                ResultSet rs1 = (ResultSet) cs.getObject(2);
                                 while(rs1.next()){
-                                    txt_Room.setText(rs1.getString(1));
                                     txt_Ava.setText(rs1.getString(2)); 
                                     txt_Status.setText(rs1.getString(3));
+                                    txtPrice.setText(rs1.getString(4));
                                 }
                             }catch(Exception ee){}
                         }
@@ -140,17 +143,21 @@ PreparedStatement pst = null;
                             CallableStatement cs;
 				try{
                                     con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");
-                                    cs =con.prepareCall("{ call UPDATE_ROOM(?,?)}");
-                                    cs.setString(1, txt_Status.getText());
-                                    int room_num = Integer.parseInt(txt_Room.getText());
-                                    cs.setInt(2, room_num);
+                                    cs =con.prepareCall("{ call UPDATE_ROOM(?,?,?,?)}");
+                                    cs.setString(1, txtPrice.getText());
+                                    cs.setString(2, txt_Status.getText());
+                                    cs.setString(3, txt_Ava.getText());
+                                    cs.setString(4, c1.getSelectedItem());
                                     cs.executeUpdate();
-                                    JOptionPane.showMessageDialog(null, "Update Sucessful");
+                                    JOptionPane.showMessageDialog(null, "Update Successful");
                                     
                                     new Reception().setVisible(true);
                                     setVisible(false);
 				}catch (Exception ee){
-					ee.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Κάτι πήγε στραβά. Δοκιμάστε πάλι!");
+                                        txt_Ava.setText(""); 
+                                        txt_Status.setText("");
+                                        txtPrice.setText("");
 				}
 				
 			
@@ -174,9 +181,9 @@ PreparedStatement pst = null;
                 btnExit.setForeground(Color.WHITE);
 		contentPane.add(btnExit);
 		
-		JLabel lblRoomId = new JLabel("Νο. Δωματιου:");
-		lblRoomId.setBounds(27, 133, 100, 14);
-		contentPane.add(lblRoomId);
+		JLabel lblRoomPrice = new JLabel("Τιμή:");
+		lblRoomPrice.setBounds(27, 133, 100, 14);
+		contentPane.add(lblRoomPrice);
 		
 		getContentPane().setBackground(Color.WHITE);
 	}

@@ -76,11 +76,17 @@ public class PickUp extends JFrame {
 
 		
                 c1 = new Choice();
+                Connection con;
+                CallableStatement cs;
+                c1.add("Όλα");
                 try{
-                    Connect c = new Connect();
-                    ResultSet rs = c.s.executeQuery("select * from driver");
+                    con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");
+                    cs = con.prepareCall("{ call GETDRIVER(?)}");
+                    cs.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+                    cs.executeQuery();
+                    ResultSet rs = (ResultSet) cs.getObject(1);
                     while(rs.next()){
-                        c1.add(rs.getString("brand"));    
+                        c1.add(rs.getString(6));    
                     }
                 }catch(Exception e){ }
                 c1.setBounds(123, 94, 150, 25);
@@ -95,21 +101,29 @@ public class PickUp extends JFrame {
 		JButton btnRegister = new JButton("Εμφάνιση");
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String SQL = "select * from driver";
-				try{
-				
-					Connect c = new Connect();
-					rs = c.s.executeQuery(SQL);
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-					
-					
-				}catch (SQLException ss)
-				{
-					ss.printStackTrace();
-				}
-				
-				
+                            Connection con;
+                            CallableStatement cs;
+                            try{
+                                if(c1.getSelectedItem()!="Όλα"){
+                                    con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");
+                                    cs = con.prepareCall("{ call GET_DRIVER_CAR(?,?)}");
+                                    cs.setString(1, c1.getSelectedItem());
+                                    cs.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+                                    cs.executeQuery();
+                                    ResultSet rs = (ResultSet) cs.getObject(2);
+                                    table.setModel(DbUtils.resultSetToTableModel(rs));
+                                }
+                                else{
+                                    con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");
+                                    cs = con.prepareCall("{ call GETDRIVER(?)}");
+                                    cs.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+                                    cs.executeQuery();
+                                    ResultSet rs = (ResultSet) cs.getObject(1);
+                                    table.setModel(DbUtils.resultSetToTableModel(rs));
+                                }
+                            }catch (SQLException ss){
+                                ss.printStackTrace();
+                            }
 			}
 		});
                 JButton btnprint =new JButton("Εκτύπωση");

@@ -40,9 +40,6 @@ public class LogInfo extends JFrame {
         private JButton btnDelData;
         private JButton btnprint;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -55,14 +52,10 @@ public class LogInfo extends JFrame {
 			}
 		});
 	}
-	public void close()
-	{
+	public void close(){
 		this.dispose();
 	}
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
+
 	public LogInfo() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(530, 200, 1100, 600);

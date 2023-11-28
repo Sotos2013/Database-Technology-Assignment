@@ -26,9 +26,6 @@ public class Employee extends JFrame {
 	private JTable table;
 	private JLabel lID, lName, lSurname, lAge, lGender, lJob, lSalary ,lPhone, lEmail;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -41,14 +38,10 @@ public class Employee extends JFrame {
 			}
 		});
 	}
-	public void close()
-	{
+	public void close(){
 		this.dispose();
 	}
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
+
 	public Employee() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(430, 200, 1000, 600);

@@ -31,22 +31,6 @@ public class AddEmployee extends JFrame implements ActionListener{
         new AddEmployee().setVisible(true);
     }
 
-    /*public static void logChange(String changeType, String user, String tableName, String primaryKeyColumn, String Value) {
-        try (Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata")) {
-            try (CallableStatement callableStatement = connection.prepareCall("{call log_change(?, ?, ?, ?, ?, ?)}")) {
-                callableStatement.setString(1, changeType);
-                callableStatement.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
-                callableStatement.setString(3, user);
-                callableStatement.setString(4, tableName);
-                callableStatement.setString(5, primaryKeyColumn);
-                callableStatement.setString(6, Value);
-                callableStatement.execute();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }*/
-
     public AddEmployee() {
         setBounds(450, 200, 420, 550);
 	contentPane = new JPanel();
@@ -187,7 +171,6 @@ public class AddEmployee extends JFrame implements ActionListener{
         try{
             if(ae.getSource() == b1){
                 try{
-                //Connect c = new Connect();
                 int id;
                 try {
                      id = Integer.parseInt(t1.getText());

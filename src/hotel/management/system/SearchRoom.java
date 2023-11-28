@@ -102,25 +102,37 @@ public class SearchRoom extends JFrame {
 		JButton btnSearch = new JButton("Αναζήτηση");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String SQL = "select * from room where Αριθμός_κρεβατιών = '"+c1.getSelectedItem()+"'";
-				String SQL2 = "select * from room where Διαθεσιμότητα = 'Διαθέσιμο' AND Αριθμός_κρεβατιών = '"+c1.getSelectedItem()+"'";
-			try{			
-                                Connect c = new Connect();
-				rs = c.s.executeQuery(SQL);
+                            Connection con;
+                            CallableStatement cs;
+                            try{			
+                                con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187", "mydata");
+                                cs = con.prepareCall("{ call SEARCH_ROOM(?,?)}");
+                                cs.setString(1, c1.getSelectedItem());
+                                cs.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+                                cs.executeQuery();
+                                ResultSet rs = (ResultSet) cs.getObject(2);
 				table.setModel(DbUtils.resultSetToTableModel(rs));
+				int trows = table.getRowCount();
+                                    if(trows==0){
+                                        JOptionPane.showMessageDialog(null, "Δεν υπάρχουν εγγραφές!","Ενημέρωση!", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                    else if(checkRoom.isSelected()){
+                                        cs = con.prepareCall("{ call SEARCH_FREE_ROOM(?,?)}");
+                                        cs.setString(1, c1.getSelectedItem());
+                                        cs.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+                                        cs.executeQuery();
+                                        ResultSet rs2 = (ResultSet) cs.getObject(2);
+					table.setModel(DbUtils.resultSetToTableModel(rs2));
+                                        int trows2 = table.getRowCount();
+                                        if(trows2==0){
+                                            JOptionPane.showMessageDialog(null, "Δεν υπάρχουν ελέυθερα δωμάτια!","Ενημέρωση!", JOptionPane.ERROR_MESSAGE);
+                                        }
+                                    }
 				
-				if(checkRoom.isSelected())
-				{	
-					rs = c.s.executeQuery(SQL2);
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-				}
 				
-				
-			}catch (SQLException ss)
-			{
+                            }catch (SQLException ss){
 				ss.printStackTrace();
-			}
-			
+                            }
 			}
 		});
 		btnSearch.setBounds(200, 400, 120, 30);

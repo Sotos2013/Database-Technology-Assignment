@@ -69,12 +69,15 @@ public class Room extends JFrame {
 		JButton btnLoadData = new JButton("Εμφάνιση");
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+                            Connection con;
+                            CallableStatement cs;
 				try{
-                                    Connect c = new Connect();
-					String displayCustomersql = "select * from Room";
-					//PreparedStatement pst = conn.prepareStatement(displayCustomersql);
-					ResultSet rs = c.s.executeQuery(displayCustomersql);
-					table.setModel(DbUtils.resultSetToTableModel(rs));
+                                    con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");
+                                    cs = con.prepareCall("{ call GETROOM(?)}");
+                                    cs.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+                                    cs.executeQuery();
+                                    ResultSet rs = (ResultSet) cs.getObject(1);
+                                    table.setModel(DbUtils.resultSetToTableModel(rs));
 					
 					
 				}
