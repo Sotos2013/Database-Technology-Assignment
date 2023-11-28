@@ -27,13 +27,6 @@ public class Reception extends JFrame {
 		contentPane.setLayout(null);
                 setLocationRelativeTo(null);
                 setResizable(false);
-                
-              // ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/fourth.jpg"));
-                //Image i3 = i1.getImage().getScaledInstance(500, 500,Image.SCALE_DEFAULT);
-               // ImageIcon i2 = new ImageIcon(i3);
-                //JLabel l1 = new JLabel(i2);
-               // l1.setBounds(250,30,500,470);
-               // add(l1);
 		
 		JButton btnNewCustomerForm = new JButton("Καταχώριση νέου πελάτη");
 		btnNewCustomerForm.addActionListener(new ActionListener() {
@@ -131,7 +124,7 @@ public class Reception extends JFrame {
 				}
 			}
 		});
-		btnNewButton_3.setBounds(10, 150, 200, 30);
+		btnNewButton_3.setBounds(10, 190, 200, 30);
                 btnNewButton_3.setBackground(Color.BLACK);
                 btnNewButton_3.setForeground(Color.WHITE);
 
@@ -152,7 +145,7 @@ public class Reception extends JFrame {
 				}
 			}
 		});
-		btnNewButton_4.setBounds(10, 190, 200, 30);
+		btnNewButton_4.setBounds(10, 230, 200, 30);
                 btnNewButton_4.setBackground(Color.BLACK);
                 btnNewButton_4.setForeground(Color.WHITE);
 
@@ -172,7 +165,7 @@ public class Reception extends JFrame {
 				}
 			}
 		});
-		btnNewButton_6.setBounds(10, 230, 200, 30);
+		btnNewButton_6.setBounds(10, 270, 200, 30);
                 btnNewButton_6.setBackground(Color.BLACK);
                 btnNewButton_6.setForeground(Color.WHITE);
 
@@ -191,7 +184,7 @@ public class Reception extends JFrame {
 				}
 			}
 		});
-		btnPickUpSerice.setBounds(10, 270, 200, 30);
+		btnPickUpSerice.setBounds(10, 310, 200, 30);
                 btnPickUpSerice.setBackground(Color.BLACK);
                 btnPickUpSerice.setForeground(Color.WHITE);
 
@@ -210,7 +203,7 @@ public class Reception extends JFrame {
 				}
 			}
 		});
-		btnSearchRoom.setBounds(10, 310, 200, 30);
+		btnSearchRoom.setBounds(10, 350, 200, 30);
                 btnSearchRoom.setBackground(Color.BLACK);
                 btnSearchRoom.setForeground(Color.WHITE);
 
@@ -229,7 +222,7 @@ public class Reception extends JFrame {
 				
 			}
 		});
-		btnNewButton_7.setBounds(10, 350, 200, 30);
+		btnNewButton_7.setBounds(10, 390, 200, 30);
                 btnNewButton_7.setBackground(Color.BLACK);
                 btnNewButton_7.setForeground(Color.WHITE);
 

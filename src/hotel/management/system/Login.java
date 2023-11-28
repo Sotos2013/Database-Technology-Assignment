@@ -116,21 +116,27 @@ public class Login extends JFrame implements ActionListener{
                         t2.setText("");
                     }
                     else if(result==1){
-                                setVisible(false);
-                                }
+                        setVisible(false);
                     }
+                }
                 
             }catch(Exception e){
                 e.printStackTrace();
             }
         }
          if(ae.getSource()==b2){
-            this.dispose();
+            Object[] options= {"Ναι", "Όχι"};
+            int result =JOptionPane.showOptionDialog(null, "Το πρόγραμμα θα τερματιστεί! Θέλετε να αποχωρήσετε;","Έξοδος!",JOptionPane.DEFAULT_OPTION,JOptionPane.PLAIN_MESSAGE,null,options,options[0]);
+            if(result==0){
+                this.dispose();
+                System.exit(0);
+            }
+            else if(result==1){
+                JOptionPane.getRootFrame().dispose();
+                t1.setText("");
+                t2.setText("");
+            }
         }
-      
-            
-                 
-        
     }
     public static void main(String[] arg){
         new Login();
