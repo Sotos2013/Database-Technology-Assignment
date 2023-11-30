@@ -32,13 +32,12 @@ public class NewCustomer extends JFrame {
 	}
 
 	public NewCustomer() throws SQLException {
-		
                 setBounds(530, 200, 550, 550);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-                   setLocationRelativeTo(null);
-        setResizable(false);
+                setLocationRelativeTo(null);
+                setResizable(false);
               
 		
 		JLabel lblName = new JLabel("Καταχώρηση νέου πελάτη");

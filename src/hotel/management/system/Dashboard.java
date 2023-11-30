@@ -105,6 +105,26 @@ public class Dashboard extends JFrame{
                 }catch(Exception e ){}
             }
 	});
+        JMenuItem FlightDetailshello5 = new JMenuItem("ΔΙΑΓΡΑΦΗ ΟΔΗΓΩΝ");
+	AirlineSystemHello.add(FlightDetailshello5);
+        
+	FlightDetailshello5.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                try{
+                    new DelDrivers().setVisible(true);
+                }catch(Exception e ){}
+            }
+	});
+        JMenuItem FlightDetailshello6 = new JMenuItem("ΔΙΑΓΡΑΦΗ ΔΩΜΑΤΙΩΝ");
+	AirlineSystemHello.add(FlightDetailshello6);
+        
+	FlightDetailshello6.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                try{
+                    new DelRoom().setVisible(true);
+                }catch(Exception e ){}
+            }
+	});
         
 		
         setSize(1950,1090);

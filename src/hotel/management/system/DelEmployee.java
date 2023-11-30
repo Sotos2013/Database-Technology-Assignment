@@ -42,7 +42,6 @@ public class DelEmployee extends JFrame{
 	}
 
 	public DelEmployee() throws SQLException {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(530, 200, 400, 294);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package hotel.management.system;
 
 import java.awt.BorderLayout;
@@ -41,7 +37,6 @@ public class UpdateRoom extends JFrame {
 	}
 
 	public UpdateRoom() throws SQLException {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(530, 200, 450, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

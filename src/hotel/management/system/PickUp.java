@@ -43,7 +43,6 @@ public class PickUp extends JFrame {
 	}
 
 	public PickUp() throws SQLException {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(530, 200, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

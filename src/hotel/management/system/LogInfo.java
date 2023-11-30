@@ -46,7 +46,6 @@ public class LogInfo extends JFrame {
 	}
 
 	public LogInfo() throws SQLException {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(530, 200, 1100, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -121,7 +120,7 @@ public class LogInfo extends JFrame {
                                     cs2 = con.prepareCall("{ call GETLOG(?)}");
                                     cs2.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
                                     cs2.executeQuery();
-                                    ResultSet rs = (ResultSet) cs.getObject(1);
+                                    ResultSet rs = (ResultSet) cs2.getObject(1);
                                     table.setModel(DbUtils.resultSetToTableModel(rs));
                                     table.setEnabled(false);
                                     JOptionPane.showMessageDialog(null, "Το αρχείο LOG άδειασε!","Ενημέρωση", JOptionPane.INFORMATION_MESSAGE);
@@ -175,7 +174,7 @@ public class LogInfo extends JFrame {
 		lblId.setBounds(31, 11, 46, 14);
 		contentPane.add(lblId);
                 
-                JLabel l1 = new JLabel("Αριθμός");
+                l1 = new JLabel("Αριθμός");
 		l1.setBounds(150, 11, 46, 14);
 		contentPane.add(l1);
 		
@@ -194,18 +193,7 @@ public class LogInfo extends JFrame {
 		lblCountry = new JLabel("Χώρα");
 		lblCountry.setBounds(480, 11, 46, 14);
 		contentPane.add(lblCountry);
-		
-		lblRoom = new JLabel("Δωμάτιο");
-		lblRoom.setBounds(580, 11, 50, 14);
-		contentPane.add(lblRoom);
-		
-		lblStatus = new JLabel("Check-in");
-		lblStatus.setBounds(680, 11, 100, 14);
-		contentPane.add(lblStatus);
-		
-		lblNewLabel_1 = new JLabel("Κατάθεση");
-		lblNewLabel_1.setBounds(800, 11, 100, 14);
-		contentPane.add(lblNewLabel_1);
+
                 
                 getContentPane().setBackground(Color.WHITE);
 	}
