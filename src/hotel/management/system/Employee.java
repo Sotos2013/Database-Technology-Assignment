@@ -5,7 +5,6 @@
  */
 package hotel.management.system;
 
-import java.awt.BorderLayout;
 import java.awt.*;
 
 import javax.swing.JFrame;
@@ -20,7 +19,6 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.text.MessageFormat;
-import static javax.management.Query.attr;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
@@ -61,6 +59,7 @@ public class Employee extends JFrame {
 		btnLoadData = new JButton("Φόρτωση");
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+                            btnprint.setEnabled(true);
 				Connection con;
                                 CallableStatement cs;
 				try{
@@ -107,6 +106,7 @@ public class Employee extends JFrame {
 		contentPane.add(btnLoadData);
                 
 		btnprint =new JButton("Εκτύπωση");
+                btnprint.setEnabled(false);
                 btnprint.addActionListener(new ActionListener() {
                          public void actionPerformed(ActionEvent e) {
                              MessageFormat header=new MessageFormat("Στοιχεία Υπαλλήλων");

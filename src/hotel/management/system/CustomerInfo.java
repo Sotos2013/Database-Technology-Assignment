@@ -22,14 +22,9 @@ import java.text.MessageFormat;
 
 public class CustomerInfo extends JFrame {
 	private JPanel contentPane;
-	private JLabel lblId;
-	private JLabel lblNewLabel;
-	private JLabel lblGender;
+	private JLabel lblId, lblNewLabel,lblGender, lblCountry, lblRoom, lblStatus, lblNewLabel_1, l1;
 	private JTable table;
-	private JLabel lblCountry;
-	private JLabel lblRoom;
-	private JLabel lblStatus;
-	private JLabel lblNewLabel_1;
+        private JButton btnprint, btnExit, btnLoadData;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -55,7 +50,7 @@ public class CustomerInfo extends JFrame {
 		contentPane.setLayout(null);
 
 		
-		JButton btnExit = new JButton("Πίσω");
+		btnExit = new JButton("Πίσω");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new Reception().setVisible(true);
@@ -67,9 +62,10 @@ public class CustomerInfo extends JFrame {
                 btnExit.setForeground(Color.WHITE);
 		contentPane.add(btnExit);
 		
-		JButton btnLoadData = new JButton("Φόρτωση");
+		btnLoadData = new JButton("Φόρτωση");
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+                            btnprint.setEnabled(true);
                             Connection con;
                             CallableStatement cs;
 				try{
@@ -81,9 +77,10 @@ public class CustomerInfo extends JFrame {
                                     table.setModel(DbUtils.resultSetToTableModel(rs));
                                     table.setEnabled(false);
                                     int trows = table.getRowCount();
-                                    if(trows==0)
-                                        JOptionPane.showMessageDialog(null, "Δεν υπάρχουν καταχωρημένοι πελάτες!",
-                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                                    if(trows==0){
+                                        JOptionPane.showMessageDialog(null, "Δεν υπάρχουν καταχωρημένοι πελάτες!","Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                                        btnprint.setEnabled(false);
+                                    }                                   
                                 }
 				catch(Exception e)
 				{
@@ -94,7 +91,8 @@ public class CustomerInfo extends JFrame {
 			
 		});
                 
-                JButton btnprint =new JButton("Εκτύπωση");
+                btnprint =new JButton("Εκτύπωση");
+                btnprint.setEnabled(false);
                 btnprint.addActionListener(new ActionListener() {
                          public void actionPerformed(ActionEvent e) {
                              MessageFormat header=new MessageFormat("Στοιχεία Πελατών");
@@ -122,7 +120,7 @@ public class CustomerInfo extends JFrame {
 		lblId.setBounds(31, 11, 46, 14);
 		contentPane.add(lblId);
                 
-                JLabel l1 = new JLabel("Αριθμός");
+                l1 = new JLabel("Αριθμός");
 		l1.setBounds(150, 11, 46, 14);
 		contentPane.add(l1);
 		
