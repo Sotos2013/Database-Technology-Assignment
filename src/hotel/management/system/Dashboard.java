@@ -95,6 +95,17 @@ public class Dashboard extends JFrame{
             }
 	});
         
+        JMenuItem FlightDetailshello4 = new JMenuItem("ΔΙΑΓΡΑΦΗ ΥΠΑΛΛΗΛΩΝ");
+	AirlineSystemHello.add(FlightDetailshello4);
+        
+	FlightDetailshello4.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                try{
+                    new DelEmployee().setVisible(true);
+                }catch(Exception e ){}
+            }
+	});
+        
 		
         setSize(1950,1090);
 	setVisible(true);

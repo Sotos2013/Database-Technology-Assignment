@@ -18,12 +18,12 @@ import java.awt.event.*;
 import java.awt.event.ActionEvent;
 
 public class DelEmployee extends JFrame{
-	Connection conn = null;
-	PreparedStatement pst = null;
 	private JPanel contentPane;
-	private JTextField t1;
-        private JButton btnCheckOut;
-        Choice c1;
+        private JButton btnCheckOut, btnExit;
+        private JComboBox combobox;
+        private JLabel lblDelEmployee, lblID;
+        
+        
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -54,16 +54,16 @@ public class DelEmployee extends JFrame{
                 
             
 		
-		JLabel lblCheckOut = new JLabel("Check Out ");
-		lblCheckOut.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblCheckOut.setBounds(110, 11, 140, 35);
-		contentPane.add(lblCheckOut);
+		lblDelEmployee = new JLabel("Διαγραφή Υπαλλήλου ");
+		lblDelEmployee.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblDelEmployee.setBounds(110, 11, 140, 35);
+		contentPane.add(lblDelEmployee);
 		
-		JLabel lblName = new JLabel("Αριθμός:");
-		lblName.setBounds(20, 85, 80, 14);
-		contentPane.add(lblName);
+		lblID = new JLabel("ID:");
+		lblID.setBounds(20, 85, 80, 14);
+		contentPane.add(lblID);
                 
-                JComboBox combobox = new JComboBox();
+                combobox = new JComboBox();
                 Connection con;
                 CallableStatement cs;
                 try{
@@ -76,6 +76,14 @@ public class DelEmployee extends JFrame{
                         combobox.addItem(rs.getString(1));
                     }
                 }catch(Exception e){ }
+                combobox.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        
+                        btnCheckOut.setEnabled(true);
+                    }
+                
+                });
                 combobox.setBounds(130, 82, 150, 20);
 		contentPane.add(combobox);
                 
@@ -84,16 +92,14 @@ public class DelEmployee extends JFrame{
 			public void actionPerformed(ActionEvent e) {
                             Connection c;
                             CallableStatement s;
-                                String id_num = (String) combobox.getSelectedItem();
-                                String s1 = t1.getText();
+                                int id_num = Integer.parseInt((String) combobox.getSelectedItem());
+                                
                                 try{
                                     c = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");                        
-                                    s = c.prepareCall("{ call DEL_CUSTOMER(?,?)}");
-                                    s.setString(1, id_num);
-                                    s.setString(2, s1);
+                                    s = c.prepareCall("{ call DEL_EMPLOYEE(?)}");
+                                    s.setInt(1, id_num);
                                     s.executeQuery();
-                                    JOptionPane.showMessageDialog(null, "Check Out Successful");
-                                    new Reception().setVisible(true);
+                                    JOptionPane.showMessageDialog(null, "Ο υπάλληλος με ID "+id_num+" διαγράγηκε επιτυχώς!");
                                     setVisible(false);
                                 }catch(SQLException e1){
                                     System.out.println(e1.getMessage());
@@ -106,10 +112,9 @@ public class DelEmployee extends JFrame{
                 btnCheckOut.setForeground(Color.WHITE);
 		contentPane.add(btnCheckOut);
 		
-		JButton btnExit = new JButton("Πίσω");
+		btnExit = new JButton("Πίσω");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Reception().setVisible(true);
                                 setVisible(false);
 			}
 		});

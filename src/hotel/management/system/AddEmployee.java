@@ -9,23 +9,19 @@ package hotel.management.system;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
-import java.sql.Timestamp;
 
 
 public class AddEmployee extends JFrame implements ActionListener{
        
     private JPanel contentPane;
-    private JTextField t1,t2,t3,t4, t5, t6, t7,t8,t9,t10;
+    private JTextField t1,t2,t3,t6, t7,t8,t9;
     private JComboBox comboBox, comboBox2;
-    JLabel l9, l11;
+    private JLabel l9;
     JButton b1,b2;
-    Choice c1;
      
     public static void main(String[] args) {
         new AddEmployee().setVisible(true);
@@ -164,10 +160,6 @@ public class AddEmployee extends JFrame implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent ae){
-      
-            
-       
-     
         try{
             if(ae.getSource() == b1){
                 try{
@@ -205,14 +197,6 @@ public class AddEmployee extends JFrame implements ActionListener{
                          return;
                 }
                 String phone = t8.getText();
-                /*try {
-                     phone = Integer.parseInt(t8.getText());
-                     } catch (NumberFormatException L) { 
-                         JOptionPane.showMessageDialog(this, "Το πεδίο 'Τηλέφωνο' δέχεται μόνο ακέραιες τιμές!",
-                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
-                         t8.setText("");
-                         return;
-                }*/
                 String email = t9.getText();
                 String job = (String)comboBox2.getSelectedItem();
                 boolean isDigits = !phone.isEmpty() && phone.chars().allMatch(Character::isDigit);

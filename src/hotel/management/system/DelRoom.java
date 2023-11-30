@@ -1,10 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package hotel.management.system;
 
+import java.awt.BorderLayout;
 import java.awt.*;
 import java.awt.EventQueue;
 
@@ -17,17 +17,19 @@ import java.awt.Font;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 
-public class CheckOut extends JFrame{
+public class DelRoom extends JFrame{
 	private JPanel contentPane;
-	private JTextField t1;
-        private JButton btnCheckOut;
-
+        private JButton btnCheckOut, btnExit;
+        private JComboBox combobox;
+        private JLabel lblDelEmployee, lblID;
+        
+        
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CheckOut frame = new CheckOut();
+					DelRoom frame = new DelRoom();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,99 +41,64 @@ public class CheckOut extends JFrame{
 		this.dispose();
 	}
 
-	public CheckOut() throws SQLException {
+	public DelRoom() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(530, 200, 400, 294);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-                   setLocationRelativeTo(null);
-        setResizable(false);
+                setLocationRelativeTo(null);
+                setResizable(false);
 		
                 
             
 		
-		JLabel lblCheckOut = new JLabel("Check Out ");
-		lblCheckOut.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblCheckOut.setBounds(110, 11, 140, 35);
-		contentPane.add(lblCheckOut);
+		lblDelEmployee = new JLabel("Διαγραφή Δωματίου ");
+		lblDelEmployee.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblDelEmployee.setBounds(110, 11, 200, 35);
+		contentPane.add(lblDelEmployee);
 		
-		JLabel lblName = new JLabel("Αριθμός:");
-		lblName.setBounds(20, 85, 80, 14);
-		contentPane.add(lblName);
+		lblID = new JLabel("Αριθμός Δωματίου:");
+		lblID.setBounds(20, 85, 80, 14);
+		contentPane.add(lblID);
                 
-                JComboBox combobox = new JComboBox();
+                combobox = new JComboBox();
                 Connection con;
                 CallableStatement cs;
                 try{
                     con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187", "mydata");
-                    cs = con.prepareCall("{ call GETCUSTOMERS(?)}");
+                    cs = con.prepareCall("{ call GET_AV_ROOM(?)}");
                     cs.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
                     cs.executeQuery();
                     ResultSet rs = (ResultSet) cs.getObject(1);
                     while(rs.next()){
-                        combobox.addItem(rs.getString(2));
+                        combobox.addItem(rs.getString(1));
                     }
                 }catch(Exception e){ }
                 combobox.addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         btnCheckOut.setEnabled(true);
-                        Connection con;
-                        CallableStatement cs;
-                        try{
-                            con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187", "mydata");
-                            cs = con.prepareCall("{ call CHECKOUT(?,?)}");
-                            cs.setString(1, (String)combobox.getSelectedItem());
-                            cs.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
-                            cs.executeQuery();
-                            ResultSet rs = (ResultSet) cs.getObject(2);
-                            while(rs.next()){
-                                t1.setText(rs.getString(1));
-                            }
-                        }catch(Exception ee){ }
                     }
                 
                 });
                 combobox.setBounds(130, 82, 150, 20);
 		contentPane.add(combobox);
                 
-                
-
-		
-		JLabel lblRoomNumber = new JLabel("Νο. δωματίου:");
-		lblRoomNumber.setBounds(20, 132, 86, 20);
-		contentPane.add(lblRoomNumber);
-		
-		t1 = new JTextField();
-                t1.setText("");
-                t1.setBounds(130, 132, 150, 20);
-		contentPane.add(t1);
-                t1.setEditable(false);
-                
-                
-                
-                
-                
-                
-		
-                
-		btnCheckOut = new JButton("Check Out");
+		btnCheckOut = new JButton("Διαγραφή");
 		btnCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                             Connection c;
                             CallableStatement s;
-                                String id_num = (String) combobox.getSelectedItem();
-                                String s1 = t1.getText();
+                                int id_num = Integer.parseInt((String) combobox.getSelectedItem());
+                                
                                 try{
                                     c = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");                        
-                                    s = c.prepareCall("{ call DEL_CUSTOMER(?,?)}");
-                                    s.setString(1, id_num);
-                                    s.setString(2, s1);
+                                    s = c.prepareCall("{ call DEL_ROOM(?)}");
+                                    s.setInt(1, id_num);
                                     s.executeQuery();
-                                    JOptionPane.showMessageDialog(null, "Check Out Successful");
-                                    new Reception().setVisible(true);
+                                    JOptionPane.showMessageDialog(null, "Το δωμάτιο "+id_num+" διαγράγηκε επιτυχώς!");
                                     setVisible(false);
                                 }catch(SQLException e1){
                                     System.out.println(e1.getMessage());
@@ -144,10 +111,9 @@ public class CheckOut extends JFrame{
                 btnCheckOut.setForeground(Color.WHITE);
 		contentPane.add(btnCheckOut);
 		
-		JButton btnExit = new JButton("Πίσω");
+		btnExit = new JButton("Πίσω");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Reception().setVisible(true);
                                 setVisible(false);
 			}
 		});

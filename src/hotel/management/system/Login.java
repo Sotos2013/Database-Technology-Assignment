@@ -10,10 +10,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.security.MessageDigest;
-import static javax.swing.JOptionPane.YES_NO_OPTION;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Login extends JFrame implements ActionListener{
   

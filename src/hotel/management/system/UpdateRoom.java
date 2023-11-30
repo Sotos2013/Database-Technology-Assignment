@@ -69,7 +69,7 @@ public class UpdateRoom extends JFrame {
                 CallableStatement cs;
                 try{
                     con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187", "mydata");
-                    cs = con.prepareCall("{ call GETROOM(?)}");
+                    cs = con.prepareCall("{ call GET_AV_ROOM(?)}");
                     cs.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
                     cs.executeQuery();
                     ResultSet rs = (ResultSet) cs.getObject(1);
@@ -150,8 +150,6 @@ public class UpdateRoom extends JFrame {
                                     cs.setString(4, c1.getSelectedItem());
                                     cs.executeUpdate();
                                     JOptionPane.showMessageDialog(null, "Τα στοιχεία του δωματίου "+c1.getSelectedItem()+" ενημερώθηκαν επιτυχώς!");
-                                    
-                                    new Reception().setVisible(true);
                                     setVisible(false);
 				}catch (Exception ee){
 					JOptionPane.showMessageDialog(null, "Κάτι πήγε στραβά. Δοκιμάστε πάλι!");

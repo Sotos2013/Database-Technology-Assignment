@@ -8,18 +8,15 @@ package hotel.management.system;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.*;
 import java.awt.event.*;
 import java.sql.*;
-import java.util.*;
 
 public class AddRoom extends JFrame implements ActionListener{
 
     private JPanel contentPane;
-    private JTextField t1,t2,t3,t4;
-    private JComboBox comboBox, comboBox_1, comboBox_2, comboBox_3;
+    private JTextField t2,t4;
+    private JComboBox comboBox, comboBox_2, comboBox_3;
     JButton b1,b2;
-    Choice c1;
 
     public static void main(String[] args) {
         new AddRoom().setVisible(true);
@@ -125,7 +122,6 @@ public class AddRoom extends JFrame implements ActionListener{
             
             if(ae.getSource() == b1){
                 try{
-                //Connect c = new Connect();
                 int room_num;
                 try {
                      room_num = Integer.parseInt(t4.getText());

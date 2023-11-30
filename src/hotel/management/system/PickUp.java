@@ -22,16 +22,10 @@ import java.awt.event.ActionEvent;
 import java.text.MessageFormat;
 
 public class PickUp extends JFrame {
-	Connection conn = null;
-	PreparedStatement pst = null;
-	ResultSet rs = null;
 	private JPanel contentPane;
 	private JTable table;
         Choice c1;
-
-	/**
-	 * Launch the application.
-	 */
+        
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,25 +38,19 @@ public class PickUp extends JFrame {
 			}
 		});
 	}
-	public void close()
-	{
+	public void close(){
 		this.dispose();
 	}
 
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
 	public PickUp() throws SQLException {
-		//conn = Javaconnect.getDBConnection();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(530, 200, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-                   setLocationRelativeTo(null);
-        setResizable(false);
+                setLocationRelativeTo(null);
+                setResizable(false);
 		
 		
 		JLabel lblPickUpService = new JLabel("Υπηρεσία παραλαβής πελάτη");
@@ -132,22 +120,17 @@ public class PickUp extends JFrame {
                             
 		MessageFormat header=new MessageFormat("Στοιχεία παραλαβής πελατών");
                 MessageFormat footer=new MessageFormat("- {0} -");
-            try 
-            {
-
+            try {
                 table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
             }
 
-            catch(Exception ae)
-            { 
+            catch(Exception ae){ 
                 System.err.println("Error printing: " + ae.getMessage());
-
-                }
-        }
-			
+            }
+        }	
 		});
 		
-		   btnprint.setBounds(620, 500, 120, 30);
+		btnprint.setBounds(620, 500, 120, 30);
                 btnprint.setBackground(Color.BLACK);
                 btnprint.setForeground(Color.WHITE);
 		contentPane.add(btnprint);

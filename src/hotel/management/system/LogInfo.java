@@ -5,9 +5,7 @@
  */
 package hotel.management.system;
 
-import java.awt.BorderLayout;
 import java.awt.*;
-import static java.awt.PageAttributes.OrientationRequestedType.LANDSCAPE;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,22 +21,13 @@ import java.awt.event.ActionEvent;
 import java.awt.print.PageFormat;
 import java.awt.print.PrinterJob;
 import java.text.MessageFormat;
-import static javax.swing.JTable.PrintMode.FIT_WIDTH;
 import javax.swing.table.TableColumn;
 
 public class LogInfo extends JFrame {
-	Connection conn = null;
 	private JPanel contentPane;
-	private JLabel lblId;
-	private JLabel lblNewLabel;
-	private JLabel lblGender;
 	private JTable table;
-	private JLabel lblCountry;
-	private JLabel lblRoom;
-	private JLabel lblStatus;
-	private JLabel lblNewLabel_1;
-        private JButton btnDelData;
-        private JButton btnprint;
+	private JLabel lblNewLabel_1, l1, lblStatus, lblRoom, lblCountry, lblGender, lblNewLabel, lblId;
+        private JButton btnDelData, btnExit, btnLoadData, btnprint;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -65,7 +54,7 @@ public class LogInfo extends JFrame {
 		contentPane.setLayout(null);
 
 		
-		JButton btnExit = new JButton("Πίσω");
+		btnExit = new JButton("Πίσω");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new Reception().setVisible(true);
@@ -77,7 +66,7 @@ public class LogInfo extends JFrame {
                 btnExit.setForeground(Color.WHITE);
 		contentPane.add(btnExit);
 		
-		JButton btnLoadData = new JButton("Φόρτωση");
+		btnLoadData = new JButton("Φόρτωση");
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
                             btnDelData.setEnabled(true);
@@ -124,13 +113,15 @@ public class LogInfo extends JFrame {
 		btnDelData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
                             Connection con;
-                            CallableStatement cs;
+                            CallableStatement cs, cs2;
 				try{
                                     con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs","iee2019187", "mydata");
                                     cs = con.prepareCall("{ call DELLOG()}");
                                     cs.executeQuery();
-                                    String displayCustomersql = "select * from change_tracking";
-                                    ResultSet rs = cs.executeQuery(displayCustomersql);
+                                    cs2 = con.prepareCall("{ call GETLOG(?)}");
+                                    cs2.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+                                    cs2.executeQuery();
+                                    ResultSet rs = (ResultSet) cs.getObject(1);
                                     table.setModel(DbUtils.resultSetToTableModel(rs));
                                     table.setEnabled(false);
                                     JOptionPane.showMessageDialog(null, "Το αρχείο LOG άδειασε!","Ενημέρωση", JOptionPane.INFORMATION_MESSAGE);

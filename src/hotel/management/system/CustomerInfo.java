@@ -5,7 +5,6 @@
  */
 package hotel.management.system;
 
-import java.awt.BorderLayout;
 import java.awt.*;
 
 import javax.swing.JFrame;
@@ -22,7 +21,6 @@ import java.awt.event.ActionEvent;
 import java.text.MessageFormat;
 
 public class CustomerInfo extends JFrame {
-	Connection conn = null;
 	private JPanel contentPane;
 	private JLabel lblId;
 	private JLabel lblNewLabel;
@@ -33,9 +31,6 @@ public class CustomerInfo extends JFrame {
 	private JLabel lblStatus;
 	private JLabel lblNewLabel_1;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -48,16 +43,10 @@ public class CustomerInfo extends JFrame {
 			}
 		});
 	}
-	public void close()
-	{
+	public void close(){
 		this.dispose();
 	}
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
 	public CustomerInfo() throws SQLException {
-		//conn = Javaconnect.getDBConnection();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(530, 200, 900, 600);
 		contentPane = new JPanel();
