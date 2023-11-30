@@ -204,18 +204,18 @@ public class AddEmployee extends JFrame implements ActionListener{
                          t3.setText("");
                          return;
                 }
-                int phone;
-                try {
+                String phone = t8.getText();
+                /*try {
                      phone = Integer.parseInt(t8.getText());
-                      
-                     } catch (Exception z) { 
+                     } catch (NumberFormatException L) { 
                          JOptionPane.showMessageDialog(this, "Το πεδίο 'Τηλέφωνο' δέχεται μόνο ακέραιες τιμές!",
                             "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
                          t8.setText("");
                          return;
-                }
+                }*/
                 String email = t9.getText();
                 String job = (String)comboBox2.getSelectedItem();
+                boolean isDigits = !phone.isEmpty() && phone.chars().allMatch(Character::isDigit);
                 if(name.equals("")){
                     JOptionPane.showMessageDialog(this, "Το πεδίο 'Όνομα' δεν μπορεί να μείνει κενό!",
                             "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
@@ -233,23 +233,27 @@ public class AddEmployee extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(this, "Το πεδίο 'Email' δεν μπορεί να μείνει κενό!",
                             "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
                 }
+                else if(!isDigits){
+                    JOptionPane.showMessageDialog(this, "Το πεδίο 'Τηλέφωνο' δέχεται μόνο ακέραιες τιμές!",
+                            "Πρόβλημα με στοιχεία εισαγωγής!", JOptionPane.ERROR_MESSAGE);
+                         t8.setText("");
+                }
                 else{
                     Connection con;
                     CallableStatement cs;
                     try{
                             con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.6.21:1521:dblabs", "iee2019187", "mydata");                        
                             cs = con.prepareCall("{ call Add_Employee(?,?,?,?,?,?,?,?,?)}");
-                            cs.setInt("id", id);
-                            cs.setString("name", name);
-                            cs.setString("surname", surname);
-                            cs.setInt("age", age);
-                            cs.setString("sex", gender);
-                            cs.setString("job", job);
-                            cs.setInt("salary", salary);
-                            cs.setInt("phone", phone);
-                            cs.setString("email", email);
+                            cs.setInt(1, id);
+                            cs.setString(2, name);
+                            cs.setString(3, surname);
+                            cs.setInt(4, age);
+                            cs.setString(5, gender);
+                            cs.setString(6, job);
+                            cs.setInt(7, salary);
+                            cs.setString(8, phone);
+                            cs.setString(9, email);
                             cs.executeUpdate();
-                            String sid = Integer.toString(id);
                         if(comboBox.getSelectedItem().equals("Άνδρας")){
                             JOptionPane.showMessageDialog(null, "Ο "+name+" προστέθηκε στους υπαλλήλους!");
                             this.setVisible(false);

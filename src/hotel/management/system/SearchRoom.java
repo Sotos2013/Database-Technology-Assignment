@@ -29,9 +29,6 @@ public class SearchRoom extends JFrame {
 	private JTable table;
         Choice c1;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,17 +41,11 @@ public class SearchRoom extends JFrame {
 			}
 		});
 	}
-	public void close()
-	{
+	public void close(){
 		this.dispose();
 	}
 
-	/**
-	 * Create the frame.
-	 * @throws SQLException
-	 */
 	public SearchRoom() throws SQLException {
-		//conn = Javaconnect.getDBConnection();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(530, 200, 700, 500);
 		contentPane = new JPanel();

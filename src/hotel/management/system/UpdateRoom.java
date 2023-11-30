@@ -149,7 +149,7 @@ public class UpdateRoom extends JFrame {
                                     cs.setString(3, txt_Ava.getText());
                                     cs.setString(4, c1.getSelectedItem());
                                     cs.executeUpdate();
-                                    JOptionPane.showMessageDialog(null, "Update Successful");
+                                    JOptionPane.showMessageDialog(null, "Τα στοιχεία του δωματίου "+c1.getSelectedItem()+" ενημερώθηκαν επιτυχώς!");
                                     
                                     new Reception().setVisible(true);
                                     setVisible(false);
