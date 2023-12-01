@@ -26,7 +26,7 @@ import javax.swing.table.TableColumn;
 public class LogInfo extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
-	private JLabel lblNewLabel_1, l1, lblStatus, lblRoom, lblCountry, lblGender, lblNewLabel, lblId;
+	private JLabel lblNewLabel_1, l1, lblStatus, lblRoom, lblCountry, lblGender, lblNewLabel, lblId,lblpedio;
         private JButton btnDelData, btnExit, btnLoadData, btnprint;
 
 	public static void main(String[] args) {
@@ -51,6 +51,8 @@ public class LogInfo extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+                 setLocationRelativeTo(null);
+        setResizable(false);
 
 		
 		btnExit = new JButton("Πίσω");
@@ -170,28 +172,34 @@ public class LogInfo extends JFrame {
                 btnprint.setForeground(Color.WHITE);
 		contentPane.add(btnprint);
 		
-		lblId = new JLabel("ID");
-		lblId.setBounds(31, 11, 46, 14);
+		lblId = new JLabel("Αλλαγή");
+		lblId.setBounds(15, 11, 55, 14);
 		contentPane.add(lblId);
                 
-                l1 = new JLabel("Αριθμός");
-		l1.setBounds(150, 11, 46, 14);
+                l1 = new JLabel("Χρονοσήμανση");
+		l1.setBounds(100, 11, 100, 14);
 		contentPane.add(l1);
 		
-		lblNewLabel = new JLabel("Όνομα");
-		lblNewLabel.setBounds(270, 11, 65, 14);
+		lblNewLabel = new JLabel("Όνομα Χρήστη");
+		lblNewLabel.setBounds(210, 11, 130, 14);
 		contentPane.add(lblNewLabel);
 		
-		lblGender = new JLabel("Φύλο");
-		lblGender.setBounds(360, 11, 46, 14);
+		lblGender = new JLabel("Πίνακας");
+		lblGender.setBounds(310, 11, 46, 14);
 		contentPane.add(lblGender);
 		
 		table = new JTable();
 		table.setBounds(0, 40, 900, 450);
 		contentPane.add(table);
 		
-		lblCountry = new JLabel("Χώρα");
-		lblCountry.setBounds(480, 11, 46, 14);
+               
+                lblpedio = new JLabel("Πρ. Κλειδί");
+		lblpedio.setBounds(400, 11, 80, 14);
+		contentPane.add(lblpedio);
+
+                        
+		lblCountry = new JLabel("Πληροφορία");
+		lblCountry.setBounds(500, 11, 80, 14);
 		contentPane.add(lblCountry);
 
                 
