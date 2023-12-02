@@ -55,7 +55,7 @@ public class DelEmployee extends JFrame{
 		
 		lblDelEmployee = new JLabel("Διαγραφή Υπαλλήλου ");
 		lblDelEmployee.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblDelEmployee.setBounds(110, 11, 140, 35);
+		lblDelEmployee.setBounds(80, 11, 230, 35);
 		contentPane.add(lblDelEmployee);
 		
 		lblID = new JLabel("ID:");

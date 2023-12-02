@@ -57,7 +57,7 @@ public class DelRoom extends JFrame{
 		lblDelEmployee.setBounds(110, 11, 200, 35);
 		contentPane.add(lblDelEmployee);
 		
-		lblID = new JLabel("Αριθμός Δωματίου:");
+		lblID = new JLabel("Αρ. Δωματίου:");
 		lblID.setBounds(20, 85, 80, 14);
 		contentPane.add(lblID);
                 
