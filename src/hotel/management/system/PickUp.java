@@ -7,7 +7,6 @@ package hotel.management.system;
 
 
 
-import java.awt.BorderLayout;
 import java.awt.*;
 
 import java.sql.*;
@@ -81,7 +80,7 @@ public class PickUp extends JFrame {
 
                 
 		
-		JLabel lblInfo = new JLabel("Ονομα");
+		JLabel lblInfo = new JLabel("ID");
 		lblInfo.setBounds(24, 208, 46, 14);
 		contentPane.add(lblInfo);
 		
@@ -155,27 +154,27 @@ public class PickUp extends JFrame {
 		table.setBounds(0, 233, 800, 250);
 		contentPane.add(table);
 		
-		JLabel lblNewLabel = new JLabel("Ηλικία");
+		JLabel lblNewLabel = new JLabel("Όνομα");
 		lblNewLabel.setBounds(165, 208, 46, 14);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblGender = new JLabel("Φύλο");
+		JLabel lblGender = new JLabel("Επώνυμο");
 		lblGender.setBounds(264, 208, 46, 14);
 		contentPane.add(lblGender);
 		
-		JLabel lblTypeOfDriver = new JLabel("Εταιρία");
+		JLabel lblTypeOfDriver = new JLabel("Ηλικία");
 		lblTypeOfDriver.setBounds(366, 208, 80, 14);
 		contentPane.add(lblTypeOfDriver);
 		
-		JLabel lblDateOfThe = new JLabel("Μάρκα");
+		JLabel lblDateOfThe = new JLabel("Φύλο");
 		lblDateOfThe.setBounds(486, 208, 105, 14);
 		contentPane.add(lblDateOfThe);
 	
-		JLabel lblAirport = new JLabel("Διαθεσιμότητα");
+		JLabel lblAirport = new JLabel("Τύπος αυτοκινήτου");
 		lblAirport.setBounds(600, 208, 86, 14);
 		contentPane.add(lblAirport);
 		
-		JLabel lblAvailable = new JLabel("Τοποθεσία");
+		JLabel lblAvailable = new JLabel("Διαθεσιμότητα");
 		lblAvailable.setBounds(700, 208, 73, 14);
 		contentPane.add(lblAvailable);
                 

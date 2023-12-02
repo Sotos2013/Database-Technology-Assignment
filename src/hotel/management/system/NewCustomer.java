@@ -223,7 +223,7 @@ public class NewCustomer extends JFrame {
                                     cs.setInt(8, days);
                                     cs.setInt(9, pay);
                                     cs.executeUpdate();
-                                    JOptionPane.showMessageDialog(null, "Data Inserted Successfully");
+                                    JOptionPane.showMessageDialog(null, "Ο πελάτης με αριθμό εγγράφου "+id_num+" θα μείνει στο δωμάτιο "+room_num+" για "+days+" μέρες!");
                                     new Reception().setVisible(true);
                                     setVisible(false);
                                 }

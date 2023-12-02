@@ -172,7 +172,7 @@ public class Employee extends JFrame {
 		lPhone.setBounds(700, 11, 86, 14);
 		contentPane.add(lPhone);
                 
-                lEmail = new JLabel("Gmail");
+                lEmail = new JLabel("Email");
 		lEmail.setBounds(800, 11, 86, 14);
 		contentPane.add(lEmail);
                 

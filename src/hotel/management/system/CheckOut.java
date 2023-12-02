@@ -130,7 +130,7 @@ public class CheckOut extends JFrame{
                                     s.setString(1, id_num);
                                     s.setString(2, s1);
                                     s.executeQuery();
-                                    JOptionPane.showMessageDialog(null, "Check Out Successful");
+                                    JOptionPane.showMessageDialog(null, "Ο πελάτης με αριθμό εγγράφου "+id_num+" αποχώρησε και το δωμάτιο "+s1+" είναι ελεύθερο!");
                                     new Reception().setVisible(true);
                                     setVisible(false);
                                 }catch(SQLException e1){

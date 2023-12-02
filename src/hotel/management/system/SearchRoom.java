@@ -5,7 +5,6 @@
  */
 package hotel.management.system;
 
-import java.awt.BorderLayout;
 import java.awt.*;
 
 import java.sql.*;

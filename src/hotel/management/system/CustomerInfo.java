@@ -22,7 +22,7 @@ import java.text.MessageFormat;
 
 public class CustomerInfo extends JFrame {
 	private JPanel contentPane;
-	private JLabel lblId, lblNewLabel,lblGender, lblCountry, lblRoom, lblStatus, lblNewLabel_1, l1;
+	private JLabel lblId, lblNewLabel,lblGender, lblCountry, lblRoom, lblStatus, lblNewLabel_1, l1, lblNewLabel2;
 	private JTable table;
         private JButton btnprint, btnExit, btnLoadData;
 
@@ -43,7 +43,7 @@ public class CustomerInfo extends JFrame {
 	}
 	public CustomerInfo() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(530, 200, 900, 600);
+		setBounds(530, 200, 950, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,7 +57,7 @@ public class CustomerInfo extends JFrame {
                                 setVisible(false);
 			}
 		});
-		btnExit.setBounds(450, 510, 120, 30);
+		btnExit.setBounds(350, 510, 120, 30);
                 btnExit.setBackground(Color.BLACK);
                 btnExit.setForeground(Color.WHITE);
 		contentPane.add(btnExit);
@@ -106,12 +106,12 @@ public class CustomerInfo extends JFrame {
                  });
                 
                 
-		btnLoadData.setBounds(300, 510, 120, 30);
+		btnLoadData.setBounds(200, 510, 120, 30);
                 btnLoadData.setBackground(Color.BLACK);
                 btnLoadData.setForeground(Color.WHITE);
 		contentPane.add(btnLoadData);
                 
-                btnprint.setBounds(600, 510, 120, 30);
+                btnprint.setBounds(500, 510, 120, 30);
                 btnprint.setBackground(Color.BLACK);
                 btnprint.setForeground(Color.WHITE);
 		contentPane.add(btnprint);
@@ -121,15 +121,19 @@ public class CustomerInfo extends JFrame {
 		contentPane.add(lblId);
                 
                 l1 = new JLabel("Αριθμός");
-		l1.setBounds(150, 11, 46, 14);
+		l1.setBounds(110, 11, 46, 14);
 		contentPane.add(l1);
 		
 		lblNewLabel = new JLabel("Όνομα");
-		lblNewLabel.setBounds(270, 11, 65, 14);
+		lblNewLabel.setBounds(210, 11, 65, 14);
 		contentPane.add(lblNewLabel);
+                
+                lblNewLabel2 = new JLabel("Επώνυμο");
+		lblNewLabel2.setBounds(300, 11, 65, 14);
+		contentPane.add(lblNewLabel2);
 		
 		lblGender = new JLabel("Φύλο");
-		lblGender.setBounds(360, 11, 46, 14);
+		lblGender.setBounds(400, 11, 46, 14);
 		contentPane.add(lblGender);
 		
 		table = new JTable();
@@ -137,18 +141,18 @@ public class CustomerInfo extends JFrame {
 		contentPane.add(table);
 		
 		lblCountry = new JLabel("Χώρα");
-		lblCountry.setBounds(480, 11, 46, 14);
+		lblCountry.setBounds(510, 11, 46, 14);
 		contentPane.add(lblCountry);
 		
 		lblRoom = new JLabel("Δωμάτιο");
-		lblRoom.setBounds(580, 11, 50, 14);
+		lblRoom.setBounds(610, 11, 50, 14);
 		contentPane.add(lblRoom);
 		
-		lblStatus = new JLabel("Check-in");
-		lblStatus.setBounds(680, 11, 100, 14);
+		lblStatus = new JLabel("Ημέρες διαμονής");
+		lblStatus.setBounds(700, 11, 100, 14);
 		contentPane.add(lblStatus);
 		
-		lblNewLabel_1 = new JLabel("Κατάθεση");
+		lblNewLabel_1 = new JLabel("Ποσό πληρωμής");
 		lblNewLabel_1.setBounds(800, 11, 100, 14);
 		contentPane.add(lblNewLabel_1);
                 

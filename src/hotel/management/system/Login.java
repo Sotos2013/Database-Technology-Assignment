@@ -10,17 +10,13 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.security.MessageDigest;
-import java.text.SimpleDateFormat;
 
 public class Login extends JFrame implements ActionListener{
-  
     JLabel l1,l2;
     JTextField t1;
     JPasswordField t2;
     JButton b1,b2;
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-    
-
+ 
     Login(){
            
         super("Σύνδεση");
@@ -79,8 +75,6 @@ public class Login extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent ae){
-   
-      
         if(ae.getSource()==b1 ){
             try{
                 String u = t1.getText();

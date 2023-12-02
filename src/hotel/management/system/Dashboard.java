@@ -32,31 +32,31 @@ public class Dashboard extends JFrame{
 	NewLabel.setBounds(0, 0, 1950, 1000); 
         add(NewLabel);
         
-        JLabel AirlineManagementSystem = new JLabel("Πληροφοριακό σύστημα μηχανογράφησης ξενοδοχείου");
-	AirlineManagementSystem.setForeground(Color.WHITE);
-        AirlineManagementSystem.setFont(new Font("Tahoma", Font.PLAIN, 30));
-	AirlineManagementSystem.setBounds(600, 60, 1000, 85);
-	NewLabel.add(AirlineManagementSystem);
+        JLabel Label = new JLabel("Πληροφοριακό σύστημα μηχανογράφησης ξενοδοχείου");
+	Label.setForeground(Color.WHITE);
+        Label.setFont(new Font("Tahoma", Font.PLAIN, 30));
+	Label.setBounds(600, 60, 1000, 85);
+	NewLabel.add(Label);
 		
 		
         JMenuBar menuBar = new JMenuBar();
 	setJMenuBar(menuBar);
 		
-        JMenu AirlineSystem = new JMenu("Διαχείριση ξενοδοχείου ");
-        AirlineSystem.setForeground(Color.BLUE);
-	menuBar.add(AirlineSystem);
+        JMenu AdminBar = new JMenu("Διαχείριση ξενοδοχείου ");
+        AdminBar.setForeground(Color.BLUE);
+	menuBar.add(AdminBar);
 		
-        JMenuItem FlightDetails = new JMenuItem("RECEPTION");
-	AirlineSystem.add(FlightDetails);
+        JMenuItem Reception = new JMenuItem("RECEPTION");
+	AdminBar.add(Reception);
 		
-	JMenu AirlineSystemHello = new JMenu("Διαχειριστής");
-        AirlineSystemHello.setForeground(Color.RED);
-	menuBar.add(AirlineSystemHello);
+	JMenu AdminMenu = new JMenu("Διαχειριστής");
+        AdminMenu.setForeground(Color.RED);
+	menuBar.add(AdminMenu);
         
-        JMenuItem FlightDetailshello1 = new JMenuItem("ΕΙΣΑΓΩΓΗ ΥΠΑΛΛΉΛΟΥ");
-	AirlineSystemHello.add(FlightDetailshello1);
+        JMenuItem EmployeeInsertion = new JMenuItem("ΕΙΣΑΓΩΓΗ ΥΠΑΛΛΉΛΟΥ");
+	AdminMenu.add(EmployeeInsertion);
         
-        FlightDetailshello1.addActionListener(new ActionListener(){
+        EmployeeInsertion.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 try{
                     new AddEmployee().setVisible(true);
@@ -65,10 +65,10 @@ public class Dashboard extends JFrame{
 	});
         
 
-        JMenuItem FlightDetailshello2 = new JMenuItem("ΕΙΣΑΓΩΓΗ ΔΩΜΑΤΙΩΝ");
-	AirlineSystemHello.add(FlightDetailshello2);
+        JMenuItem RoomInsertion = new JMenuItem("ΕΙΣΑΓΩΓΗ ΔΩΜΑΤΙΩΝ");
+	AdminMenu.add(RoomInsertion);
         
-        FlightDetailshello2.addActionListener(new ActionListener(){
+        RoomInsertion.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 try{
                     new AddRoom().setVisible(true);
@@ -77,17 +77,17 @@ public class Dashboard extends JFrame{
 	});
         
 
-	FlightDetails.addActionListener(new ActionListener(){
+	Reception.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 new Reception();
             }
 	});
         
         
-        JMenuItem FlightDetailshello3 = new JMenuItem("ΕΙΣΑΓΩΓΗ ΟΔΗΓΩΝ");
-	AirlineSystemHello.add(FlightDetailshello3);
+        JMenuItem DriverInsertion = new JMenuItem("ΕΙΣΑΓΩΓΗ ΟΔΗΓΩΝ");
+	AdminMenu.add(DriverInsertion);
         
-	FlightDetailshello3.addActionListener(new ActionListener(){
+	DriverInsertion.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 try{
                     new AddDrivers().setVisible(true);
@@ -95,30 +95,30 @@ public class Dashboard extends JFrame{
             }
 	});
         
-        JMenuItem FlightDetailshello4 = new JMenuItem("ΔΙΑΓΡΑΦΗ ΥΠΑΛΛΗΛΩΝ");
-	AirlineSystemHello.add(FlightDetailshello4);
+        JMenuItem EmployeeDelete = new JMenuItem("ΔΙΑΓΡΑΦΗ ΥΠΑΛΛΗΛΩΝ");
+	AdminMenu.add(EmployeeDelete);
         
-	FlightDetailshello4.addActionListener(new ActionListener(){
+	EmployeeDelete.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 try{
                     new DelEmployee().setVisible(true);
                 }catch(Exception e ){}
             }
 	});
-        JMenuItem FlightDetailshello5 = new JMenuItem("ΔΙΑΓΡΑΦΗ ΟΔΗΓΩΝ");
-	AirlineSystemHello.add(FlightDetailshello5);
+        JMenuItem DriverDelete = new JMenuItem("ΔΙΑΓΡΑΦΗ ΟΔΗΓΩΝ");
+	AdminMenu.add(DriverDelete);
         
-	FlightDetailshello5.addActionListener(new ActionListener(){
+	DriverDelete.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 try{
                     new DelDrivers().setVisible(true);
                 }catch(Exception e ){}
             }
 	});
-        JMenuItem FlightDetailshello6 = new JMenuItem("ΔΙΑΓΡΑΦΗ ΔΩΜΑΤΙΩΝ");
-	AirlineSystemHello.add(FlightDetailshello6);
+        JMenuItem RoomDelete = new JMenuItem("ΔΙΑΓΡΑΦΗ ΔΩΜΑΤΙΩΝ");
+	AdminMenu.add(RoomDelete);
         
-	FlightDetailshello6.addActionListener(new ActionListener(){
+	RoomDelete.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 try{
                     new DelRoom().setVisible(true);

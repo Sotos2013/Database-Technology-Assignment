@@ -51,8 +51,8 @@ public class LogInfo extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-                 setLocationRelativeTo(null);
-        setResizable(false);
+                setLocationRelativeTo(null);
+                setResizable(false);
 
 		
 		btnExit = new JButton("Πίσω");
@@ -101,13 +101,10 @@ public class LogInfo extends JFrame {
                                         btnprint.setEnabled(false);
                                     }
                                 }
-				catch(Exception e)
-				{
+				catch(Exception e){
 					e.printStackTrace();
 				}
 			}
-				
-			
 		});
                 
                 btnDelData = new JButton("Διαγραφή LOG");
@@ -129,13 +126,10 @@ public class LogInfo extends JFrame {
                                     btnDelData.setEnabled(false);
                                     btnprint.setEnabled(false);
                                 }
-				catch(Exception e)
-				{
+				catch(Exception e){
 					e.printStackTrace();
 				}
 			}
-				
-			
 		});
                 
                 btnprint =new JButton("Εκτύπωση");
